@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Srihari Kolli — IoT Architect & Embedded Systems Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy:   #0D1B2A;
+      --navy2:  #162032;
+      --gold:   #B8924A;
+      --gold2:  #D4A853;
+      --cream:  #F7F4EF;
+      --white:  #FFFFFF;
+      --steel:  #4A5568;
+      --light:  #E8E4DD;
+      --rule:   rgba(13,27,42,.12);
+      --serif:  'Cormorant Garamond', Georgia, serif;
+      --sans:   'Outfit', sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--cream); color: var(--navy); font-family: var(--sans); font-size: 15px; line-height: 1.7; overflow-x: hidden; }
+
+    /* Scroll reveal */
+    .rv { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+    .rv.on { opacity: 1; transform: none; }
+
+    /* Helpers */
+    .wrap { max-width: 1140px; margin: 0 auto; padding: 0 48px; }
+    section { padding: 100px 0; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(247,244,239,.96); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--rule);
+      padding: 0 48px; height: 68px;
+      display: flex; align-items: center; justify-content: space-between;
+      transition: box-shadow .3s;
+    }
+    nav.scrolled { box-shadow: 0 2px 24px rgba(13,27,42,.08); }
+    .nav-brand { display: flex; align-items: center; gap: 14px; text-decoration: none; }
+    .nav-initials {
+      width: 38px; height: 38px; border-radius: 50%;
+      background: var(--navy); color: var(--gold);
+      font-family: var(--serif); font-size: 1rem; font-weight: 600;
+      display: flex; align-items: center; justify-content: center; letter-spacing: .04em;
+    }
+    .nav-name { font-family: var(--serif); font-size: 1.1rem; font-weight: 600; color: var(--navy); letter-spacing: .02em; }
+    .nav-name span { color: var(--gold); }
+    .nav-menu { display: flex; gap: 32px; list-style: none; }
+    .nav-menu a { color: var(--steel); text-decoration: none; font-size: .78rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 500; transition: color .2s; }
+    .nav-menu a:hover { color: var(--navy); }
+    .nav-hire { font-family: var(--sans); font-size: .75rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; padding: 9px 22px; background: var(--navy); color: var(--gold); border-radius: 2px; text-decoration: none; transition: background .2s, color .2s; }
+    .nav-hire:hover { background: var(--gold); color: var(--navy); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh; padding-top: 68px;
+      display: grid; grid-template-columns: 1fr 1fr;
+      position: relative; overflow: hidden;
+    }
+    .hero-left {
+      background: var(--navy); padding: 100px 64px 80px;
+      display: flex; flex-direction: column; justify-content: center;
+      position: relative;
+    }
+    .hero-left::after {
+      content: 'SK'; position: absolute; right: -40px; top: 50%;
+      transform: translateY(-50%);
+      font-family: var(--serif); font-size: 28rem; font-weight: 700; line-height: 1;
+      color: rgba(255,255,255,.025); pointer-events: none; z-index: 0;
+    }
+    .hero-eyebrow {
+      font-family: var(--sans); font-size: .68rem; font-weight: 600;
+      letter-spacing: .25em; text-transform: uppercase; color: var(--gold);
+      margin-bottom: 24px; display: flex; align-items: center; gap: 12px;
+    }
+    .hero-eyebrow::before { content: ''; width: 32px; height: 1px; background: var(--gold); }
+    .hero-name {
+      font-family: var(--serif); font-size: clamp(3.5rem, 6vw, 5.5rem);
+      font-weight: 300; line-height: 1.0; color: #fff;
+      letter-spacing: -.01em; margin-bottom: 8px; position: relative; z-index: 1;
+    }
+    .hero-name strong { font-weight: 600; display: block; color: var(--gold2); }
+    .hero-title {
+      font-family: var(--serif); font-style: italic; font-size: clamp(1rem, 1.8vw, 1.4rem);
+      color: rgba(255,255,255,.5); margin-bottom: 36px; position: relative; z-index: 1;
+    }
+    .hero-rule { width: 48px; height: 1px; background: var(--gold); margin-bottom: 32px; }
+    .hero-bio {
+      font-size: .9rem; color: rgba(255,255,255,.65); line-height: 1.95; max-width: 420px;
+      margin-bottom: 48px; position: relative; z-index: 1;
+    }
+    .hero-bio strong { color: rgba(255,255,255,.9); font-weight: 500; }
+    .hero-ctas { display: flex; gap: 14px; position: relative; z-index: 1; }
+    .btn-gold { padding: 13px 30px; background: var(--gold); color: var(--navy); border-radius: 2px; font-weight: 600; font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; text-decoration: none; transition: background .2s, transform .15s; }
+    .btn-gold:hover { background: var(--gold2); transform: translateY(-2px); }
+    .btn-ghost { padding: 13px 30px; border: 1px solid rgba(255,255,255,.2); color: rgba(255,255,255,.7); border-radius: 2px; font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; text-decoration: none; transition: border-color .2s, color .2s; }
+    .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+
+    .hero-right {
+      background: var(--white); padding: 100px 64px 80px;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .hero-stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--rule); margin-bottom: 48px; }
+    .h-stat { background: var(--white); padding: 28px 24px; }
+    .h-stat-n { font-family: var(--serif); font-size: 3rem; font-weight: 600; color: var(--navy); line-height: 1; margin-bottom: 6px; }
+    .h-stat-l { font-size: .7rem; font-weight: 600; letter-spacing: .15em; text-transform: uppercase; color: var(--steel); }
+    .hero-clients-label { font-size: .68rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
+    .hero-clients { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 36px; }
+    .cl-tag { font-family: var(--sans); font-size: .72rem; font-weight: 600; padding: 6px 14px; border: 1px solid var(--rule); color: var(--navy); letter-spacing: .06em; transition: border-color .2s, color .2s; }
+    .cl-tag:hover { border-color: var(--gold); color: var(--gold); }
+    .hero-chatbot { display: flex; align-items: center; gap: 14px; padding: 16px 20px; border: 1px solid var(--rule); text-decoration: none; color: var(--navy); transition: border-color .2s; }
+    .hero-chatbot:hover { border-color: var(--gold); }
+    .hero-chatbot-icon { font-size: 1.5rem; }
+    .hero-chatbot-lbl { font-size: .65rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--steel); margin-bottom: 2px; }
+    .hero-chatbot-txt { font-size: .82rem; color: var(--navy); }
+
+    /* ── SECTION HEADERS ── */
+    .s-eyebrow { font-size: .65rem; font-weight: 600; letter-spacing: .25em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+    .s-eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--gold); }
+    .s-heading { font-family: var(--serif); font-size: clamp(2.2rem, 4vw, 3.5rem); font-weight: 300; line-height: 1.1; color: var(--navy); margin-bottom: 16px; }
+    .s-heading em { font-style: italic; color: var(--gold); }
+    .s-sub { font-size: .88rem; color: var(--steel); line-height: 1.8; max-width: 520px; }
+    .s-rule { width: 48px; height: 2px; background: var(--gold); margin: 20px 0 56px; }
+
+    /* ── ARTICLES ── */
+    #articles { background: var(--navy); padding: 0; }
+    .art-hdr { padding: 80px 0 0; }
+    .art-hdr .s-eyebrow { color: var(--gold); }
+    .art-hdr .s-heading { color: #fff; }
+    .art-hdr .s-sub { color: rgba(255,255,255,.45); }
+    .art-hdr .s-rule { background: var(--gold); }
+
+    /* Progress */
+    .ss-prog { height: 2px; background: rgba(255,255,255,.08); }
+    .ss-prog-bar { height: 100%; background: var(--gold); transition: width .3s linear; }
+
+    /* Slideshow */
+    .ss-outer { position: relative; overflow: hidden; }
+    .ss-track { display: flex; transition: transform .6s cubic-bezier(.4,0,.2,1); }
+    .slide { min-width: 100%; display: grid; grid-template-columns: 1fr 1fr; align-items: stretch; }
+    .sl-img { position: relative; overflow: hidden; min-height: 520px; }
+    .sl-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; transition: transform .7s ease; }
+    .slide:hover .sl-img img { transform: scale(1.04); }
+    .sl-img-overlay { position: absolute; inset: 0; background: linear-gradient(to right, rgba(13,27,42,.5), rgba(13,27,42,.05)); z-index: 1; }
+    .sl-img-num { position: absolute; bottom: 28px; left: 28px; z-index: 2; font-family: var(--serif); font-size: 5rem; font-weight: 700; color: rgba(255,255,255,.12); line-height: 1; }
+    /* Fallback gradient slide visual */
+    .sl-fallback { min-height: 520px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+    .sl-fallback-icon { font-size: 5rem; opacity: .25; }
+    .sl-fallback-num { position: absolute; bottom: 28px; left: 28px; font-family: var(--serif); font-size: 5rem; font-weight: 700; color: rgba(255,255,255,.1); line-height: 1; }
+
+    .sl-body {
+      background: var(--navy2); padding: 60px 52px;
+      display: flex; flex-direction: column; justify-content: center;
+      border-left: 1px solid rgba(255,255,255,.06);
+    }
+    .sl-cat { font-size: .62rem; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; display: flex; align-items: center; gap: 8px; }
+    .sl-cat::before { content: ''; width: 20px; height: 1px; background: var(--gold); }
+    .sl-title { font-family: var(--serif); font-size: clamp(1.4rem, 2.5vw, 2.2rem); font-weight: 400; line-height: 1.2; color: #fff; margin-bottom: 18px; }
+    .sl-excerpt { font-size: .84rem; color: rgba(255,255,255,.5); line-height: 1.95; margin-bottom: 32px; flex-grow: 1; }
+    .sl-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+    .sl-btn { font-size: .68rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; padding: 10px 20px; text-decoration: none; border-radius: 1px; transition: background .2s, color .2s, border-color .2s; }
+    .sl-btn-primary { background: var(--gold); color: var(--navy); }
+    .sl-btn-primary:hover { background: var(--gold2); }
+    .sl-btn-ghost { border: 1px solid rgba(255,255,255,.15); color: rgba(255,255,255,.5); }
+    .sl-btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+    .sl-meta { margin-top: 28px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,.06); display: flex; gap: 20px; flex-wrap: wrap; }
+    .sl-meta span { font-size: .65rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.25); }
+
+    /* Slideshow controls */
+    .ss-controls { display: flex; align-items: center; justify-content: space-between; padding: 24px 0 60px; }
+    .ss-dots { display: flex; gap: 6px; }
+    .ss-dot { width: 20px; height: 2px; background: rgba(255,255,255,.2); cursor: pointer; transition: background .2s, width .2s; }
+    .ss-dot.act { background: var(--gold); width: 36px; }
+    .ss-arrows { display: flex; gap: 8px; }
+    .ss-btn { width: 42px; height: 42px; border: 1px solid rgba(255,255,255,.15); background: transparent; color: rgba(255,255,255,.5); cursor: pointer; font-size: 1.1rem; display: flex; align-items: center; justify-content: center; transition: border-color .2s, color .2s; }
+    .ss-btn:hover { border-color: var(--gold); color: var(--gold); }
+    .ss-view-all { font-size: .68rem; font-weight: 600; letter-spacing: .15em; text-transform: uppercase; color: rgba(255,255,255,.35); text-decoration: none; transition: color .2s; display: flex; align-items: center; gap: 8px; }
+    .ss-view-all:hover { color: var(--gold); }
+    .ss-view-all::after { content: '→'; }
+
+    /* ── ABOUT ── */
+    #about { background: var(--white); }
+    .about-grid { display: grid; grid-template-columns: 5fr 7fr; gap: 80px; align-items: start; }
+    .about-left { position: sticky; top: 100px; }
+    .about-portrait {
+      width: 100%; aspect-ratio: 3/4; background: var(--navy);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--serif); font-size: 8rem; font-weight: 600; color: var(--gold);
+      position: relative; overflow: hidden; margin-bottom: 28px;
+    }
+    .about-portrait::before { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 40%; background: linear-gradient(to top, rgba(184,146,74,.15), transparent); }
+    .about-portrait-text { position: absolute; bottom: 24px; left: 24px; right: 24px; }
+    .about-portrait-name { font-family: var(--serif); font-size: 1.1rem; font-weight: 600; color: #fff; }
+    .about-portrait-role { font-family: var(--serif); font-style: italic; font-size: .85rem; color: var(--gold); }
+    .cert-row { display: flex; flex-direction: column; gap: 8px; }
+    .cert { display: flex; align-items: center; gap: 10px; font-size: .78rem; color: var(--steel); }
+    .cert-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
+    .about-body p { font-size: .9rem; color: var(--steel); line-height: 2; margin-bottom: 20px; }
+    .about-body p strong { color: var(--navy); font-weight: 600; }
+    .about-body blockquote {
+      border-left: 3px solid var(--gold); padding-left: 20px; margin: 32px 0;
+      font-family: var(--serif); font-style: italic; font-size: 1.15rem;
+      color: var(--navy); line-height: 1.7;
+    }
+
+    /* ── SKILLS ── */
+    #skills { background: var(--cream); }
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1px; background: var(--rule); }
+    .sk-card { background: var(--cream); padding: 32px; transition: background .2s; }
+    .sk-card:hover { background: var(--white); }
+    .sk-head { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
+    .sk-ico { width: 36px; height: 36px; background: var(--navy); border-radius: 2px; display: flex; align-items: center; justify-content: center; font-size: 1rem; }
+    .sk-name { font-family: var(--serif); font-size: 1.05rem; font-weight: 600; color: var(--navy); }
+    .sk-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+    .sk-tag { font-size: .65rem; font-weight: 500; padding: 3px 9px; border: 1px solid var(--rule); color: var(--steel); letter-spacing: .04em; transition: border-color .2s, color .2s; }
+    .sk-card:hover .sk-tag { border-color: rgba(184,146,74,.3); color: var(--navy); }
+
+    /* ── EXPERIENCE ── */
+    #experience { background: var(--white); }
+    .exp-grid { display: grid; grid-template-columns: 220px 1fr; gap: 64px; }
+    .exp-toc { position: sticky; top: 100px; height: fit-content; }
+    .exp-toc-title { font-size: .65rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--steel); margin-bottom: 20px; }
+    .exp-toc-link { display: block; font-size: .78rem; color: var(--steel); text-decoration: none; padding: 7px 0; border-left: 2px solid var(--rule); padding-left: 16px; transition: border-color .2s, color .2s; line-height: 1.4; }
+    .exp-toc-link:hover, .exp-toc-link.act { border-color: var(--gold); color: var(--navy); }
+    .timeline { display: flex; flex-direction: column; gap: 0; }
+    .tl-item { padding: 40px 0; border-bottom: 1px solid var(--rule); }
+    .tl-item:last-child { border-bottom: none; }
+    .tl-header { display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: start; margin-bottom: 16px; }
+    .tl-company { font-family: var(--serif); font-size: 1.4rem; font-weight: 600; color: var(--navy); margin-bottom: 4px; }
+    .tl-role { font-size: .8rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--steel); margin-bottom: 8px; }
+    .tl-client { display: inline-flex; align-items: center; gap: 6px; font-size: .7rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--gold); }
+    .tl-client::before { content: ''; width: 14px; height: 1px; background: var(--gold); }
+    .tl-period { font-family: var(--serif); font-style: italic; font-size: .88rem; color: var(--steel); white-space: nowrap; }
+    .tl-pts { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-top: 16px; }
+    .tl-pts li { font-size: .84rem; color: var(--steel); line-height: 1.75; padding-left: 18px; position: relative; }
+    .tl-pts li::before { content: '—'; position: absolute; left: 0; color: var(--gold); font-size: .8rem; }
+
+    /* ── PROJECTS ── */
+    #projects { background: var(--cream); }
+    .proj-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--rule); }
+    .proj-card { background: var(--cream); padding: 36px 32px; transition: background .2s; position: relative; overflow: hidden; }
+    .proj-card:hover { background: var(--white); }
+    .proj-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform .3s; }
+    .proj-card:hover::before { transform: scaleX(1); }
+    .proj-ico { font-size: 2rem; margin-bottom: 18px; }
+    .proj-name { font-family: var(--serif); font-size: 1.1rem; font-weight: 600; color: var(--navy); margin-bottom: 10px; }
+    .proj-desc { font-size: .82rem; color: var(--steel); line-height: 1.8; margin-bottom: 18px; }
+    .proj-tech { display: flex; flex-wrap: wrap; gap: 4px; }
+    .proj-t { font-size: .62rem; font-weight: 600; padding: 3px 8px; border: 1px solid var(--rule); color: var(--steel); letter-spacing: .04em; }
+
+    /* ── RESUME ── */
+    #resume { background: var(--navy); text-align: center; }
+    .resume-inner { max-width: 600px; margin: 0 auto; }
+    .resume-inner .s-eyebrow { justify-content: center; color: var(--gold); }
+    .resume-inner .s-eyebrow::before { background: var(--gold); }
+    .resume-inner .s-heading { color: #fff; }
+    .resume-inner .s-rule { background: var(--gold); margin: 20px auto 32px; }
+    .resume-inner p { font-size: .9rem; color: rgba(255,255,255,.5); line-height: 1.9; margin-bottom: 40px; }
+    .resume-dl { display: inline-flex; align-items: center; gap: 12px; padding: 16px 40px; background: var(--gold); color: var(--navy); font-weight: 700; font-size: .8rem; letter-spacing: .12em; text-transform: uppercase; text-decoration: none; transition: background .2s, transform .15s; }
+    .resume-dl:hover { background: var(--gold2); transform: translateY(-2px); }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--cream); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; }
+    .ct-card { display: flex; align-items: center; gap: 18px; padding: 24px; border: 1px solid var(--rule); background: var(--white); text-decoration: none; color: inherit; margin-bottom: 12px; transition: border-color .2s, transform .15s; }
+    .ct-card:hover { border-color: var(--gold); transform: translateX(4px); }
+    .ct-ico { font-size: 1.5rem; }
+    .ct-lbl { font-size: .62rem; font-weight: 600; letter-spacing: .15em; text-transform: uppercase; color: var(--steel); margin-bottom: 3px; }
+    .ct-val { font-size: .86rem; color: var(--navy); font-weight: 500; }
+    .cf-label { display: block; font-size: .65rem; font-weight: 600; letter-spacing: .15em; text-transform: uppercase; color: var(--steel); margin-bottom: 7px; }
+    .cf-input, .cf-textarea { width: 100%; background: var(--white); border: 1px solid var(--rule); color: var(--navy); padding: 12px 16px; font-family: var(--sans); font-size: .86rem; outline: none; resize: none; transition: border-color .2s; }
+    .cf-input:focus, .cf-textarea:focus { border-color: var(--gold); }
+    .cf-textarea { height: 130px; }
+    .cf-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+    .cf-group { margin-bottom: 14px; }
+    .cf-submit { padding: 13px 32px; background: var(--navy); color: var(--gold); border: none; font-family: var(--sans); font-size: .75rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; cursor: pointer; transition: background .2s; }
+    .cf-submit:hover { background: var(--gold); color: var(--navy); }
+
+    /* ── FOOTER ── */
+    footer { background: var(--navy); padding: 36px 48px; border-top: 1px solid rgba(255,255,255,.06); display: flex; align-items: center; justify-content: space-between; }
+    .ft-brand { font-family: var(--serif); font-size: 1.1rem; font-weight: 600; color: #fff; }
+    .ft-brand em { color: var(--gold); font-style: normal; }
+    footer p { font-size: .7rem; letter-spacing: .06em; color: rgba(255,255,255,.3); }
+    .ft-links { display: flex; gap: 24px; }
+    .ft-link { font-size: .68rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.3); text-decoration: none; transition: color .2s; }
+    .ft-link:hover { color: var(--gold); }
+
+    /* ── MOBILE ── */
+    @media (max-width: 900px) {
+      nav { padding: 0 20px; }
+      .nav-menu, .nav-hire { display: none; }
+      .wrap { padding: 0 24px; }
+      section { padding: 72px 0; }
+      #hero { grid-template-columns: 1fr; }
+      .hero-left { padding: 60px 28px; }
+      .hero-left::after { display: none; }
+      .hero-right { padding: 48px 28px; }
+      .slide { grid-template-columns: 1fr; }
+      .sl-img, .sl-fallback { min-height: 260px; }
+      .sl-body { padding: 36px 28px; }
+      .about-grid, .exp-grid, .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+      .about-left { position: static; }
+      .about-portrait { aspect-ratio: 16/9; }
+      .exp-toc { display: none; }
+      .proj-grid { grid-template-columns: 1fr; }
+      .cf-row { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 16px; text-align: center; padding: 28px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#hero" class="nav-brand">
+    <div class="nav-initials">SK</div>
+    <span class="nav-name">Srihari <span>Kolli</span></span>
+  </a>
+  <ul class="nav-menu">
+    <li><a href="#articles">Articles</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">R&amp;D</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="mailto:ksh224284@gmail.com" class="nav-hire">Hire Me</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left rv">
+    <div class="hero-eyebrow">IoT Architect &amp; Embedded Systems Engineer</div>
+    <h1 class="hero-name">Srihari<strong>Kolli</strong></h1>
+    <p class="hero-title">15+ Years · C/C++ · Firmware · Automotive · IIoT</p>
+    <div class="hero-rule"></div>
+    <p class="hero-bio">
+      Designing <strong>mission-critical embedded systems</strong> for the world's leading automotive
+      and industrial OEMs. Expert in <strong>IoT architecture, SDV platforms, Qt/QML HMI</strong>,
+      and real-time firmware — from factory floors to connected vehicles to smart cities.
+      Currently open to senior roles in <strong>UAE and globally</strong>.
+    </p>
+    <div class="hero-ctas">
+      <a href="#articles" class="btn-gold">Read Articles</a>
+      <a href="#experience" class="btn-ghost">View Experience</a>
+    </div>
+  </div>
+  <div class="hero-right rv">
+    <div class="hero-stat-grid">
+      <div class="h-stat"><div class="h-stat-n">15<span style="font-size:1.5rem;color:var(--gold)">+</span></div><div class="h-stat-l">Years Experience</div></div>
+      <div class="h-stat"><div class="h-stat-n">4</div><div class="h-stat-l">OEM Clients</div></div>
+      <div class="h-stat"><div class="h-stat-n">12<span style="font-size:1.5rem;color:var(--gold)">+</span></div><div class="h-stat-l">Published Articles</div></div>
+      <div class="h-stat"><div class="h-stat-n">∞</div><div class="h-stat-l">Lines of C++</div></div>
+    </div>
+    <div class="hero-clients-label">Clients Worked With</div>
+    <div class="hero-clients">
+      <span class="cl-tag">Hyundai</span><span class="cl-tag">GM</span>
+      <span class="cl-tag">Ford</span><span class="cl-tag">Stellantis</span>
+      <span class="cl-tag">FCA</span><span class="cl-tag">BRAHMOS · DRDL</span>
+    </div>
+    <a href="https://sriharihf-srihariprofilebot.hf.space/" target="_blank" class="hero-chatbot">
+      <span class="hero-chatbot-icon">🤖</span>
+      <div>
+        <div class="hero-chatbot-lbl">AI Profile Chatbot</div>
+        <div class="hero-chatbot-txt">Ask questions about my work &amp; experience →</div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- ARTICLES SLIDESHOW -->
+<section id="articles">
+  <div class="wrap art-hdr rv">
+    <div class="s-eyebrow">Published Work</div>
+    <h2 class="s-heading">Featured <em>Articles &amp; Whitepapers</em></h2>
+    <p class="s-sub">10 technical publications on IoT, Embedded Systems, Smart Cities, Automotive SDV &amp; Environmental Tech</p>
+    <div class="s-rule"></div>
+  </div>
+
+  <div class="ss-prog"><div class="ss-prog-bar" id="ssBar"></div></div>
+
+  <div class="ss-outer">
+    <div class="ss-track" id="ssTrack">
+
+      <!-- SLIDE 1 -->
+      <div class="slide">
+        <div class="sl-img">
+          <img src="Smartcity.png" alt="IoT Architect's Framework for Next-Gen Smart Cities infographic"/>
+          <div class="sl-img-overlay"></div>
+          <div class="sl-img-num">01</div>
+        </div>
+        <div class="sl-body">
+          <div class="sl-cat">Smart Cities · IoT Architecture</div>
+          <h3 class="sl-title">Smart Cities: Building the Connected Urban Future with IoT</h3>
+          <p class="sl-excerpt">End-to-end IoT framework for next-gen smart cities — intelligent traffic cognition, green energy, waste management, security &amp; surveillance, mobility, and a centralized Digital Twin AI command center. A complete architect's blueprint for a secure, connected, sustainable urban ecosystem.</p>
+          <div class="sl-actions">
+            <a href="https://www.linkedin.com/pulse/smart-cities-srihari-kolli-vcw5f/" target="_blank" class="sl-btn sl-btn-primary">Read on LinkedIn</a>
+          </div>
+          <div class="sl-meta"><span>LinkedIn Pulse</span><span>IoT · LoRaWAN · Digital Twin</span></div>
+        </div>
+      </div>
+
+      <!-- SLIDE 2 -->
+      <div class="slide">
+        <div class="sl-img">
+          <img src="SecureyourIOTdevice.png" alt="Secure Your IoT Devices infographic"/>
+          <div class="sl-img-overlay"></div>
+          <div class="sl-img-num">02</div>
+        </div>
+        <div class="sl-body">
+          <div class="sl-cat">IoT Security · Cyber Defense</div>
+          <h3 class="sl-title">Secure Your IoT Devices: Protect Your Home and Business</h3>
+          <p class="sl-excerpt">IoT-related cyberattacks have grown over 300% in recent years. This article covers secure boot, encryption modules, unauthorized access prevention, device hardening, and best practices for building resilient IoT deployments at home and enterprise scale.</p>
+          <div class="sl-actions">
+            <a href="https://www.linkedin.com/in/skolli8/recent-activity/articles/" target="_blank" class="sl-btn sl-btn-primary">View on LinkedIn</a>
+          </div>
+          <div class="sl-meta"><span>LinkedIn Post</span><span>Secure Boot · Encryption · Cyber Defense</span></div>
+        </div>
+      </div>
+
+      <!-- SLIDE 3 -->
+      <div class="slide">
+        <div class="sl-img">
+          <img src="IOT_gateway.jpg" alt="IoT Gateway architecture diagram"/>
+          <div class="sl-img-overlay"></div>
+          <div class="sl-img-num">03</div>
+        </div>
+        <div class="sl-body">
+          <div class="sl-cat">IoT Gateway · Edge Architecture</div>
+          <h3 class="sl-title">IoT Gateway Architecture: From Hardware to Cloud</h3>
+          <p class="sl-excerpt">A layered breakdown of IoT gateway architecture — hardware (ESP32, microcontrollers, Wi-Fi/BLE/Zigbee/LTE), Linux + RTOS, data acquisition, edge analytics with Filter + Aggregation + Local AI, security modules, and cloud communication via MQTT, HTTP &amp; AMQP protocols.</p>
+          <div class="sl-actions">
+            <a href="https://www.linkedin.com/in/skolli8/recent-activity/articles/" target="_blank" class="sl-btn sl-btn-primary">View on LinkedIn</a>
+          </div>
+          <div class="sl-meta"><span>LinkedIn Post</span><span>MQTT · AMQP · Edge AI · ESP32</span></div>
+        </div>
+      </div>
+
+      <!-- SLIDE 4 -->
+      <div class="slide">
+        <div class="sl-img">
+          <img src="The_Next_big_revolution.jpg" alt="The Next Big Revolution — SelfAgentAI infographic"/>
+          <div class="sl-img-overlay"></div>
+          <div class="sl-img-num">04</div>
+        </div>
+        <div class="sl-body">
+          <div class="sl-cat">AI Agents · Future Technology</div>
+          <h3 class="sl-title">The Next Big Revolution: SelfAgentAI &amp; Home Robo Agents</h3>
+          <p class="sl-excerpt">In the next 10 years, every person will have a personal AI agent and every home will have a Robo Agent. Exploring the convergence of generative AI, autonomous systems, and embedded intelligence — from personal life optimization to household robotics.</p>
+          <div class="sl-actions">
+            <a href="https://www.linkedin.com/in/skolli8/recent-activity/articles/" target="_blank" class="sl-btn sl-btn-primary">View on LinkedIn</a>
+          </div>
+          <div class="sl-meta"><span>LinkedIn Post</span><span>Generative AI · Autonomous Agents</span></div>
+        </div>
+      </div>
+
+      <!-- SLIDE 5 -->
+      <div class="slide">
+        <div class="sl-img">
+          <img src="wildfire_iot.jpg" alt="IoT wildfire prevention network diagram"/>
+          <div class="sl-img-overlay" style="background:linear-gradient(to right,rgba(13,27,42,.65),rgba(13,27,42,.1))"></div>
+          <div class="sl-img-num">05</div>
+        </div>
+        <div class="sl-body">
+          <div class="sl-cat">IoT · Wildfire · Environmental Safety</div>
+          <h3 class="sl-title">The IoT Role in Wildfire Prevention and Response</h3>
+          <p class="sl-excerpt">Wildfires release ~8 billion tons of CO₂ annually and cost the US $20B/year. A complete IoT system — solar-powered wireless sensors, LoRaWAN mesh gateways, satellite networks for remote coverage, and AI-powered monitoring dashboards with predictive analytics for early detection and emergency response.</p>
+          <div class="sl-actions">
+            <a href="IOTrolein_widefire.pdf" target="_blank" class="sl-btn sl-btn-primary">Read Whitepaper</a>
+            <a href="IOTrolein_widefire.pdf" download class="sl-btn sl-btn-ghost">↓ Download PDF</a>
+          </div>
+          <div class="sl-meta"><span>Whitepaper</span><span>LoRaWAN · Satellite IoT · AI · ESP32</span></div>
+        </div>
+      </div>
+
+      <!-- SLIDE 6 -->
+      <div class="slide">
+        <div class="sl-img">
+          <img src="farmhouse_visual.jpg" alt="Smart Farmhouse aerial view"/>
+          <div class="sl-img-overlay" style="background:linear-gradient(to right,rgba(13,27,42,.55),rgba(13,27,42,.05))"></div>
+          <div class="sl-img-num">06</div>
+        </div>
+        <div class="sl-body">
+          <div class="sl-cat">Smart Home · IoT · Sustainable Living</div>
+          <h3 class="sl-title">Smart Farmhouse Design: IoT-Powered Sustainable Living</h3>
+          <p class="sl-excerpt">A comprehensive smart farmhouse blueprint — sustainable organic farming, solar power, AI-driven home automation, and full IoT integration. Features Zigbee/Z-Wave/Matter connectivity, NVIDIA Jetson edge AI, smart CCTV &amp; biometrics, automated irrigation, and a 4-phase implementation roadmap.</p>
+          <div class="sl-actions">
+            <a href="Smartfarmhouse.pdf" target="_blank" class="sl-btn sl-btn-primary">Read Whitepaper</a>
+            <a href="Smartfarmhouse.pdf" download class="sl-btn sl-btn-ghost">↓ Download PDF</a>
+          </div>
+          <div class="sl-meta"><span>Whitepaper</span><span>Zigbee · Matter · Home Assistant · Edge AI</span></div>
+        </div>
+      </div>
+
+      <!-- SLIDE 7 -->
+      <div class="slide">
+        <div class="sl-fallback" style="background:linear-gradient(135deg,#0f1e30,#162032)">
+          <div class="sl-fallback-icon">⚡</div>
+          <div class="sl-fallback-num">07</div>
+        </div>
+        <div class="sl-body">
+          <div class="sl-cat">Embedded Systems · Power Optimization</div>
+          <h3 class="sl-title">How to Minimize Power Usage in Embedded &amp; IoT Applications</h3>
+          <p class="sl-excerpt">A practical guide to power optimization in embedded and IoT systems — covering deep-sleep modes, task scheduling in FreeRTOS, peripheral power gating, dynamic voltage scaling, and BLE low-energy design patterns from real ESP32-based fleet management deployments.</p>
+          <div class="sl-actions">
+            <a href="https://www.linkedin.com/pulse/how-minimize-power-usage-embedded-iot-applications-srihari-kolli-voohc" target="_blank" class="sl-btn sl-btn-primary">Read on LinkedIn</a>
+          </div>
+          <div class="sl-meta"><span>LinkedIn Pulse</span><span>ESP32 · FreeRTOS · BLE · Power</span></div>
+        </div>
+      </div>
+
+      <!-- SLIDE 8 -->
+      <div class="slide">
+        <div class="sl-fallback" style="background:linear-gradient(135deg,#101a10,#141e14)">
+          <div class="sl-fallback-icon">🐧</div>
+          <div class="sl-fallback-num">08</div>
+        </div>
+        <div class="sl-body">
+          <div class="sl-cat">Embedded Linux · Yocto · BSP</div>
+          <h3 class="sl-title">Building a Custom Embedded Linux for Devices</h3>
+          <p class="sl-excerpt">Step-by-step guide to building custom embedded Linux using Yocto Project — BSP configuration, kernel customization, rootfs hardening, device drivers, and OTA-ready image generation. Practical lessons from automotive and industrial deployments on QNX and Yocto Linux platforms.</p>
+          <div class="sl-actions">
+            <a href="https://www.linkedin.com/pulse/building-custom-embedded-linux-devices-srihari-kolli-cd0nc" target="_blank" class="sl-btn sl-btn-primary">Read on LinkedIn</a>
+          </div>
+          <div class="sl-meta"><span>LinkedIn Pulse</span><span>Yocto · BSP · OTA · Linux Kernel</span></div>
+        </div>
+      </div>
+
+      <!-- SLIDE 9 -->
+      <div class="slide">
+        <div class="sl-fallback" style="background:linear-gradient(135deg,#0d1825,#0a1220)">
+          <div class="sl-fallback-icon">🧠</div>
+          <div class="sl-fallback-num">09</div>
+        </div>
+        <div class="sl-body">
+          <div class="sl-cat">Embedded Systems · DMA · Performance</div>
+          <h3 class="sl-title">How DMA Frees Up Your CPU and Why It Matters</h3>
+          <p class="sl-excerpt">Direct Memory Access allows peripherals to transfer data directly to/from RAM without CPU involvement — achieving up to 10× faster transfers and reducing CPU load by 70%. Critical for automotive, IIoT, and IoT applications handling high-speed sensor data, video streaming, and network processing.</p>
+          <div class="sl-actions">
+            <a href="https://www.infoservices.com/blogs/embedded-system/how-dma-frees-up-your-cpu-and-why-it-matters" target="_blank" class="sl-btn sl-btn-primary">Read on InfoServices</a>
+          </div>
+          <div class="sl-meta"><span>InfoServices Blog · Mar 2025</span><span>DMA · CPU Offload · Real-Time</span></div>
+        </div>
+      </div>
+
+      <!-- SLIDE 10 -->
+      <div class="slide">
+        <div class="sl-fallback" style="background:linear-gradient(135deg,#0e1a0e,#121c10)">
+          <div class="sl-fallback-icon">🔧</div>
+          <div class="sl-fallback-num">10</div>
+        </div>
+        <div class="sl-body">
+          <div class="sl-cat">FreeRTOS · RTOS · Microcontrollers</div>
+          <h3 class="sl-title">How FreeRTOS Optimizes Microcontroller Use in Complex Embedded Systems</h3>
+          <p class="sl-excerpt">ESP32, Arduino Uno, and NXP S32 power complex multitasking workloads in embedded systems. This article explores FreeRTOS task scheduling, priority management, inter-task communication, and memory management to unlock full MCU potential in industrial IoT and automotive applications.</p>
+          <div class="sl-actions">
+            <a href="https://www.infoservices.com/blogs/embedded-system/how-does-freertos-optimize-microcontroller-use-in-complex-embedded-systems" target="_blank" class="sl-btn sl-btn-primary">Read on InfoServices</a>
+          </div>
+          <div class="sl-meta"><span>InfoServices Blog · Feb 2025</span><span>FreeRTOS · ESP32 · RTOS · MCU</span></div>
+        </div>
+      </div>
+
+    </div><!-- /track -->
+  </div>
+
+  <div class="wrap ss-controls">
+    <div class="ss-dots" id="ssDots"></div>
+    <a href="https://www.linkedin.com/in/skolli8/recent-activity/articles/" target="_blank" class="ss-view-all">All Articles on LinkedIn</a>
+    <div class="ss-arrows">
+      <button class="ss-btn" id="ssPrev">&#8592;</button>
+      <button class="ss-btn" id="ssNext">&#8594;</button>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="about-left rv">
+        <div class="about-portrait">
+          SK
+          <div class="about-portrait-text">
+            <div class="about-portrait-name">Srihari Kolli</div>
+            <div class="about-portrait-role">IoT Architect &amp; Embedded Systems Engineer</div>
+          </div>
+        </div>
+        <div class="cert-row">
+          <div class="cert"><span class="cert-dot"></span>AWS IoT Certified</div>
+          <div class="cert"><span class="cert-dot"></span>Agile Certified</div>
+          <div class="cert"><span class="cert-dot"></span>SPOTLIGHT Award — Automotive OEM</div>
+          <div class="cert"><span class="cert-dot"></span>M.C.A — Andhra University, 2007</div>
+          <div class="cert"><span class="cert-dot"></span>B.Sc. Computer Science — Andhra University, 2004</div>
+        </div>
+      </div>
+      <div class="about-body rv">
+        <div class="s-eyebrow">About Me</div>
+        <h2 class="s-heading">15 Years Building <em>What Moves the World</em></h2>
+        <div class="s-rule"></div>
+        <blockquote>"I architect embedded systems that run reliably at the edge of the physical world — from plant-floor PLCs to satellite-connected vehicles to smart cities."</blockquote>
+        <p>I'm <strong>Srihari Kolli</strong>, an Embedded Systems &amp; IoT Architect with over 15 years of experience delivering mission-critical software for automotive, industrial, and defense sectors. My work spans the full embedded stack — bare-metal firmware, RTOS platforms, Qt/QML HMI, IIoT data pipelines, and cloud integration.</p>
+        <p>I've contributed to landmark programs: <strong>GM's Ultifi SDV platform</strong>, Ford's <strong>SYNC4 next-gen infotainment</strong>, Hyundai's <strong>IIoT Fleet Management</strong> (ESP32S3 + FreeRTOS + AWS IoT), and FCA's <strong>Factory Information System</strong> managing real-time manufacturing data across North American plants.</p>
+        <p>Early in my career, I developed <strong>missile launch applications for BRAHMOS</strong> on Lynx RTOS at ECIL/DRDL — experience that instilled a deep respect for safety-critical, zero-defect software engineering.</p>
+        <p>Beyond engineering, I publish <strong>technical articles on LinkedIn and InfoServices</strong>, and have built an <strong>AI-powered profile chatbot</strong> hosted on Hugging Face. Currently open to <strong>Senior Embedded / IoT Architect roles in the UAE and globally</strong>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="wrap">
+    <div class="rv">
+      <div class="s-eyebrow">Technical Expertise</div>
+      <h2 class="s-heading">Core <em>Capabilities</em></h2>
+      <div class="s-rule"></div>
+    </div>
+    <div class="skills-grid rv">
+      <div class="sk-card"><div class="sk-head"><div class="sk-ico">⚙️</div><div class="sk-name">Embedded C / C++</div></div><div class="sk-tags"><span class="sk-tag">Embedded C/C++</span><span class="sk-tag">Qt/QML</span><span class="sk-tag">Multi-threading</span><span class="sk-tag">POSIX IPC</span><span class="sk-tag">CMake</span><span class="sk-tag">GDB</span><span class="sk-tag">CAPL</span></div></div>
+      <div class="sk-card"><div class="sk-head"><div class="sk-ico">📡</div><div class="sk-name">IoT &amp; Protocols</div></div><div class="sk-tags"><span class="sk-tag">MQTT</span><span class="sk-tag">OPC-UA</span><span class="sk-tag">Modbus</span><span class="sk-tag">CAN Bus</span><span class="sk-tag">BLE</span><span class="sk-tag">LoRaWAN</span><span class="sk-tag">uProtocol</span><span class="sk-tag">SPI · I²C</span></div></div>
+      <div class="sk-card"><div class="sk-head"><div class="sk-ico">🔌</div><div class="sk-name">Hardware &amp; Firmware</div></div><div class="sk-tags"><span class="sk-tag">ESP32</span><span class="sk-tag">STM32</span><span class="sk-tag">IMX6</span><span class="sk-tag">NXP</span><span class="sk-tag">FreeRTOS</span><span class="sk-tag">Zephyr</span><span class="sk-tag">U-Boot</span><span class="sk-tag">OTA</span><span class="sk-tag">BSP</span></div></div>
+      <div class="sk-card"><div class="sk-head"><div class="sk-ico">🖥️</div><div class="sk-name">RTOS &amp; OS Platforms</div></div><div class="sk-tags"><span class="sk-tag">QNX</span><span class="sk-tag">Yocto Linux</span><span class="sk-tag">LYNX RTOS</span><span class="sk-tag">FreeRTOS</span><span class="sk-tag">Zephyr</span><span class="sk-tag">AIX · UNIX</span><span class="sk-tag">Docker</span></div></div>
+      <div class="sk-card"><div class="sk-head"><div class="sk-ico">☁️</div><div class="sk-name">Cloud &amp; DevOps</div></div><div class="sk-tags"><span class="sk-tag">AWS IoT Core</span><span class="sk-tag">Azure IoT Hub</span><span class="sk-tag">Thingsboard</span><span class="sk-tag">Jenkins</span><span class="sk-tag">Docker</span><span class="sk-tag">CI/CD</span><span class="sk-tag">Git</span></div></div>
+      <div class="sk-card"><div class="sk-head"><div class="sk-ico">🏭</div><div class="sk-name">Industrial Automation (IIoT)</div></div><div class="sk-tags"><span class="sk-tag">PLC / CLX</span><span class="sk-tag">Kepware</span><span class="sk-tag">Rockwell Studio 5000</span><span class="sk-tag">IBM MQ</span><span class="sk-tag">SCADA</span><span class="sk-tag">Qlik Sense</span></div></div>
+      <div class="sk-card"><div class="sk-head"><div class="sk-ico">🚘</div><div class="sk-name">Automotive / SDV</div></div><div class="sk-tags"><span class="sk-tag">ADAS</span><span class="sk-tag">V2X</span><span class="sk-tag">OTA Updates</span><span class="sk-tag">CANoe / CANalyzer</span><span class="sk-tag">Vehicle Spy</span><span class="sk-tag">Fleet Mgmt</span></div></div>
+      <div class="sk-card"><div class="sk-head"><div class="sk-ico">🐍</div><div class="sk-name">Software &amp; Scripting</div></div><div class="sk-tags"><span class="sk-tag">Python</span><span class="sk-tag">Flask</span><span class="sk-tag">Shell / Perl</span><span class="sk-tag">Java</span><span class="sk-tag">DB2</span><span class="sk-tag">MySQL</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="wrap">
+    <div class="rv">
+      <div class="s-eyebrow">Career Timeline</div>
+      <h2 class="s-heading">Professional <em>Experience</em></h2>
+      <div class="s-rule"></div>
+    </div>
+    <div class="exp-grid">
+      <div class="exp-toc rv">
+        <div class="exp-toc-title">Jump to</div>
+        <a href="#exp1" class="exp-toc-link">Info Services — Hyundai</a>
+        <a href="#exp2" class="exp-toc-link">Info Services — GM Ultifi</a>
+        <a href="#exp3" class="exp-toc-link">IDC / Wipro — Ford</a>
+        <a href="#exp4" class="exp-toc-link">NITSDATA — GM OTA</a>
+        <a href="#exp5" class="exp-toc-link">DXC Technology — FCA</a>
+        <a href="#exp6" class="exp-toc-link">TCS — GM FIRE</a>
+        <a href="#exp7" class="exp-toc-link">ECIL — BRAHMOS</a>
+      </div>
+      <div class="timeline rv">
+        <div class="tl-item" id="exp1">
+          <div class="tl-header">
+            <div>
+              <div class="tl-company">Info Services</div>
+              <div class="tl-role">Embedded IoT Engineer · ESP32 SME</div>
+              <div class="tl-client">Hyundai · IIoT Fleet Management</div>
+            </div>
+            <div class="tl-period">Jun 2024 – Jun 2025</div>
+          </div>
+          <ul class="tl-pts">
+            <li>Architected end-to-end IoT fleet management on ESP32S3 + FreeRTOS — sensor collection, AWS/Azure cloud telemetry, BLE communication, OTA updates, and fire-incident prevention for cargo vehicles.</li>
+            <li>Led ESP32 firmware development: FreeRTOS dual-core task management, deep-sleep power optimization, memory management, BLE + Wi-Fi coexistence.</li>
+            <li>Designed real-time &amp; analytical dashboards in Thingsboard at device and fleet level; customized CMake toolchains for ESP-IDF cross-compilation.</li>
+          </ul>
+        </div>
+        <div class="tl-item" id="exp2">
+          <div class="tl-header">
+            <div>
+              <div class="tl-company">Info Services</div>
+              <div class="tl-role">Embedded Engineer · SDV Platform</div>
+              <div class="tl-client">GM · Ultifi Software-Defined Vehicle Platform</div>
+            </div>
+            <div class="tl-period">Aug 2023 – Apr 2024</div>
+          </div>
+          <ul class="tl-pts">
+            <li>Contributed to Ultifi — GM's software platform enabling rapid vehicle feature development through hardware abstraction.</li>
+            <li>Designed new protocols, developed SDKs, migrated legacy infotainment applications to QNX/Linux; built Docker-based toolchain environments for CI consistency.</li>
+          </ul>
+        </div>
+        <div class="tl-item" id="exp3">
+          <div class="tl-header">
+            <div>
+              <div class="tl-company">IDC / Wipro</div>
+              <div class="tl-role">Technical Lead · HMI / Infotainment</div>
+              <div class="tl-client">Ford · SYNC4 Next-Gen Infotainment</div>
+            </div>
+            <div class="tl-period">Apr 2022 – Jul 2023</div>
+          </div>
+          <ul class="tl-pts">
+            <li>Designed Qt/QML HMI screens for Ford SYNC4 — ADAS, driver assistance, charging, towing, and camera system features.</li>
+            <li>Developed middleware interfaces, packaged reusable Qt modules with CMake versioning; led team through requirement gathering, design, and full test cycle.</li>
+          </ul>
+        </div>
+        <div class="tl-item" id="exp4">
+          <div class="tl-header">
+            <div>
+              <div class="tl-company">NITSDATA / Wipro</div>
+              <div class="tl-role">Embedded Engineer · OTA &amp; VDH</div>
+              <div class="tl-client">GM · Vehicle Data Hub &amp; OTA Updates</div>
+            </div>
+            <div class="tl-period">May 2021 – Feb 2022</div>
+          </div>
+          <ul class="tl-pts">
+            <li>Developed C++ frameworks on Linux &amp; QNX RTOS for GM's Vehicle Data Hub connecting back-office systems to vehicle ECU networks.</li>
+            <li>Implemented OTA software delivery to all vehicle ECUs; ECU integration testing via CAN (CANoe, CANalyzer, Vehicle Spy); managed onsite/offshore teams.</li>
+          </ul>
+        </div>
+        <div class="tl-item" id="exp5">
+          <div class="tl-header">
+            <div>
+              <div class="tl-company">DXC Technology</div>
+              <div class="tl-role">Sr. Professional Programmer Analyst · 10+ Years</div>
+              <div class="tl-client">FCA / Stellantis · Factory Information System (IIoT)</div>
+            </div>
+            <div class="tl-period">Dec 2010 – Apr 2021</div>
+          </div>
+          <ul class="tl-pts">
+            <li>Led AIX to Linux migration of FCA's Factory Information System — C/C++ development, device driver migration across North American plants. Recipient of SPOTLIGHT recognition award.</li>
+            <li>Integrated OPC-UA, Modbus &amp; MQTT data pipelines from PLCs/CLX via Kepware and IBM MQ for real-time manufacturing monitoring.</li>
+            <li>Designed plant-floor automation with PLCs and robotics; implemented station-level checkpoint scripts for part quarantine at FCA facilities.</li>
+          </ul>
+        </div>
+        <div class="tl-item" id="exp6">
+          <div class="tl-header">
+            <div>
+              <div class="tl-company">TCS</div>
+              <div class="tl-role">Software Developer</div>
+              <div class="tl-client">GM · FIRE Locomotive Management System</div>
+            </div>
+            <div class="tl-period">Jun 2010 – Dec 2010</div>
+          </div>
+          <ul class="tl-pts">
+            <li>Developed QNX GUI screens using PHAB for the FIRE locomotive management system — crew safety, real-time displays, GPS monitoring, and install tooling.</li>
+          </ul>
+        </div>
+        <div class="tl-item" id="exp7">
+          <div class="tl-header">
+            <div>
+              <div class="tl-company">ECIL</div>
+              <div class="tl-role">Software Engineer</div>
+              <div class="tl-client">DRDL · BRAHMOS Army Weapon Complex</div>
+            </div>
+            <div class="tl-period">May 2008 – May 2010</div>
+          </div>
+          <ul class="tl-pts">
+            <li>Developed Qt/QML frontend GUI for BRAHMOS — command control, communication server, and missile launch applications on Lynx RTOS; integration testing during live missile test launches.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- R&D PROJECTS -->
+<section id="projects">
+  <div class="wrap">
+    <div class="rv">
+      <div class="s-eyebrow">Research &amp; Development</div>
+      <h2 class="s-heading">Selected <em>R&amp;D Projects</em></h2>
+      <div class="s-rule"></div>
+    </div>
+    <div class="proj-grid rv">
+      <div class="proj-card"><div class="proj-ico">🏙️</div><div class="proj-name">Smart City IoT Platform</div><p class="proj-desc">End-to-end smart city architecture: traffic sensors, environmental monitoring, smart lighting, and citizen dashboards over LoRaWAN + MQTT + AWS IoT.</p><div class="proj-tech"><span class="proj-t">LoRaWAN</span><span class="proj-t">MQTT</span><span class="proj-t">AWS IoT</span><span class="proj-t">Thingsboard</span></div></div>
+      <div class="proj-card"><div class="proj-ico">🌿</div><div class="proj-name">Smart Farmhouse Automation</div><p class="proj-desc">IoT automation for precision agriculture — soil sensors, smart irrigation, microclimate control, and crop health monitoring via ESP32 + FreeRTOS.</p><div class="proj-tech"><span class="proj-t">ESP32</span><span class="proj-t">FreeRTOS</span><span class="proj-t">BLE</span><span class="proj-t">MQTT</span></div></div>
+      <div class="proj-card"><div class="proj-ico">🏥</div><div class="proj-name">AI-Powered Medical Assistant</div><p class="proj-desc">Generative AI medical assistant integrating patient vitals from IoT sensors with LLM-based diagnostic support and secure cloud pipelines.</p><div class="proj-tech"><span class="proj-t">GenAI</span><span class="proj-t">AWS IoT</span><span class="proj-t">Python</span><span class="proj-t">Edge AI</span></div></div>
+      <div class="proj-card"><div class="proj-ico">📹</div><div class="proj-name">Next-Gen Surveillance System</div><p class="proj-desc">AI-enhanced surveillance with real-time video analytics, anomaly detection, edge inference on embedded hardware, and cloud-based incident reporting.</p><div class="proj-tech"><span class="proj-t">Computer Vision</span><span class="proj-t">Edge AI</span><span class="proj-t">C++</span><span class="proj-t">Linux</span></div></div>
+      <div class="proj-card"><div class="proj-ico">❄️</div><div class="proj-name">Smart HVAC Control System</div><p class="proj-desc">Intelligent HVAC automation using PLC integration, OPC-UA data collection, predictive maintenance AI, and energy optimization via Thingsboard.</p><div class="proj-tech"><span class="proj-t">OPC-UA</span><span class="proj-t">PLC</span><span class="proj-t">Kepware</span><span class="proj-t">AI/ML</span></div></div>
+      <div class="proj-card"><div class="proj-ico">🤖</div><div class="proj-name">AI Profile Chatbot</div><p class="proj-desc">Interactive AI-powered profile assistant on Hugging Face — visitors can ask questions about skills, experience, and projects in natural language.</p><div class="proj-tech"><span class="proj-t">LLM</span><span class="proj-t">Hugging Face</span><span class="proj-t">Python</span><span class="proj-t">RAG</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- RESUME -->
+<section id="resume">
+  <div class="wrap">
+    <div class="resume-inner rv">
+      <div class="s-eyebrow">Résumé</div>
+      <h2 class="s-heading">Download <em>My CV</em></h2>
+      <div class="s-rule"></div>
+      <p>15+ years of embedded systems excellence — automotive SDV, industrial IoT, firmware development, HMI design, and cloud integration across global OEM programs. Available for senior architect roles in UAE and globally.</p>
+      <a href="Srihari_Kolli_Resume.pdf" download class="resume-dl">↓ Download Résumé (PDF)</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="wrap">
+    <div class="rv">
+      <div class="s-eyebrow">Get In Touch</div>
+      <h2 class="s-heading">Let's <em>Connect</em></h2>
+      <div class="s-rule"></div>
+    </div>
+    <div class="contact-grid">
+      <div class="rv">
+        <a href="mailto:ksh224284@gmail.com" class="ct-card"><span class="ct-ico">✉️</span><div><div class="ct-lbl">Email</div><div class="ct-val">ksh224284@gmail.com</div></div></a>
+        <a href="https://www.linkedin.com/in/skolli8/" target="_blank" class="ct-card"><span class="ct-ico">💼</span><div><div class="ct-lbl">LinkedIn</div><div class="ct-val">linkedin.com/in/skolli8</div></div></a>
+        <a href="https://sriharihf-srihariprofilebot.hf.space/" target="_blank" class="ct-card"><span class="ct-ico">🤖</span><div><div class="ct-lbl">AI Profile Chatbot</div><div class="ct-val">sriharihf-srihariprofilebot.hf.space</div></div></a>
+      </div>
+      <form class="rv" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" onsubmit="handleForm(event)">
+        <div class="cf-row">
+          <div><label class="cf-label">Name</label><input class="cf-input" type="text" name="name" placeholder="Your Name" required/></div>
+          <div><label class="cf-label">Email</label><input class="cf-input" type="email" name="email" placeholder="your@email.com" required/></div>
+        </div>
+        <div class="cf-group"><label class="cf-label">Subject</label><input class="cf-input" type="text" name="subject" placeholder="Project / Opportunity / Collaboration"/></div>
+        <div class="cf-group"><label class="cf-label">Message</label><textarea class="cf-textarea" name="message" placeholder="Tell me about your project or opportunity..."></textarea></div>
+        <button type="submit" class="cf-submit" id="cfBtn">Send Message</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="ft-brand">Srihari <em>Kolli</em></span>
+  <p>© 2025 · IoT Architect &amp; Embedded Systems Engineer · Michigan, USA · GitHub Pages</p>
+  <div class="ft-links">
+    <a href="https://www.linkedin.com/in/skolli8/" target="_blank" class="ft-link">LinkedIn</a>
+    <a href="https://www.infoservices.com/blogs/author/srihari-kolli" target="_blank" class="ft-link">Blog</a>
+    <a href="Srihari_Kolli_Resume.pdf" download class="ft-link">Résumé</a>
+  </div>
+</footer>
+
+<script>
+// Scroll reveal
+const obs = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => { if (e.isIntersecting) setTimeout(() => e.target.classList.add('on'), i * 60); });
+}, { threshold: 0.08 });
+document.querySelectorAll('.rv').forEach(el => obs.observe(el));
+
+// Nav scroll
+const navEl = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  navEl.classList.toggle('scrolled', window.scrollY > 40);
+});
+
+// Slideshow
+const track = document.getElementById('ssTrack');
+const slides = track.querySelectorAll('.slide');
+const dotsEl = document.getElementById('ssDots');
+const bar    = document.getElementById('ssBar');
+let idx = 0, timer;
+const DELAY = 6000;
+
+slides.forEach((_, i) => {
+  const d = document.createElement('div');
+  d.className = 'ss-dot' + (i === 0 ? ' act' : '');
+  d.onclick = () => goTo(i);
+  dotsEl.appendChild(d);
+});
+
+function goTo(n) {
+  idx = (n + slides.length) % slides.length;
+  track.style.transform = `translateX(-${idx * 100}%)`;
+  document.querySelectorAll('.ss-dot').forEach((d, i) => d.classList.toggle('act', i === idx));
+  resetTimer();
+}
+function resetTimer() {
+  clearInterval(timer);
+  bar.style.width = '0%'; bar.style.transition = 'none';
+  requestAnimationFrame(() => { bar.style.transition = `width ${DELAY}ms linear`; bar.style.width = '100%'; });
+  timer = setInterval(() => goTo(idx + 1), DELAY);
+}
+document.getElementById('ssNext').onclick = () => goTo(idx + 1);
+document.getElementById('ssPrev').onclick = () => goTo(idx - 1);
+const so = document.querySelector('.ss-outer');
+so.addEventListener('mouseenter', () => { clearInterval(timer); bar.style.transition = 'none'; });
+so.addEventListener('mouseleave', resetTimer);
+let tx = 0;
+track.addEventListener('touchstart', e => tx = e.touches[0].clientX, { passive: true });
+track.addEventListener('touchend', e => { const dx = e.changedTouches[0].clientX - tx; if (Math.abs(dx) > 50) goTo(idx + (dx < 0 ? 1 : -1)); }, { passive: true });
+resetTimer();
+
+// Experience TOC highlight
+const tlItems = document.querySelectorAll('.tl-item');
+const tocLinks = document.querySelectorAll('.exp-toc-link');
+const expObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      tocLinks.forEach(l => l.classList.remove('act'));
+      const link = document.querySelector(`.exp-toc-link[href="#${e.target.id}"]`);
+      if (link) link.classList.add('act');
+    }
+  });
+}, { threshold: 0.5 });
+tlItems.forEach(el => expObs.observe(el));
+
+// Contact form
+async function handleForm(e) {
+  e.preventDefault();
+  const btn = document.getElementById('cfBtn');
+  const form = e.target;
+  btn.textContent = 'Sending…'; btn.disabled = true;
+  try {
+    const res = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
+    if (res.ok) {
+      btn.textContent = '✓ Message Sent';
+      btn.style.background = '#2d6a4f'; btn.style.color = '#fff';
+      form.reset();
+      setTimeout(() => { btn.textContent = 'Send Message'; btn.style.background = ''; btn.style.color = ''; btn.disabled = false; }, 4000);
+    } else { btn.textContent = 'Failed — email directly'; btn.disabled = false; }
+  } catch { btn.textContent = 'Network error — email directly'; btn.disabled = false; }
+}
+</script>
+</body>
+</html>
