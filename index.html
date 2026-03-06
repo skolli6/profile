@@ -191,11 +191,12 @@
     .about-portrait {
       width: 100%; aspect-ratio: 3/4; background: var(--navy);
       display: flex; align-items: center; justify-content: center;
-      font-family: var(--serif); font-size: 8rem; font-weight: 600; color: var(--gold);
       position: relative; overflow: hidden; margin-bottom: 28px;
     }
-    .about-portrait::before { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 40%; background: linear-gradient(to top, rgba(184,146,74,.15), transparent); }
-    .about-portrait-text { position: absolute; bottom: 24px; left: 24px; right: 24px; }
+    .about-portrait img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+    .about-portrait-initials { font-family: var(--serif); font-size: 8rem; font-weight: 600; color: rgba(184,146,74,.25); position: relative; z-index: 1; }
+    .about-portrait::before { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 45%; background: linear-gradient(to top, rgba(13,27,42,.9), transparent); z-index: 2; }
+    .about-portrait-text { position: absolute; bottom: 24px; left: 24px; right: 24px; z-index: 3; }
     .about-portrait-name { font-family: var(--serif); font-size: 1.1rem; font-weight: 600; color: #fff; }
     .about-portrait-role { font-family: var(--serif); font-style: italic; font-size: .85rem; color: var(--gold); }
     .cert-row { display: flex; flex-direction: column; gap: 8px; }
@@ -330,7 +331,7 @@
     <li><a href="#projects">R&amp;D</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-  <a href="mailto:ksh224284@gmail.com" class="nav-hire">Hire Me</a>
+  <a href="/cdn-cgi/l/email-protection#563d253e646462646e6216313b373f3a7835393b" class="nav-hire">Hire Me</a>
 </nav>
 
 <!-- HERO -->
@@ -353,8 +354,8 @@
   </div>
   <div class="hero-right rv">
     <div class="hero-stat-grid">
-      <div class="h-stat"><div class="h-stat-n">15<span style="font-size:1.5rem;color:var(--gold)">+</span></div><div class="h-stat-l">Years Experience</div></div>
-      <div class="h-stat"><div class="h-stat-n">4</div><div class="h-stat-l">OEM Clients</div></div>
+      <div class="h-stat"><div class="h-stat-n">17<span style="font-size:1.5rem;color:var(--gold)">+</span></div><div class="h-stat-l">Years Experience</div></div>
+      <div class="h-stat"><div class="h-stat-n">6<span style="font-size:1.5rem;color:var(--gold)">+</span></div><div class="h-stat-l">OEM Clients</div></div>
       <div class="h-stat"><div class="h-stat-n">12<span style="font-size:1.5rem;color:var(--gold)">+</span></div><div class="h-stat-l">Published Articles</div></div>
       <div class="h-stat"><div class="h-stat-n">∞</div><div class="h-stat-l">Lines of C++</div></div>
     </div>
@@ -362,7 +363,8 @@
     <div class="hero-clients">
       <span class="cl-tag">Hyundai</span><span class="cl-tag">GM</span>
       <span class="cl-tag">Ford</span><span class="cl-tag">Stellantis</span>
-      <span class="cl-tag">FCA</span><span class="cl-tag">BRAHMOS · DRDL</span>
+      <span class="cl-tag">NexRev</span><span class="cl-tag">Lockout</span>
+      <span class="cl-tag">BRAHMOS · DRDL</span>
     </div>
     <a href="https://sriharihf-srihariprofilebot.hf.space/" target="_blank" class="hero-chatbot">
       <span class="hero-chatbot-icon">🤖</span>
@@ -500,9 +502,10 @@
 
       <!-- SLIDE 7 -->
       <div class="slide">
-        <div class="sl-fallback" style="background:linear-gradient(135deg,#0f1e30,#162032)">
-          <div class="sl-fallback-icon">⚡</div>
-          <div class="sl-fallback-num">07</div>
+        <div class="sl-img">
+          <img src="Miniizepowerusage.png" alt="Minimize Power Usage in Embedded IoT — MCU low-power components infographic"/>
+          <div class="sl-img-overlay"></div>
+          <div class="sl-img-num">07</div>
         </div>
         <div class="sl-body">
           <div class="sl-cat">Embedded Systems · Power Optimization</div>
@@ -517,9 +520,10 @@
 
       <!-- SLIDE 8 -->
       <div class="slide">
-        <div class="sl-fallback" style="background:linear-gradient(135deg,#101a10,#141e14)">
-          <div class="sl-fallback-icon">🐧</div>
-          <div class="sl-fallback-num">08</div>
+        <div class="sl-img">
+          <img src="customembeddedLinx.jpg" alt="Build Custom Embedded Linux with Yocto — development environment infographic"/>
+          <div class="sl-img-overlay"></div>
+          <div class="sl-img-num">08</div>
         </div>
         <div class="sl-body">
           <div class="sl-cat">Embedded Linux · Yocto · BSP</div>
@@ -534,9 +538,10 @@
 
       <!-- SLIDE 9 -->
       <div class="slide">
-        <div class="sl-fallback" style="background:linear-gradient(135deg,#0d1825,#0a1220)">
-          <div class="sl-fallback-icon">🧠</div>
-          <div class="sl-fallback-num">09</div>
+        <div class="sl-img">
+          <img src="DMA.jpg" alt="How DMA Frees Up Your CPU — Direct Memory Access diagram"/>
+          <div class="sl-img-overlay"></div>
+          <div class="sl-img-num">09</div>
         </div>
         <div class="sl-body">
           <div class="sl-cat">Embedded Systems · DMA · Performance</div>
@@ -551,9 +556,10 @@
 
       <!-- SLIDE 10 -->
       <div class="slide">
-        <div class="sl-fallback" style="background:linear-gradient(135deg,#0e1a0e,#121c10)">
-          <div class="sl-fallback-icon">🔧</div>
-          <div class="sl-fallback-num">10</div>
+        <div class="sl-img">
+          <img src="FreeRTOS.jpg" alt="FreeRTOS optimizing microcontroller use — robot on circuit board with hands debugging"/>
+          <div class="sl-img-overlay"></div>
+          <div class="sl-img-num">10</div>
         </div>
         <div class="sl-body">
           <div class="sl-cat">FreeRTOS · RTOS · Microcontrollers</div>
@@ -585,7 +591,9 @@
     <div class="about-grid">
       <div class="about-left rv">
         <div class="about-portrait">
-          SK
+          <!-- Replace profile_photo.jpg with your actual photo file -->
+          <img src="profile_photo.jpg" alt="Srihari Kolli" onerror="this.style.display='none'"/>
+          <div class="about-portrait-initials">SK</div>
           <div class="about-portrait-text">
             <div class="about-portrait-name">Srihari Kolli</div>
             <div class="about-portrait-role">IoT Architect &amp; Embedded Systems Engineer</div>
@@ -604,8 +612,8 @@
         <h2 class="s-heading">15 Years Building <em>What Moves the World</em></h2>
         <div class="s-rule"></div>
         <blockquote>"I architect embedded systems that run reliably at the edge of the physical world — from plant-floor PLCs to satellite-connected vehicles to smart cities."</blockquote>
-        <p>I'm <strong>Srihari Kolli</strong>, an Embedded Systems &amp; IoT Architect with over 15 years of experience delivering mission-critical software for automotive, industrial, and defense sectors. My work spans the full embedded stack — bare-metal firmware, RTOS platforms, Qt/QML HMI, IIoT data pipelines, and cloud integration.</p>
-        <p>I've contributed to landmark programs: <strong>GM's Ultifi SDV platform</strong>, Ford's <strong>SYNC4 next-gen infotainment</strong>, Hyundai's <strong>IIoT Fleet Management</strong> (ESP32S3 + FreeRTOS + AWS IoT), and FCA's <strong>Factory Information System</strong> managing real-time manufacturing data across North American plants.</p>
+        <p>I'm <strong>Srihari Kolli</strong>, an Embedded Systems &amp; IoT Architect with <strong>17+ years</strong> of experience delivering mission-critical software for automotive, industrial, and defense sectors. My work spans the full embedded stack — bare-metal firmware, RTOS platforms, Qt/QML HMI, IIoT data pipelines, and cloud integration.</p>
+        <p>Currently I'm building <strong>smart energy meters (NexRev)</strong> and an <strong>AI-driven school security system (Lockout)</strong> using PSoC 4-BLE, Azure IoT, and GCP — while also contributing to <strong>GM's Ultifi SDV platform</strong> and Hyundai's <strong>IIoT Fleet Management</strong> (ESP32S3 + FreeRTOS + AWS IoT).</p>
         <p>Early in my career, I developed <strong>missile launch applications for BRAHMOS</strong> on Lynx RTOS at ECIL/DRDL — experience that instilled a deep respect for safety-critical, zero-defect software engineering.</p>
         <p>Beyond engineering, I publish <strong>technical articles on LinkedIn and InfoServices</strong>, and have built an <strong>AI-powered profile chatbot</strong> hosted on Hugging Face. Currently open to <strong>Senior Embedded / IoT Architect roles in the UAE and globally</strong>.</p>
       </div>
@@ -645,6 +653,8 @@
     <div class="exp-grid">
       <div class="exp-toc rv">
         <div class="exp-toc-title">Jump to</div>
+        <a href="#exp0a" class="exp-toc-link">Info Services — Lockout ★</a>
+        <a href="#exp0b" class="exp-toc-link">Info Services — NexRev ★</a>
         <a href="#exp1" class="exp-toc-link">Info Services — Hyundai</a>
         <a href="#exp2" class="exp-toc-link">Info Services — GM Ultifi</a>
         <a href="#exp3" class="exp-toc-link">IDC / Wipro — Ford</a>
@@ -654,6 +664,36 @@
         <a href="#exp7" class="exp-toc-link">ECIL — BRAHMOS</a>
       </div>
       <div class="timeline rv">
+        <!-- NEW ROLE 1 -->
+        <div class="tl-item" id="exp0a">
+          <div class="tl-header">
+            <div>
+              <div class="tl-company">Info Services</div>
+              <div class="tl-role">IoT Architect · Full Stack Product Design</div>
+              <div class="tl-client">Lockout · School Security Monitoring System</div>
+            </div>
+            <div class="tl-period">Sep 2025 – Present</div>
+          </div>
+          <ul class="tl-pts">
+            <li>Designed and developed a school security monitoring system using <strong>PSoC™ 4-BLE</strong>, <strong>GCP Firestore</strong>, and C/C++ — triggering automated alerts when emergency incidents are detected on school premises.</li>
+            <li>Architected the full-stack IoT product from firmware to cloud, integrating BLE sensor nodes with Google Cloud Platform for real-time alerting and data persistence.</li>
+          </ul>
+        </div>
+        <!-- NEW ROLE 2 -->
+        <div class="tl-item" id="exp0b">
+          <div class="tl-header">
+            <div>
+              <div class="tl-company">Info Services</div>
+              <div class="tl-role">Embedded Engineer · Firmware &amp; Azure IoT</div>
+              <div class="tl-client">NexRev · Smart Energy Meters</div>
+            </div>
+            <div class="tl-period">Sep 2025 – Present</div>
+          </div>
+          <ul class="tl-pts">
+            <li>Developing firmware for smart meters using <strong>C/C++ and Azure IoT</strong> — monitoring power usage, enabling real-time control and energy consumption reduction for commercial and residential deployments.</li>
+            <li>Implementing cloud telemetry pipelines, OTA firmware updates, and edge analytics to optimize energy efficiency at scale.</li>
+          </ul>
+        </div>
         <div class="tl-item" id="exp1">
           <div class="tl-header">
             <div>
@@ -783,8 +823,8 @@
       <div class="s-eyebrow">Résumé</div>
       <h2 class="s-heading">Download <em>My CV</em></h2>
       <div class="s-rule"></div>
-      <p>15+ years of embedded systems excellence — automotive SDV, industrial IoT, firmware development, HMI design, and cloud integration across global OEM programs. Available for senior architect roles in UAE and globally.</p>
-      <a href="Srihari_Kolli_Resume.pdf" download class="resume-dl">↓ Download Résumé (PDF)</a>
+      <p>17+ years of embedded systems excellence — automotive SDV, industrial IoT, smart energy, school security, firmware development, HMI design, and cloud integration across global OEM programs including Hyundai, GM, Ford, Stellantis, NexRev &amp; Lockout.</p>
+      <a href="Srihari_Kolli_Resume.docx" download class="resume-dl">↓ Download Résumé (Word)</a>
     </div>
   </div>
 </section>
@@ -799,7 +839,7 @@
     </div>
     <div class="contact-grid">
       <div class="rv">
-        <a href="mailto:ksh224284@gmail.com" class="ct-card"><span class="ct-ico">✉️</span><div><div class="ct-lbl">Email</div><div class="ct-val">ksh224284@gmail.com</div></div></a>
+        <a href="/cdn-cgi/l/email-protection#b2d9c1da808086808a86f2d5dfd3dbde9cd1dddf" class="ct-card"><span class="ct-ico">✉️</span><div><div class="ct-lbl">Email</div><div class="ct-val"><span class="__cf_email__" data-cfemail="fc978f94cecec8cec4c8bc9b919d9590d29f9391">[email&#160;protected]</span></div></div></a>
         <a href="https://www.linkedin.com/in/skolli8/" target="_blank" class="ct-card"><span class="ct-ico">💼</span><div><div class="ct-lbl">LinkedIn</div><div class="ct-val">linkedin.com/in/skolli8</div></div></a>
         <a href="https://sriharihf-srihariprofilebot.hf.space/" target="_blank" class="ct-card"><span class="ct-ico">🤖</span><div><div class="ct-lbl">AI Profile Chatbot</div><div class="ct-val">sriharihf-srihariprofilebot.hf.space</div></div></a>
       </div>
@@ -823,11 +863,11 @@
   <div class="ft-links">
     <a href="https://www.linkedin.com/in/skolli8/" target="_blank" class="ft-link">LinkedIn</a>
     <a href="https://www.infoservices.com/blogs/author/srihari-kolli" target="_blank" class="ft-link">Blog</a>
-    <a href="Srihari_Kolli_Resume.pdf" download class="ft-link">Résumé</a>
+    <a href="Srihari_Kolli_Resume.docx" download class="ft-link">Résumé</a>
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // Scroll reveal
 const obs = new IntersectionObserver(entries => {
   entries.forEach((e, i) => { if (e.isIntersecting) setTimeout(() => e.target.classList.add('on'), i * 60); });
@@ -903,10 +943,4 @@ async function handleForm(e) {
       btn.textContent = '✓ Message Sent';
       btn.style.background = '#2d6a4f'; btn.style.color = '#fff';
       form.reset();
-      setTimeout(() => { btn.textContent = 'Send Message'; btn.style.background = ''; btn.style.color = ''; btn.disabled = false; }, 4000);
-    } else { btn.textContent = 'Failed — email directly'; btn.disabled = false; }
-  } catch { btn.textContent = 'Network error — email directly'; btn.disabled = false; }
-}
-</script>
-</body>
-</html>
+      setTimeout(() => { btn.textContent = 'Send Message'
