@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Blog — Srihari Kolli · IoT Architect</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0D1B2A;--navy2:#162032;--gold:#B8924A;--gold2:#D4A853;
+  --cream:#F7F4EF;--white:#FFFFFF;--steel:#4A5568;--rule:rgba(13,27,42,.12);
+  --serif:'Cormorant Garamond',Georgia,serif;--sans:'Outfit',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--cream);color:var(--navy);font-family:var(--sans);font-size:15px;line-height:1.7;overflow-x:hidden}
+.wrap{max-width:1140px;margin:0 auto;padding:0 48px}
+a{text-decoration:none}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(247,244,239,.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--rule);padding:0 48px;height:68px;display:flex;align-items:center;justify-content:space-between}
+nav.sc{box-shadow:0 2px 24px rgba(13,27,42,.09)}
+.nav-brand{display:flex;align-items:center;gap:14px;text-decoration:none}
+.nav-init{width:38px;height:38px;border-radius:50%;background:var(--navy);color:var(--gold);font-family:var(--serif);font-size:1rem;font-weight:600;display:flex;align-items:center;justify-content:center;letter-spacing:.04em;flex-shrink:0}
+.nav-nm{font-family:var(--serif);font-size:1.1rem;font-weight:600;color:var(--navy);letter-spacing:.02em}
+.nav-nm span{color:var(--gold)}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{color:var(--steel);font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;font-weight:500;transition:color .2s}
+.nav-links a:hover,.nav-links a.active{color:var(--navy)}
+.nav-links a.active{color:var(--gold);border-bottom:1px solid var(--gold);padding-bottom:2px}
+.nav-hire{font-size:.73rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:9px 22px;background:var(--navy);color:var(--gold);border-radius:2px;transition:background .2s,color .2s}
+.nav-hire:hover{background:var(--gold);color:var(--navy)}
+
+/* BLOG HERO BANNER */
+.blog-hero{background:var(--navy);padding:120px 0 72px;position:relative;overflow:hidden}
+.blog-hero::after{content:'BLOG';position:absolute;right:-20px;top:50%;transform:translateY(-50%);font-family:var(--serif);font-size:22rem;font-weight:700;line-height:1;color:rgba(255,255,255,.025);pointer-events:none;letter-spacing:-.02em}
+.blog-hero .wrap{position:relative;z-index:1}
+.hero-eyebrow{font-size:.67rem;font-weight:600;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;display:flex;align-items:center;gap:12px}
+.hero-eyebrow::before{content:'';width:28px;height:1px;background:var(--gold)}
+.blog-hero h1{font-family:var(--serif);font-size:clamp(2.4rem,5vw,4rem);font-weight:300;color:#fff;line-height:1.05;margin-bottom:18px;letter-spacing:-.01em}
+.blog-hero h1 em{font-style:italic;color:var(--gold2)}
+.blog-hero p{font-size:.92rem;color:rgba(255,255,255,.45);max-width:520px;line-height:1.8}
+.hero-rule{width:44px;height:1px;background:var(--gold);margin:20px 0}
+
+/* ARTICLE CARD LIST */
+.blog-listing{padding:80px 0}
+.listing-label{font-size:.67rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:32px;display:flex;align-items:center;gap:10px}
+.listing-label::before{content:'';width:22px;height:1px;background:var(--gold)}
+.article-card{display:grid;grid-template-columns:1fr 3fr;gap:0;background:var(--white);border:1px solid var(--rule);margin-bottom:2px;transition:box-shadow .25s,border-color .25s;cursor:pointer}
+.article-card:hover{box-shadow:0 6px 28px rgba(13,27,42,.08);border-color:rgba(184,146,74,.35)}
+.card-num{padding:40px 32px;background:var(--navy);display:flex;align-items:flex-start;justify-content:center;min-width:90px}
+.card-num span{font-family:var(--serif);font-size:2.8rem;font-weight:600;color:rgba(184,146,74,.35);line-height:1}
+.card-body{padding:36px 44px;display:flex;flex-direction:column;justify-content:space-between;gap:14px}
+.card-top{}
+.card-cat{font-size:.63rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+.card-title{font-family:var(--serif);font-size:clamp(1.3rem,2.2vw,1.9rem);font-weight:400;line-height:1.2;color:var(--navy);margin-bottom:12px;transition:color .2s}
+.article-card:hover .card-title{color:var(--gold)}
+.card-excerpt{font-size:.85rem;color:var(--steel);line-height:1.85}
+.card-footer{display:flex;align-items:center;justify-content:space-between;padding-top:16px;border-top:1px solid var(--rule);flex-wrap:wrap;gap:10px}
+.card-tags{display:flex;gap:6px;flex-wrap:wrap}
+.card-tag{font-size:.63rem;font-weight:500;padding:3px 10px;border:1px solid var(--rule);color:var(--steel);letter-spacing:.04em}
+.card-read{font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:6px;transition:gap .2s}
+.article-card:hover .card-read{gap:10px}
+.card-read::after{content:'→'}
+
+/* FULL ARTICLE VIEW */
+.article-view{display:none;padding:80px 0 120px}
+.article-view.visible{display:block}
+.art-back{display:inline-flex;align-items:center;gap:8px;font-size:.75rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--steel);margin-bottom:48px;transition:color .2s;cursor:pointer;border:none;background:none;font-family:var(--sans)}
+.art-back:hover{color:var(--gold)}
+.art-back::before{content:'←'}
+.art-meta{margin-bottom:16px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.art-cat{font-size:.68rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);padding:5px 12px;border:1px solid var(--gold)}
+.art-date{font-size:.75rem;color:var(--steel)}
+.art-read-time{font-size:.75rem;color:var(--steel)}
+.art-title{font-family:var(--serif);font-size:clamp(2rem,4.5vw,3.4rem);font-weight:400;line-height:1.12;color:var(--navy);margin-bottom:20px;letter-spacing:-.01em}
+.art-subtitle{font-family:var(--serif);font-style:italic;font-size:1.15rem;color:var(--steel);margin-bottom:16px;line-height:1.6}
+.art-divider{width:44px;height:2px;background:var(--gold);margin:28px 0 44px}
+
+/* ARTICLE BODY TYPOGRAPHY */
+.art-body{max-width:760px}
+.art-body h2{font-family:var(--serif);font-size:clamp(1.55rem,2.8vw,2.1rem);font-weight:500;color:var(--navy);margin:52px 0 20px;letter-spacing:-.01em;padding-bottom:12px;border-bottom:1px solid var(--rule)}
+.art-body h3{font-family:var(--serif);font-size:1.3rem;font-weight:600;color:var(--gold);margin:36px 0 14px}
+.art-body p{font-size:.95rem;color:var(--steel);line-height:2;margin-bottom:20px}
+.art-body ul,.art-body ol{margin:16px 0 22px 24px;line-height:2.1}
+.art-body li{font-size:.93rem;color:var(--steel);margin-bottom:6px}
+.art-body strong{font-weight:600;color:var(--navy)}
+.art-highlight{background:rgba(184,146,74,.07);border-left:3px solid var(--gold);padding:22px 28px;margin:32px 0;border-radius:0 3px 3px 0}
+.art-highlight p{margin-bottom:10px;font-size:.93rem}
+.art-highlight p:last-child{margin-bottom:0}
+.art-code{background:var(--navy);color:rgba(255,255,255,.78);padding:24px 28px;font-family:'Courier New',monospace;font-size:.84rem;line-height:1.8;margin:28px 0;overflow-x:auto;border-radius:2px}
+.art-code .cm{color:rgba(184,146,74,.7);font-style:italic}
+.art-img{margin:48px 0}
+.art-img img{width:100%;height:auto;display:block;border-radius:2px;box-shadow:0 10px 40px rgba(13,27,42,.14)}
+.art-img figcaption{font-size:.78rem;color:var(--steel);font-style:italic;margin-top:12px;text-align:center}
+.art-pitfall-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin:28px 0 36px}
+.art-pitfall{background:var(--white);border:1px solid var(--rule);padding:22px 24px;transition:border-color .2s,box-shadow .2s}
+.art-pitfall:hover{border-color:rgba(184,146,74,.35);box-shadow:0 4px 14px rgba(13,27,42,.07)}
+.art-pitfall h4{font-family:var(--serif);font-size:1rem;font-weight:600;color:var(--navy);margin-bottom:8px}
+.art-pitfall p{font-size:.83rem;color:var(--steel);line-height:1.7;margin:0}
+.art-closing{background:var(--navy);padding:36px 40px;margin:52px 0 0;position:relative;overflow:hidden}
+.art-closing::before{content:'"';position:absolute;top:-10px;left:16px;font-family:var(--serif);font-size:10rem;color:rgba(184,146,74,.08);line-height:1}
+.art-closing p{font-family:var(--serif);font-size:1.15rem;line-height:1.8;color:rgba(255,255,255,.7);font-style:italic;position:relative;z-index:1;margin-bottom:12px}
+.art-closing p:last-child{margin-bottom:0}
+.art-closing p strong{color:var(--gold2);font-style:normal}
+
+/* FOOTER */
+footer{background:var(--navy);padding:36px 48px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(255,255,255,.06)}
+.ft-brand{font-family:var(--serif);font-size:1.1rem;font-weight:600;color:#fff}
+.ft-brand em{color:var(--gold);font-style:normal}
+footer small{font-size:.72rem;color:rgba(255,255,255,.3);letter-spacing:.05em}
+.ft-links{display:flex;gap:22px}
+.ft-lnk{font-size:.68rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.35);transition:color .2s}
+.ft-lnk:hover{color:var(--gold)}
+
+@media(max-width:960px){
+  nav{padding:0 20px}
+  .nav-links,.nav-hire{display:none}
+  .wrap{padding:0 22px}
+  .blog-hero{padding:100px 0 56px}
+  .blog-hero::after{display:none}
+  .article-card{grid-template-columns:1fr}
+  .card-num{display:none}
+  .card-body{padding:28px 24px}
+  .art-pitfall-grid{grid-template-columns:1fr}
+  footer{flex-direction:column;text-align:center;gap:14px;padding:28px 20px}
+  .ft-links{justify-content:center}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="index.html" class="nav-brand">
+    <div class="nav-init">SK</div>
+    <span class="nav-nm">Srihari <span>Kolli</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#articles">Articles</a></li>
+    <li><a href="blog.html" class="active">Blog</a></li>
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#skills">Skills</a></li>
+    <li><a href="index.html#experience">Experience</a></li>
+    <li><a href="index.html#projects">R&amp;D</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+  <a href="mailto:ksh224284@gmail.com" class="nav-hire">Hire Me</a>
+</nav>
+
+<!-- BLOG HERO -->
+<div class="blog-hero">
+  <div class="wrap">
+    <div class="hero-eyebrow">Technical Writing</div>
+    <h1>Deep-Dive <em>Articles</em><br>& Architecture Guides</h1>
+    <div class="hero-rule"></div>
+    <p>Long-form technical breakdowns on enterprise IoT, embedded security, PKI systems, and cloud integration.</p>
+  </div>
+</div>
+
+<!-- ARTICLE LISTING -->
+<section class="blog-listing" id="listing">
+  <div class="wrap">
+    <div class="listing-label">Published Articles</div>
+
+    <!-- Article Card 1 -->
+    <div class="article-card" onclick="showArticle('silicon')">
+      <div class="card-num"><span>01</span></div>
+      <div class="card-body">
+        <div class="card-top">
+          <div class="card-cat">IoT Security · PKI · Azure · OTA</div>
+          <div class="card-title">From Silicon to Secure Cloud: End-to-End Enterprise IoT Provisioning, PKI, Mutual TLS, and OTA Architecture</div>
+          <div class="card-excerpt">A comprehensive walkthrough of the complete enterprise IoT device lifecycle — from manufacturing line to Azure IoT Hub. Covers hardware-rooted identity via secure elements, PKI certificate architecture, mutual TLS authentication, secure boot chains, and fleet-scale OTA firmware updates with rollback protection.</div>
+        </div>
+        <div class="card-footer">
+          <div class="card-tags">
+            <span class="card-tag">Secure Element</span>
+            <span class="card-tag">X.509 PKI</span>
+            <span class="card-tag">Mutual TLS</span>
+            <span class="card-tag">Azure DPS</span>
+            <span class="card-tag">OTA</span>
+            <span class="card-tag">Secure Boot</span>
+          </div>
+          <span class="card-read">Read Article</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FULL ARTICLE: SILICON TO SECURE CLOUD -->
+<section class="article-view" id="article-silicon">
+  <div class="wrap">
+
+    <button class="art-back" onclick="backToListing()">Back to Blog</button>
+
+    <div class="art-meta">
+      <span class="art-cat">IoT Security · PKI · Azure</span>
+      <span class="art-date">May 2026</span>
+      <span class="art-read-time">~18 min read</span>
+    </div>
+
+    <h1 class="art-title">From Silicon to Secure Cloud: End-to-End Enterprise IoT Provisioning, PKI, Mutual TLS, and OTA Architecture</h1>
+    <p class="art-subtitle">A comprehensive guide to the complete enterprise IoT security lifecycle — from manufacturing to deployment at scale.</p>
+    <div class="art-divider"></div>
+
+    <div class="art-body">
+
+      <h2>Why Modern IoT Architecture Is More Than Firmware</h2>
+      <p>Most engineers start embedded development by writing drivers, blinking LEDs, or sending telemetry over UART. But enterprise IoT platforms operate at a completely different scale.</p>
+      <p>A modern Embedded Systems Architect is expected to design:</p>
+      <ul>
+        <li>Secure manufacturing workflows</li>
+        <li>Hardware-rooted device identity</li>
+        <li>PKI-based authentication</li>
+        <li>Mutual TLS connectivity</li>
+        <li>Azure IoT onboarding</li>
+        <li>Fleet-scale OTA updates</li>
+        <li>Secure boot chains</li>
+        <li>Certificate lifecycle management</li>
+        <li>Device-to-cloud reliability at scale</li>
+      </ul>
+      <p>This article explains the complete enterprise-grade device lifecycle — from manufacturing to secure cloud connectivity.</p>
+
+      <!-- INFOGRAPHIC -->
+      <figure class="art-img">
+        <img src="iot-security-architecture.png" alt="End-to-End Secure IoT Device Journey — From Manufacturing to Azure IoT Hub Connection"/>
+        <figcaption>Figure 1 — End-to-End Secure IoT Device Journey: Manufacturing &rarr; Secure Boot &rarr; Azure DPS &rarr; IoT Hub &rarr; OTA</figcaption>
+      </figure>
+
+      <h2>The Core Security Principle</h2>
+      <div class="art-highlight">
+        <p><strong>The entire system is built on one foundational concept:</strong></p>
+        <p>Devices must prove cryptographically that they are trusted before they can execute firmware or communicate with cloud services.</p>
+      </div>
+      <p>That trust is established using:</p>
+      <ul>
+        <li>Hardware-backed keys</li>
+        <li>Certificates &amp; PKI</li>
+        <li>Digital signatures</li>
+        <li>Mutual TLS</li>
+        <li>Secure boot</li>
+      </ul>
+
+      <h2>Manufacturing Phase: Device Identity Creation</h2>
+      <p>The lifecycle begins in the factory.</p>
+
+      <h3>Step 1 — Device Arrives on Manufacturing Line</h3>
+      <p>A new PCB is connected to a provisioning station via USB, UART, or SWD/JTAG. The provisioning station is typically an industrial Linux PC, automated manufacturing fixture, or factory programming tool.</p>
+
+      <h3>Step 2 — Manufacturing Firmware Is Flashed</h3>
+      <p>The provisioning station installs initial firmware using tools like OpenOCD, STM32CubeProgrammer, J-Link, or pyOCD. This firmware contains secure provisioning logic, key generation routines, and manufacturing diagnostics.</p>
+
+      <h3>Step 3 — Hardware-Rooted Identity via Secure Element</h3>
+      <p>The firmware communicates with a secure element (ATECC608, TPM 2.0, EdgeLock SE050, etc.). The secure element generates a private/public key pair entirely on-chip.</p>
+      <div class="art-highlight">
+        <p><strong>Critical security rule:</strong> The private key NEVER leaves the secure element — not during manufacturing, provisioning, or operation.</p>
+      </div>
+
+      <h3>Step 4 — Certificate Signing Request (CSR)</h3>
+      <p>The secure element creates a CSR containing the public key, device serial number, and subject name (e.g., <code>CN=device-1001.company.com</code>). The CSR never contains the private key. It is sent to the provisioning backend over HTTPS/mTLS.</p>
+
+      <h2>Enterprise PKI Architecture</h2>
+      <p>A Certificate Authority (CA) is a trusted entity that signs device certificates — think of it as a cryptographic passport authority operating at fleet scale.</p>
+
+      <div class="art-code">
+<span class="cm">// Typical Enterprise PKI Hierarchy</span>
+Offline Root CA          ← Air-gapped, rarely online
+      ↓
+Intermediate Device CA   ← Signs device certificates
+      ↓
+Device Certificate       ← Unique per device, stored in flash</div>
+
+      <p>Using an intermediate CA limits the blast radius if a signing key is compromised — the root CA remains untouched and a new intermediate CA can be provisioned.</p>
+
+      <h3>Provisioning Backend Workflow</h3>
+      <p>The provisioning station calls an enterprise provisioning API which validates factory authorization, serial number validity, and production batch approval before the CA signs the CSR. The resulting X.509 certificate is returned to the device.</p>
+
+      <h3>Final Device Identity State</h3>
+      <ul>
+        <li><strong>Secure Element:</strong> Private Key (never leaves)</li>
+        <li><strong>Flash Storage:</strong> Device Certificate, Root CA cert, Intermediate CA chain</li>
+      </ul>
+      <p>The device is now cryptographically trusted by your enterprise.</p>
+
+      <h2>Secure Boot Architecture</h2>
+      <p>Before cloud connectivity, the device must trust its own firmware. The secure boot chain works in three stages:</p>
+      <ol>
+        <li><strong>Boot ROM</strong> loads and verifies the Bootloader using a burned-in public key</li>
+        <li><strong>Bootloader</strong> calculates SHA256 hash of the application firmware, verifies the digital signature, and checks anti-rollback version counters</li>
+        <li><strong>Application Firmware</strong> boots only if all checks pass — otherwise recovery mode is entered</li>
+      </ol>
+      <p>This creates an unbroken cryptographic chain of trust from silicon to application layer.</p>
+
+      <h2>Azure DPS Provisioning Flow</h2>
+      <p>Once installed at the customer site, the device powers on, acquires a network connection, and initiates a connection to Azure Device Provisioning Service (DPS) over MQTT/TLS.</p>
+
+      <h3>Mutual TLS Authentication — Step by Step</h3>
+      <ol>
+        <li><strong>DPS sends its server certificate.</strong> The device validates the certificate chain, trusted Microsoft root, expiry, and hostname match.</li>
+        <li><strong>Device sends its device certificate.</strong> Azure DPS verifies it was signed by a trusted (enrolled) CA, is not revoked, and matches enrollment policy.</li>
+        <li><strong>TLS Challenge.</strong> DPS sends a cryptographic challenge. The secure element signs it with the private key. DPS verifies the signature against the public key in the certificate — proving key possession without ever seeing the private key.</li>
+      </ol>
+      <div class="art-highlight">
+        <p><strong>Why mutual TLS matters:</strong> It simultaneously proves device identity to the cloud AND cloud identity to the device — eliminating man-in-the-middle attacks, rogue devices, and rogue servers in one handshake.</p>
+      </div>
+
+      <h3>DPS Assigns the IoT Hub</h3>
+      <p>After authentication, DPS validates the enrollment group, applies provisioning policies, assigns the device to the correct IoT Hub instance (by region, tier, or business unit), and returns the Hub hostname. The device connects to its assigned Hub over MQTT/TLS and is now fully operational.</p>
+
+      <h2>OTA (Over-the-Air) Firmware Updates</h2>
+      <p>Firmware updates are one of the highest-risk operations in IoT systems. A poorly designed OTA mechanism can brick millions of devices or introduce malware at scale.</p>
+
+      <h3>Secure OTA Flow</h3>
+      <ol>
+        <li><strong>Cloud sends OTA metadata</strong> — firmware URL, version, SHA256 hash, signature, and compatibility constraints</li>
+        <li><strong>Device downloads</strong> to the inactive partition (never overwriting running firmware)</li>
+        <li><strong>Verification before install</strong> — signature check, hash validation, version monotonicity, compatibility check</li>
+        <li><strong>Pending boot flag set</strong> — Bootloader is instructed to boot the new image on next restart</li>
+        <li><strong>Health check</strong> — if the new firmware boots and passes health checks, it is committed as active; if not, automatic rollback occurs</li>
+      </ol>
+
+      <h3>A/B Partition Strategy</h3>
+      <div class="art-code">
+Partition A → Running firmware   (active)
+Partition B → Update candidate   (staging)
+
+On update failure:
+  Bootloader detects missing health-check commit
+  → Reverts to Partition A automatically
+  → Reports failure to cloud</div>
+
+      <h2>Certificate Lifecycle Management &amp; SCEP</h2>
+      <p>Certificates expire. At fleet scale — thousands or millions of devices — manual renewal is operationally impossible.</p>
+      <p>SCEP (Simple Certificate Enrollment Protocol) automates certificate issuance, renewal, and rotation. Devices detect approaching expiry, generate a new CSR, and request a renewed certificate from enterprise PKI infrastructure — all without human intervention.</p>
+      <div class="art-highlight">
+        <p><strong>Without automated lifecycle management:</strong> fleets fail en masse when certs expire, and manual reprovisioning becomes impossible at scale. This is one of the most common enterprise IoT failure modes.</p>
+      </div>
+
+      <h2>Common Enterprise Security Pitfalls</h2>
+      <div class="art-pitfall-grid">
+        <div class="art-pitfall">
+          <h4>Storing Private Keys in Flash</h4>
+          <p>Leads to device cloning and full identity theft. Always use a secure element or TPM.</p>
+        </div>
+        <div class="art-pitfall">
+          <h4>No Certificate Rotation</h4>
+          <p>Causes mass outages when certificates expire. Implement automated SCEP renewal.</p>
+        </div>
+        <div class="art-pitfall">
+          <h4>Unsigned OTA Updates</h4>
+          <p>Allows malware injection across the entire fleet. Every firmware must be signed.</p>
+        </div>
+        <div class="art-pitfall">
+          <h4>No Rollback Protection</h4>
+          <p>Attackers can install older vulnerable firmware. Enforce monotonic version counters.</p>
+        </div>
+        <div class="art-pitfall">
+          <h4>Exposed Debug Interfaces</h4>
+          <p>JTAG/SWD left enabled in production. Lock debug interfaces before deployment.</p>
+        </div>
+        <div class="art-pitfall">
+          <h4>Shared Device Credentials</h4>
+          <p>Using the same certificate or key on multiple devices destroys individual accountability and traceability.</p>
+        </div>
+      </div>
+
+      <h2>Architect-Level Design Principles</h2>
+      <p>Strong IoT architects optimize simultaneously across security, memory footprint, reliability, scalability, provisioning complexity, and operational maintainability. The goal is not merely "connecting devices" — it is building trusted, auditable, maintainable systems that operate reliably at fleet scale over multi-year product lifetimes.</p>
+      <ul>
+        <li><strong>Trusted identity</strong> — every device is uniquely and cryptographically identifiable</li>
+        <li><strong>Secure lifecycle management</strong> — certificate rotation, OTA, and decommissioning are automated</li>
+        <li><strong>Fleet-scale automation</strong> — no manual provisioning after initial setup</li>
+        <li><strong>Resilient updates</strong> — every OTA is reversible with no bricks</li>
+        <li><strong>Operational governance</strong> — audit logs, telemetry, and alerts for every security event</li>
+      </ul>
+
+      <div class="art-closing">
+        <p>Enterprise IoT systems are fundamentally <strong>trust systems</strong>. Every layer — manufacturing, firmware, provisioning, networking, OTA, cloud onboarding — must participate in establishing and maintaining cryptographic trust.</p>
+        <p>The future of embedded systems is no longer isolated firmware engineering. It is <strong>end-to-end secure distributed systems architecture</strong>. And that is where modern Embedded Systems Architects create the most impact.</p>
+      </div>
+
+    </div><!-- /.art-body -->
+  </div><!-- /.wrap -->
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="ft-brand">Srihari <em>Kolli</em></span>
+  <small>© 2025 · IoT Architect &amp; Embedded Systems Engineer · Michigan, USA</small>
+  <div class="ft-links">
+    <a href="https://www.linkedin.com/in/skolli8/" target="_blank" class="ft-lnk">LinkedIn</a>
+    <a href="blog.html" class="ft-lnk">Blog</a>
+    <a href="Srihari_Kolli_Resume.docx" download class="ft-lnk">Résumé</a>
+  </div>
+</footer>
+
+<script>
+// NAV scroll shadow
+window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('sc',scrollY>40));
+
+function showArticle(id){
+  document.getElementById('listing').style.display='none';
+  document.getElementById('article-'+id).style.display='block';
+  document.querySelector('.blog-listing').style.display='none';
+  document.getElementById('article-'+id).classList.add('visible');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function backToListing(){
+  document.querySelectorAll('.article-view').forEach(el=>{
+    el.style.display='none';
+    el.classList.remove('visible');
+  });
+  document.querySelector('.blog-listing').style.display='block';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>
