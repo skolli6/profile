@@ -49,6 +49,9 @@ h1.name strong{font-weight:600;display:block;color:var(--gold2)}
 .btn-g:hover{background:var(--gold2);transform:translateY(-2px)}
 .btn-o{padding:12px 28px;border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.7);border-radius:2px;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;transition:border-color .2s,color .2s}
 .btn-o:hover{border-color:var(--gold);color:var(--gold)}
+.btn-v{padding:12px 28px;border:1px solid rgba(184,146,74,.35);color:var(--gold);border-radius:2px;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;transition:border-color .2s,color .2s,background .2s;position:relative}
+.btn-v::before{content:'★ ';font-size:.7rem}
+.btn-v:hover{background:rgba(184,146,74,.1);border-color:var(--gold)}
 
 .hr{background:var(--white);padding:90px 60px 80px;display:flex;flex-direction:column;justify-content:center}
 .stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);margin-bottom:44px}
@@ -219,31 +222,80 @@ footer small{font-size:.68rem;letter-spacing:.05em;color:rgba(255,255,255,.28)}
 .ft-lnk{font-size:.67rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.28);transition:color .2s}
 .ft-lnk:hover{color:var(--gold)}
 
-/* BLOG PREVIEW */
-#blog-preview{background:var(--white);padding:96px 0}
-.blog-preview-inner{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule)}
-.bp-left{background:var(--navy);padding:56px 52px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
-.bp-left::after{content:'01';position:absolute;right:-12px;bottom:-30px;font-family:var(--serif);font-size:14rem;font-weight:700;color:rgba(255,255,255,.04);line-height:1;pointer-events:none}
-.bp-eyebrow{font-size:.65rem;font-weight:600;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:22px;display:flex;align-items:center;gap:10px}
-.bp-eyebrow::before{content:'';width:18px;height:1px;background:var(--gold)}
-.bp-title{font-family:var(--serif);font-size:clamp(1.4rem,2.4vw,2rem);font-weight:400;line-height:1.2;color:#fff;margin-bottom:18px}
-.bp-excerpt{font-size:.84rem;color:rgba(255,255,255,.45);line-height:1.95;margin-bottom:36px;flex-grow:1}
-.bp-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:36px}
-.bp-tag{font-size:.62rem;font-weight:600;padding:4px 10px;border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.35);letter-spacing:.06em}
-.bp-cta{display:inline-flex;align-items:center;gap:10px;padding:13px 28px;background:var(--gold);color:var(--navy);font-weight:700;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;transition:background .2s,gap .2s;align-self:flex-start}
-.bp-cta:hover{background:var(--gold2);gap:16px}
-.bp-right{background:var(--white);padding:56px 52px;display:flex;flex-direction:column;gap:28px}
-.bp-stat-row{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule)}
-.bp-stat{background:var(--white);padding:22px 20px}
-.bp-stat-n{font-family:var(--serif);font-size:2.2rem;font-weight:600;color:var(--navy);line-height:1;margin-bottom:4px}
-.bp-stat-n span{font-size:1.1rem;color:var(--gold)}
-.bp-stat-l{font-size:.65rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--steel)}
-.bp-topic-label{font-size:.64rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
-.bp-topics{display:flex;flex-direction:column;gap:0}
-.bp-topic{display:flex;align-items:center;justify-content:space-between;padding:13px 0;border-bottom:1px solid var(--rule);font-size:.85rem;color:var(--navy)}
-.bp-topic:last-child{border-bottom:none}
-.bp-topic span{font-size:.7rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--steel)}
-.bp-topic-arr{color:var(--gold);font-size:.9rem}
+/* VENTURES */
+#ventures{background:var(--navy);padding:96px 0;position:relative;overflow:hidden}
+#ventures::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23B8924A' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E");pointer-events:none}
+#ventures .wrap{position:relative;z-index:1}
+#ventures .s-ey{color:var(--gold)}
+#ventures .s-ey::before{background:var(--gold)}
+#ventures .s-h{color:#fff}
+#ventures .s-rule{background:var(--gold)}
+.vc-shell{display:grid;grid-template-columns:1fr 1fr;gap:0;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07)}
+.vc-left{padding:52px 52px;border-right:1px solid rgba(255,255,255,.07);display:flex;flex-direction:column;gap:28px}
+.vc-badge-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.vc-badge{font-size:.6rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;padding:4px 12px;border:1px solid rgba(184,146,74,.4);color:var(--gold)}
+.vc-live{display:flex;align-items:center;gap:7px;font-size:.6rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#4ade80}
+.vc-live::before{content:'';width:7px;height:7px;border-radius:50%;background:#4ade80;box-shadow:0 0 0 3px rgba(74,222,128,.2);animation:vcpulse 1.5s infinite}
+@keyframes vcpulse{0%,100%{box-shadow:0 0 0 3px rgba(74,222,128,.2)}50%{box-shadow:0 0 0 6px rgba(74,222,128,.05)}}
+.vc-product-name{font-family:var(--serif);font-size:clamp(2.6rem,4vw,3.8rem);font-weight:700;line-height:1;letter-spacing:-.02em}
+.vc-product-name .q{color:var(--gold)}
+.vc-product-name .now{color:#fff}
+.vc-tagline{font-family:var(--serif);font-style:italic;font-size:1.1rem;color:rgba(255,255,255,.45);line-height:1.5}
+.vc-desc{font-size:.88rem;color:rgba(255,255,255,.55);line-height:2}
+.vc-features{display:flex;flex-direction:column;gap:0;border:1px solid rgba(255,255,255,.07)}
+.vc-feat{display:flex;align-items:flex-start;gap:14px;padding:14px 18px;border-bottom:1px solid rgba(255,255,255,.05);transition:background .2s}
+.vc-feat:last-child{border-bottom:none}
+.vc-feat:hover{background:rgba(255,255,255,.03)}
+.vc-feat-ico{font-size:1.1rem;flex-shrink:0;margin-top:1px}
+.vc-feat-body{}
+.vc-feat-title{font-size:.8rem;font-weight:600;color:#fff;margin-bottom:2px;letter-spacing:.01em}
+.vc-feat-sub{font-size:.75rem;color:rgba(255,255,255,.35);line-height:1.6}
+.vc-cta-row{display:flex;gap:10px;flex-wrap:wrap}
+.vc-btn-primary{display:inline-flex;align-items:center;gap:9px;padding:13px 28px;background:var(--gold);color:var(--navy);font-weight:700;font-size:.73rem;letter-spacing:.1em;text-transform:uppercase;transition:background .2s,gap .25s}
+.vc-btn-primary:hover{background:var(--gold2);gap:14px}
+.vc-btn-secondary{display:inline-flex;align-items:center;gap:9px;padding:13px 24px;border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.5);font-weight:600;font-size:.73rem;letter-spacing:.1em;text-transform:uppercase;transition:border-color .2s,color .2s,gap .25s}
+.vc-btn-secondary:hover{border-color:var(--gold);color:var(--gold);gap:14px}
+.vc-right{padding:52px 52px;display:flex;flex-direction:column;gap:32px}
+.vc-mockup{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:2px;overflow:hidden;position:relative}
+.vc-mockup-bar{height:32px;background:rgba(255,255,255,.04);border-bottom:1px solid rgba(255,255,255,.06);display:flex;align-items:center;padding:0 14px;gap:6px}
+.vc-dot{width:9px;height:9px;border-radius:50%}
+.vc-mockup-body{padding:20px}
+.vc-token-display{background:linear-gradient(135deg,#0D1B2A,#162032);border:1px solid rgba(184,146,74,.2);border-radius:2px;padding:20px;text-align:center;margin-bottom:14px}
+.vc-token-lbl{font-size:.58rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:rgba(184,146,74,.6);margin-bottom:6px}
+.vc-token-num{font-family:var(--serif);font-size:2.8rem;font-weight:700;color:var(--gold);letter-spacing:.08em;line-height:1}
+.vc-token-name{font-size:.76rem;color:rgba(255,255,255,.4);margin-top:5px}
+.vc-queue-list{display:flex;flex-direction:column;gap:2px}
+.vc-queue-item{display:flex;align-items:center;justify-content:space-between;padding:10px 12px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.05);font-size:.75rem}
+.vc-qi-left{display:flex;align-items:center;gap:10px}
+.vc-qi-num{font-family:var(--serif);font-weight:600;color:var(--gold);font-size:.9rem;min-width:36px}
+.vc-qi-name{color:rgba(255,255,255,.65);font-weight:500}
+.vc-qi-wait{color:rgba(255,255,255,.25);font-size:.7rem}
+.vc-qi-status{font-size:.62rem;font-weight:600;letter-spacing:.08em;padding:3px 8px}
+.vc-qi-serving{background:rgba(74,222,128,.1);color:#4ade80;border:1px solid rgba(74,222,128,.2)}
+.vc-qi-waiting{background:rgba(184,146,74,.08);color:var(--gold);border:1px solid rgba(184,146,74,.15)}
+.vc-screenshot-wrap{border:1px solid rgba(255,255,255,.1);border-radius:4px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.vc-screenshot-bar{height:34px;background:#1a1a1a;display:flex;align-items:center;padding:0 14px;gap:7px;border-bottom:1px solid rgba(255,255,255,.06)}
+.vc-screenshot-url{font-size:.65rem;color:rgba(255,255,255,.25);margin-left:10px;letter-spacing:.06em;flex:1;text-align:center}
+.vc-screenshot-inner{position:relative;overflow:hidden;max-height:480px}
+.vc-screenshot-inner img{width:100%;height:auto;display:block;object-fit:cover;object-position:top center}
+.vc-screenshot-inner::after{content:'';position:absolute;bottom:0;left:0;right:0;height:80px;background:linear-gradient(to top,rgba(13,27,42,.95),transparent);pointer-events:none}
+.vc-screenshot-footer{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:rgba(255,255,255,.03);border-top:1px solid rgba(255,255,255,.06)}
+.vc-stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.06)}
+.vc-stat{background:var(--navy);padding:18px 14px;text-align:center}
+.vc-stat-n{font-family:var(--serif);font-size:1.6rem;font-weight:600;color:var(--gold);line-height:1;margin-bottom:3px}
+.vc-stat-l{font-size:.58rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.25)}
+.vc-stack{display:flex;flex-direction:column;gap:10px}
+.vc-stack-label{font-size:.62rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.22)}
+.vc-stack-tags{display:flex;flex-wrap:wrap;gap:6px}
+.vc-stag{font-size:.65rem;font-weight:600;padding:4px 10px;border:1px solid rgba(255,255,255,.09);color:rgba(255,255,255,.3);letter-spacing:.04em;transition:border-color .2s,color .2s}
+.vc-stag:hover{border-color:rgba(184,146,74,.4);color:var(--gold)}
+.vc-li-row{display:flex;align-items:center;gap:12px;padding:14px 18px;border:1px solid rgba(255,255,255,.07);transition:border-color .2s}
+.vc-li-row:hover{border-color:rgba(184,146,74,.3)}
+.vc-li-ico{font-size:1.2rem;flex-shrink:0}
+.vc-li-text{}
+.vc-li-label{font-size:.62rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:2px}
+.vc-li-link{font-size:.82rem;color:rgba(255,255,255,.55);transition:color .2s}
+.vc-li-row:hover .vc-li-link{color:var(--gold)}
 
 /* RESPONSIVE */
 @media(max-width:960px){
@@ -259,8 +311,10 @@ footer small{font-size:.68rem;letter-spacing:.05em;color:rgba(255,255,255,.28)}
   .sl-img{min-height:240px}
   .sl-body{padding:32px 24px}
   .about-grid,.exp-grid,.contact-grid{grid-template-columns:1fr;gap:36px}
-  .blog-preview-inner{grid-template-columns:1fr}
-  .bp-left,.bp-right{padding:36px 24px}
+  .vc-shell{grid-template-columns:1fr}
+  .vc-left{border-right:none;border-bottom:1px solid rgba(255,255,255,.07);padding:36px 24px}
+  .vc-right{padding:36px 24px}
+  .vc-stats-grid{grid-template-columns:repeat(2,1fr)}
   .about-l{position:static}
   .portrait{aspect-ratio:4/3}
   .exp-toc{display:none}
@@ -285,6 +339,7 @@ footer small{font-size:.68rem;letter-spacing:.05em;color:rgba(255,255,255,.28)}
     <li><a href="#skills">Skills</a></li>
     <li><a href="#experience">Experience</a></li>
     <li><a href="#projects">R&amp;D</a></li>
+    <li><a href="#ventures">Ventures</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
   <a href="mailto:ksh224284@gmail.com" class="nav-hire">Hire Me</a>
@@ -298,14 +353,13 @@ footer small{font-size:.68rem;letter-spacing:.05em;color:rgba(255,255,255,.28)}
     <p class="tagline">17+ Years · C/C++ · Firmware · Automotive · IIoT</p>
     <div class="rule"></div>
     <p class="bio">
-      Designing <strong>mission-critical embedded systems</strong> for the world's leading automotive
-      and industrial OEMs. Expert in <strong>IoT architecture, SDV platforms, Qt/QML HMI</strong>,
-      and real-time firmware — from factory floors to connected vehicles to smart cities.
-      Open to senior roles in <strong>UAE and globally</strong>.
+      Architecting <strong>scalable IoT platforms &amp; mission-critical embedded systems</strong> across automotive, industrial, and connected device ecosystems. Expert in <strong>C/C++, RTOS, MQTT, Azure/AWS/GCP</strong>, and complete product lifecycles from firmware to cloud.
+      Open to senior roles in <strong>USA, UAE, India &amp; globally</strong>.
     </p>
     <div class="ctas">
       <a href="#articles" class="btn-g">Read Articles</a>
       <a href="#experience" class="btn-o">View Experience</a>
+      <a href="#ventures" class="btn-v">View Ventures</a>
     </div>
   </div>
   <div class="hr">
@@ -511,70 +565,6 @@ footer small{font-size:.68rem;letter-spacing:.05em;color:rgba(255,255,255,.28)}
   </div>
 </section>
 
-<!-- BLOG PREVIEW -->
-<section id="blog-preview">
-  <div class="wrap">
-    <div class="s-ey">Technical Writing</div>
-    <h2 class="s-h">Deep-Dive <em>Blog</em></h2>
-    <div class="s-rule"></div>
-    <div class="blog-preview-inner">
-
-      <!-- LEFT: Featured Article Card -->
-      <div class="bp-left">
-        <div>
-          <div class="bp-eyebrow">Latest Article</div>
-          <div class="bp-title">From Silicon to Secure Cloud: End-to-End Enterprise IoT Provisioning, PKI, Mutual TLS &amp; OTA Architecture</div>
-          <p class="bp-excerpt">A comprehensive walkthrough of the complete enterprise IoT device lifecycle — from manufacturing line to Azure IoT Hub. Covers hardware-rooted device identity via secure elements, PKI certificate architecture, mutual TLS authentication, secure boot chains, and fleet-scale OTA firmware updates with automatic rollback protection.</p>
-          <div class="bp-tags">
-            <span class="bp-tag">Secure Element</span>
-            <span class="bp-tag">X.509 PKI</span>
-            <span class="bp-tag">Mutual TLS</span>
-            <span class="bp-tag">Azure DPS</span>
-            <span class="bp-tag">Secure Boot</span>
-            <span class="bp-tag">OTA</span>
-          </div>
-        </div>
-        <a href="blog.html" class="bp-cta">Read Full Article →</a>
-      </div>
-
-      <!-- RIGHT: Stats + Topics -->
-      <div class="bp-right">
-        <div class="bp-stat-row">
-          <div class="bp-stat">
-            <div class="bp-stat-n">28<span>+</span></div>
-            <div class="bp-stat-l">Architecture Steps Covered</div>
-          </div>
-          <div class="bp-stat">
-            <div class="bp-stat-n">~18<span>min</span></div>
-            <div class="bp-stat-l">Read Time</div>
-          </div>
-          <div class="bp-stat">
-            <div class="bp-stat-n">6<span></span></div>
-            <div class="bp-stat-l">Security Pillars</div>
-          </div>
-          <div class="bp-stat">
-            <div class="bp-stat-n">A–Z</div>
-            <div class="bp-stat-l">Mfg to Cloud</div>
-          </div>
-        </div>
-        <div>
-          <div class="bp-topic-label">Topics Covered in This Article</div>
-          <div class="bp-topics">
-            <div class="bp-topic">Manufacturing &amp; Device Provisioning <span class="bp-topic-arr">→</span></div>
-            <div class="bp-topic">PKI &amp; Certificate Authority Design <span class="bp-topic-arr">→</span></div>
-            <div class="bp-topic">Secure Boot Chain Architecture <span class="bp-topic-arr">→</span></div>
-            <div class="bp-topic">Azure DPS &amp; IoT Hub Onboarding <span class="bp-topic-arr">→</span></div>
-            <div class="bp-topic">Mutual TLS Authentication <span class="bp-topic-arr">→</span></div>
-            <div class="bp-topic">OTA Firmware Updates &amp; Rollback <span class="bp-topic-arr">→</span></div>
-          </div>
-        </div>
-        <a href="blog.html" style="display:inline-flex;align-items:center;gap:8px;font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);transition:gap .2s;align-self:flex-start" onmouseover="this.style.gap='14px'" onmouseout="this.style.gap='8px'">Visit Blog Page →</a>
-      </div>
-
-    </div>
-  </div>
-</section>
-
 <!-- ABOUT -->
 <section id="about">
   <div class="wrap">
@@ -601,10 +591,10 @@ footer small{font-size:.68rem;letter-spacing:.05em;color:rgba(255,255,255,.28)}
         <h2 class="s-h">17 Years Building <em>What Moves the World</em></h2>
         <div class="s-rule"></div>
         <blockquote>"I architect embedded systems that run reliably at the edge of the physical world — from plant-floor PLCs to satellite-connected vehicles to smart cities."</blockquote>
-        <p>I'm <strong>Srihari Kolli</strong>, an Embedded Systems &amp; IoT Architect with <strong>17+ years</strong> of experience delivering mission-critical software for automotive, industrial, and defense sectors. My work spans the full embedded stack — bare-metal firmware, RTOS platforms, Qt/QML HMI, IIoT data pipelines, and cloud integration.</p>
-        <p>Currently building <strong>smart energy meters (NexRev)</strong> and an <strong>AI-driven school security system (Lockout)</strong> using PSoC 4-BLE, Azure IoT, and GCP. Previously contributed to <strong>GM's Ultifi SDV platform</strong>, Ford's <strong>SYNC4 next-gen infotainment</strong>, Hyundai's <strong>IIoT Fleet Management</strong> (ESP32S3 + FreeRTOS + AWS IoT), and FCA's <strong>Factory Information System</strong> across North American plants.</p>
-        <p>Early in my career, I developed <strong>missile launch applications for BRAHMOS</strong> on Lynx RTOS at ECIL/DRDL — experience that instilled a deep respect for safety-critical, zero-defect software engineering.</p>
-        <p>I publish <strong>technical articles on LinkedIn and InfoServices</strong>, and built an <strong>AI-powered profile chatbot</strong> hosted on Hugging Face. Open to <strong>Senior Embedded / IoT Architect roles in UAE and globally</strong>.</p>
+        <p>I'm <strong>Srihari Kolli</strong>, an Embedded Systems &amp; IoT Architect with <strong>17+ years</strong> of experience delivering mission-critical software for automotive, industrial, and defense sectors. My technical expertise spans <strong>C, C++, Python, RTOS, multithreading, MQTT, OPC protocols</strong>, and cloud integration with <strong>AWS, Azure, and GCP</strong> — covering the full stack from bare-metal firmware to cloud-connected dashboards.</p>
+        <p>Throughout my career I have taken ownership of <strong>complete product lifecycles</strong> — from architecture and development to deployment and support — ensuring high-quality deliverables and system reliability. Currently building <strong>smart energy meters (NexRev)</strong> and an <strong>AI-driven school security system (Lockout)</strong> using PSoC 4-BLE, Azure IoT, and GCP. Previously contributed to <strong>GM's Ultifi SDV platform</strong>, Ford's <strong>SYNC4 infotainment</strong>, Hyundai's <strong>IIoT Fleet Management</strong> (ESP32S3 + FreeRTOS + AWS IoT), and FCA's <strong>Factory Information System</strong> across North American plants.</p>
+        <p>What drives me is the opportunity to build <strong>intelligent, scalable, cloud-connected systems</strong> that enable real-time monitoring, automation, and data-driven decision-making. I'm also a founder — <strong>QNow</strong> (<a href="https://joinqnow.vercel.app" target="_blank" style="color:var(--gold)">joinqnow.vercel.app</a>) is my live SaaS product for virtual queue &amp; appointment management, built end-to-end with React, Firebase, and WhatsApp Cloud API.</p>
+        <p>Early in my career, I developed <strong>missile launch applications for BRAHMOS</strong> on Lynx RTOS at ECIL/DRDL — an experience that instilled a deep respect for safety-critical, zero-defect software engineering. Open to <strong>Senior IoT Platform, Embedded &amp; Firmware Engineering roles in USA, UAE, India &amp; globally</strong>.</p>
       </div>
     </div>
   </div>
@@ -767,6 +757,160 @@ footer small{font-size:.68rem;letter-spacing:.05em;color:rgba(255,255,255,.28)}
       <div class="proj-card"><div class="proj-ico">⚡</div><div class="proj-nm">Smart Energy Meter</div><p class="proj-desc">Firmware for smart energy meters — real-time power monitoring, consumption control, Azure IoT telemetry, and OTA-enabled edge updates.</p><div class="proj-tech"><span class="proj-t">Azure IoT</span><span class="proj-t">C/C++</span><span class="proj-t">OTA</span><span class="proj-t">Edge AI</span></div></div>
       <div class="proj-card"><div class="proj-ico">❄️</div><div class="proj-nm">Smart HVAC Control System</div><p class="proj-desc">Intelligent HVAC automation using PLC integration, OPC-UA data collection, predictive maintenance AI, and energy optimization via Thingsboard.</p><div class="proj-tech"><span class="proj-t">OPC-UA</span><span class="proj-t">PLC</span><span class="proj-t">Kepware</span><span class="proj-t">AI/ML</span></div></div>
       <div class="proj-card"><div class="proj-ico">🤖</div><div class="proj-nm">AI Profile Chatbot</div><p class="proj-desc">Interactive AI-powered profile assistant on Hugging Face — visitors can ask questions about skills, experience, and projects in natural language.</p><div class="proj-tech"><span class="proj-t">LLM</span><span class="proj-t">Hugging Face</span><span class="proj-t">Python</span><span class="proj-t">RAG</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- VENTURES -->
+<section id="ventures">
+  <div class="wrap">
+    <div class="s-ey">Startup · Product</div>
+    <h2 class="s-h">My <em>Venture</em></h2>
+    <div class="s-rule"></div>
+
+    <div class="vc-shell">
+
+      <!-- LEFT PANEL -->
+      <div class="vc-left">
+        <div class="vc-badge-row">
+          <span class="vc-badge">SaaS · Queue Management</span>
+          <span class="vc-live">Live &amp; Deployed</span>
+        </div>
+
+        <div>
+          <div class="vc-product-name"><span class="q">Q</span><span class="now">Now</span></div>
+          <div class="vc-tagline">Queue smarter. Wait less.</div>
+        </div>
+
+        <p class="vc-desc">An online appointment &amp; virtual queue management platform built for clinics, salons, banks, government offices, and service centres. Customers join queues from their phones — no app download needed — and receive <strong style="color:rgba(255,255,255,.7)">WhatsApp alerts</strong> before their turn. Vendors manage their live queue from a real-time dashboard.</p>
+
+        <div class="vc-features">
+          <div class="vc-feat">
+            <span class="vc-feat-ico">💬</span>
+            <div class="vc-feat-body">
+              <div class="vc-feat-title">WhatsApp Notifications</div>
+              <div class="vc-feat-sub">Automated alerts at join, 3-ahead, 15-min, and your-turn — zero manual effort for vendors</div>
+            </div>
+          </div>
+          <div class="vc-feat">
+            <span class="vc-feat-ico">🎫</span>
+            <div class="vc-feat-body">
+              <div class="vc-feat-title">Digital Token System</div>
+              <div class="vc-feat-sub">Customers get a token number instantly via browser — no app install, no account needed</div>
+            </div>
+          </div>
+          <div class="vc-feat">
+            <span class="vc-feat-ico">📍</span>
+            <div class="vc-feat-body">
+              <div class="vc-feat-title">Near Me &amp; Live Discovery</div>
+              <div class="vc-feat-sub">GPS-based service discovery with real-time queue counts and estimated wait times</div>
+            </div>
+          </div>
+          <div class="vc-feat">
+            <span class="vc-feat-ico">🔔</span>
+            <div class="vc-feat-body">
+              <div class="vc-feat-title">Vendor Push Notifications</div>
+              <div class="vc-feat-sub">Vendors get browser push alerts when customers join — even when the dashboard is closed</div>
+            </div>
+          </div>
+          <div class="vc-feat">
+            <span class="vc-feat-ico">⏰</span>
+            <div class="vc-feat-body">
+              <div class="vc-feat-title">Slot Extension &amp; Walk-in Support</div>
+              <div class="vc-feat-sub">Customers extend their slot without losing place; vendors add walk-in tokens instantly</div>
+            </div>
+          </div>
+          <div class="vc-feat">
+            <span class="vc-feat-ico">📱</span>
+            <div class="vc-feat-body">
+              <div class="vc-feat-title">PWA — Installable App</div>
+              <div class="vc-feat-sub">Works offline, installs to home screen, and supports background push on Android Chrome</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="vc-cta-row">
+          <a href="https://joinqnow.vercel.app" target="_blank" class="vc-btn-primary">Launch QNow →</a>
+          <a href="https://www.linkedin.com/posts/skolli8_privacyfirst-greentech-startup-share-7458487035058655232-dW5u" target="_blank" class="vc-btn-secondary">LinkedIn Post →</a>
+        </div>
+      </div>
+
+      <!-- RIGHT PANEL -->
+      <div class="vc-right">
+
+        <!-- Live Queue Mockup -->
+        <div class="vc-screenshot-wrap">
+          <div class="vc-screenshot-bar">
+            <div class="vc-dot" style="background:#ff5f57"></div>
+            <div class="vc-dot" style="background:#febc2e"></div>
+            <div class="vc-dot" style="background:#28c840"></div>
+            <span class="vc-screenshot-url">joinqnow.vercel.app</span>
+          </div>
+          <div class="vc-screenshot-inner">
+            <img src="qnow-screenshot.png" alt="QNow — Smart Queue System home screen" loading="lazy"/>
+          </div>
+          <div class="vc-screenshot-footer">
+            <span class="vc-live" style="font-size:.62rem">Live Product</span>
+            <a href="https://joinqnow.vercel.app" target="_blank" style="font-size:.65rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);transition:opacity .2s" onmouseover="this.style.opacity='.7'" onmouseout="this.style.opacity='1'">Open App →</a>
+          </div>
+        </div>
+
+        <!-- Stats -->
+        <div class="vc-stats-grid">
+          <div class="vc-stat">
+            <div class="vc-stat-n">₹0</div>
+            <div class="vc-stat-l">Free for Customers</div>
+          </div>
+          <div class="vc-stat">
+            <div class="vc-stat-n">10+</div>
+            <div class="vc-stat-l">Service Categories</div>
+          </div>
+          <div class="vc-stat">
+            <div class="vc-stat-n">4</div>
+            <div class="vc-stat-l">WhatsApp Alerts</div>
+          </div>
+          <div class="vc-stat">
+            <div class="vc-stat-n">PWA</div>
+            <div class="vc-stat-l">No Install Needed</div>
+          </div>
+        </div>
+
+        <!-- Tech Stack -->
+        <div class="vc-stack">
+          <div class="vc-stack-label">Tech Stack</div>
+          <div class="vc-stack-tags">
+            <span class="vc-stag">React 18</span>
+            <span class="vc-stag">Firebase Firestore</span>
+            <span class="vc-stag">WhatsApp Cloud API</span>
+            <span class="vc-stag">Vercel</span>
+            <span class="vc-stag">Web Push (VAPID)</span>
+            <span class="vc-stag">Meta DPS</span>
+            <span class="vc-stag">React Router</span>
+            <span class="vc-stag">PWA / Service Worker</span>
+            <span class="vc-stag">Vite</span>
+            <span class="vc-stag">FCM</span>
+          </div>
+        </div>
+
+        <!-- Links -->
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <a href="https://joinqnow.vercel.app" target="_blank" class="vc-li-row">
+            <span class="vc-li-ico">🌐</span>
+            <div class="vc-li-text">
+              <div class="vc-li-label">Live Product</div>
+              <div class="vc-li-link">joinqnow.vercel.app</div>
+            </div>
+          </a>
+          <a href="https://www.linkedin.com/posts/skolli8_privacyfirst-greentech-startup-share-7458487035058655232-dW5u" target="_blank" class="vc-li-row">
+            <span class="vc-li-ico">💼</span>
+            <div class="vc-li-text">
+              <div class="vc-li-label">LinkedIn Announcement</div>
+              <div class="vc-li-link">#privacyfirst · #greentech · #startup</div>
+            </div>
+          </a>
+        </div>
+
+      </div>
     </div>
   </div>
 </section>
