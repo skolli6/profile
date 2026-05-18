@@ -4,168 +4,237 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Blog — Srihari Kolli · IoT Architect</title>
-
-<meta name="description"
-content="Enterprise Smart Building IoT Architecture using ESP32, Azure IoT, MQTT, HVAC automation, digital twins, predictive maintenance, and industrial IoT systems."/>
-
-<meta property="og:title"
-content="Enterprise Smart Building IoT Platform using ESP32 and Azure IoT"/>
-
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --navy:#0D1B2A;--navy2:#162032;--gold:#B8924A;--gold2:#D4A853;
+  --navy:#0D1B2A;--gold:#B8924A;--gold2:#D4A853;
   --cream:#F7F4EF;--white:#FFFFFF;--steel:#4A5568;--rule:rgba(13,27,42,.12);
+  --green:#1E7A4E;--blue:#1A56A0;--red:#B83232;
   --serif:'Cormorant Garamond',Georgia,serif;--sans:'Outfit',sans-serif;
 }
 html{scroll-behavior:smooth}
 body{background:var(--cream);color:var(--navy);font-family:var(--sans);font-size:15px;line-height:1.7;overflow-x:hidden}
-.wrap{max-width:1140px;margin:0 auto;padding:0 48px}
+.wrap{max-width:1100px;margin:0 auto;padding:0 48px}
 a{text-decoration:none}
-
-/* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(247,244,239,.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--rule);padding:0 48px;height:68px;display:flex;align-items:center;justify-content:space-between}
 nav.sc{box-shadow:0 2px 24px rgba(13,27,42,.09)}
-.nav-brand{display:flex;align-items:center;gap:14px;text-decoration:none}
-.nav-init{width:38px;height:38px;border-radius:50%;background:var(--navy);color:var(--gold);font-family:var(--serif);font-size:1rem;font-weight:600;display:flex;align-items:center;justify-content:center;letter-spacing:.04em;flex-shrink:0}
-.nav-nm{font-family:var(--serif);font-size:1.1rem;font-weight:600;color:var(--navy);letter-spacing:.02em}
+.nav-brand{display:flex;align-items:center;gap:14px}
+.nav-init{width:38px;height:38px;border-radius:50%;background:var(--navy);color:var(--gold);font-family:var(--serif);font-size:1rem;font-weight:600;display:flex;align-items:center;justify-content:center}
+.nav-nm{font-family:var(--serif);font-size:1.1rem;font-weight:600;color:var(--navy)}
 .nav-nm span{color:var(--gold)}
 .nav-links{display:flex;gap:28px;list-style:none}
 .nav-links a{color:var(--steel);font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;font-weight:500;transition:color .2s}
-.nav-links a:hover,.nav-links a.active{color:var(--navy)}
-.nav-links a.active{color:var(--gold);border-bottom:1px solid var(--gold);padding-bottom:2px}
+.nav-links a:hover,.nav-links a.active{color:var(--gold)}
+.nav-links a.active{border-bottom:1px solid var(--gold);padding-bottom:2px}
 .nav-hire{font-size:.73rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:9px 22px;background:var(--navy);color:var(--gold);border-radius:2px;transition:background .2s,color .2s}
 .nav-hire:hover{background:var(--gold);color:var(--navy)}
-
-/* BLOG HERO BANNER */
 .blog-hero{background:var(--navy);padding:120px 0 72px;position:relative;overflow:hidden}
-.blog-hero::after{content:'BLOG';position:absolute;right:-20px;top:50%;transform:translateY(-50%);font-family:var(--serif);font-size:22rem;font-weight:700;line-height:1;color:rgba(255,255,255,.025);pointer-events:none;letter-spacing:-.02em}
+.blog-hero::after{content:'BLOG';position:absolute;right:-20px;top:50%;transform:translateY(-50%);font-family:var(--serif);font-size:22rem;font-weight:700;line-height:1;color:rgba(255,255,255,.025);pointer-events:none}
 .blog-hero .wrap{position:relative;z-index:1}
 .hero-eyebrow{font-size:.67rem;font-weight:600;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;display:flex;align-items:center;gap:12px}
 .hero-eyebrow::before{content:'';width:28px;height:1px;background:var(--gold)}
-.blog-hero h1{font-family:var(--serif);font-size:clamp(2.4rem,5vw,4rem);font-weight:300;color:#fff;line-height:1.05;margin-bottom:18px;letter-spacing:-.01em}
+.blog-hero h1{font-family:var(--serif);font-size:clamp(2.4rem,5vw,4rem);font-weight:300;color:#fff;line-height:1.05;margin-bottom:18px}
 .blog-hero h1 em{font-style:italic;color:var(--gold2)}
 .blog-hero p{font-size:.92rem;color:rgba(255,255,255,.45);max-width:520px;line-height:1.8}
 .hero-rule{width:44px;height:1px;background:var(--gold);margin:20px 0}
-
-/* ARTICLE CARD LIST */
 .blog-listing{padding:80px 0}
 .listing-label{font-size:.67rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:32px;display:flex;align-items:center;gap:10px}
 .listing-label::before{content:'';width:22px;height:1px;background:var(--gold)}
-.article-card{display:grid;grid-template-columns:1fr 3fr;gap:0;background:var(--white);border:1px solid var(--rule);margin-bottom:2px;transition:box-shadow .25s,border-color .25s;cursor:pointer}
+.article-card{display:grid;grid-template-columns:1fr 3fr;background:var(--white);border:1px solid var(--rule);margin-bottom:2px;transition:box-shadow .25s,border-color .25s;cursor:pointer}
 .article-card:hover{box-shadow:0 6px 28px rgba(13,27,42,.08);border-color:rgba(184,146,74,.35)}
-.card-num{padding:40px 32px;background:var(--navy);display:flex;align-items:flex-start;justify-content:center;min-width:90px}
+.card-num{padding:40px 32px;background:var(--navy);display:flex;align-items:flex-start;justify-content:center}
 .card-num span{font-family:var(--serif);font-size:2.8rem;font-weight:600;color:rgba(184,146,74,.35);line-height:1}
 .card-body{padding:36px 44px;display:flex;flex-direction:column;justify-content:space-between;gap:14px}
-.card-top{}
 .card-cat{font-size:.63rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
 .card-title{font-family:var(--serif);font-size:clamp(1.3rem,2.2vw,1.9rem);font-weight:400;line-height:1.2;color:var(--navy);margin-bottom:12px;transition:color .2s}
 .article-card:hover .card-title{color:var(--gold)}
 .card-excerpt{font-size:.85rem;color:var(--steel);line-height:1.85}
 .card-footer{display:flex;align-items:center;justify-content:space-between;padding-top:16px;border-top:1px solid var(--rule);flex-wrap:wrap;gap:10px}
 .card-tags{display:flex;gap:6px;flex-wrap:wrap}
-.card-tag{font-size:.63rem;font-weight:500;padding:3px 10px;border:1px solid var(--rule);color:var(--steel);letter-spacing:.04em}
-.card-read{font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:6px;transition:gap .2s}
-.article-card:hover .card-read{gap:10px}
-.card-read::after{content:'→'}
-
-/* FULL ARTICLE VIEW */
+.card-tag{font-size:.63rem;font-weight:500;padding:3px 10px;border:1px solid var(--rule);color:var(--steel)}
+.card-read{font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);transition:gap .2s}
+.card-read::after{content:' →'}
 .article-view{display:none;padding:80px 0 120px}
 .article-view.visible{display:block}
 .art-back{display:inline-flex;align-items:center;gap:8px;font-size:.75rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--steel);margin-bottom:48px;transition:color .2s;cursor:pointer;border:none;background:none;font-family:var(--sans)}
 .art-back:hover{color:var(--gold)}
-.art-back::before{content:'←'}
+.art-back::before{content:'← '}
 .art-meta{margin-bottom:16px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
 .art-cat{font-size:.68rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);padding:5px 12px;border:1px solid var(--gold)}
-.art-date{font-size:.75rem;color:var(--steel)}
-.art-read-time{font-size:.75rem;color:var(--steel)}
-.art-title{font-family:var(--serif);font-size:clamp(2rem,4.5vw,3.4rem);font-weight:400;line-height:1.12;color:var(--navy);margin-bottom:20px;letter-spacing:-.01em}
+.art-date,.art-read-time{font-size:.75rem;color:var(--steel)}
+.art-title{font-family:var(--serif);font-size:clamp(2rem,4.5vw,3.4rem);font-weight:400;line-height:1.12;color:var(--navy);margin-bottom:20px}
 .art-subtitle{font-family:var(--serif);font-style:italic;font-size:1.15rem;color:var(--steel);margin-bottom:16px;line-height:1.6}
 .art-divider{width:44px;height:2px;background:var(--gold);margin:28px 0 44px}
-
-/* ARTICLE BODY TYPOGRAPHY */
-.art-body{max-width:760px}
-.art-body h2{font-family:var(--serif);font-size:clamp(1.55rem,2.8vw,2.1rem);font-weight:500;color:var(--navy);margin:52px 0 20px;letter-spacing:-.01em;padding-bottom:12px;border-bottom:1px solid var(--rule)}
+.art-body{max-width:860px}
+.art-body h2{font-family:var(--serif);font-size:clamp(1.55rem,2.8vw,2.1rem);font-weight:500;color:var(--navy);margin:52px 0 20px;padding-bottom:12px;border-bottom:1px solid var(--rule)}
 .art-body h3{font-family:var(--serif);font-size:1.3rem;font-weight:600;color:var(--gold);margin:36px 0 14px}
 .art-body p{font-size:.95rem;color:var(--steel);line-height:2;margin-bottom:20px}
 .art-body ul,.art-body ol{margin:16px 0 22px 24px;line-height:2.1}
 .art-body li{font-size:.93rem;color:var(--steel);margin-bottom:6px}
 .art-body strong{font-weight:600;color:var(--navy)}
+.art-body code{font-family:'Courier New',monospace;font-size:.85rem;background:rgba(13,27,42,.06);padding:2px 7px;border-radius:3px;color:var(--navy)}
 .art-highlight{background:rgba(184,146,74,.07);border-left:3px solid var(--gold);padding:22px 28px;margin:32px 0;border-radius:0 3px 3px 0}
 .art-highlight p{margin-bottom:10px;font-size:.93rem}
 .art-highlight p:last-child{margin-bottom:0}
-.art-code{background:var(--navy);color:rgba(255,255,255,.78);padding:24px 28px;font-family:'Courier New',monospace;font-size:.84rem;line-height:1.8;margin:28px 0;overflow-x:auto;border-radius:2px}
-.art-code .cm{color:rgba(184,146,74,.7);font-style:italic}
 .art-img{margin:48px 0}
-.art-img img{width:100%;height:auto;display:block;border-radius:2px;box-shadow:0 10px 40px rgba(13,27,42,.14)}
+.art-img img{width:100%;height:auto;display:block;border-radius:4px;box-shadow:0 10px 40px rgba(13,27,42,.14)}
 .art-img figcaption{font-size:.78rem;color:var(--steel);font-style:italic;margin-top:12px;text-align:center}
-.art-pitfall-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin:28px 0 36px}
-.art-pitfall{background:var(--white);border:1px solid var(--rule);padding:22px 24px;transition:border-color .2s,box-shadow .2s}
-.art-pitfall:hover{border-color:rgba(184,146,74,.35);box-shadow:0 4px 14px rgba(13,27,42,.07)}
+.art-table{width:100%;border-collapse:collapse;margin:24px 0 32px;font-size:.87rem;border-radius:4px;overflow:hidden;box-shadow:0 2px 12px rgba(13,27,42,.07)}
+.art-table th{background:var(--navy);color:var(--gold);padding:13px 18px;text-align:left;font-weight:600;font-size:.73rem;letter-spacing:.09em;text-transform:uppercase}
+.art-table td{padding:12px 18px;border-bottom:1px solid var(--rule);color:var(--steel);vertical-align:top;background:var(--white)}
+.art-table tr:last-child td{border-bottom:none}
+.art-table tr:nth-child(even) td{background:rgba(13,27,42,.018)}
+.art-table code{font-family:'Courier New',monospace;font-size:.82rem;background:rgba(13,27,42,.07);padding:2px 7px;border-radius:3px;color:var(--navy)}
+
+/* ── VISUAL DIAGRAM COMPONENTS ── */
+.diag-flow{display:flex;flex-direction:column;gap:0;margin:32px 0;background:var(--white);border:1px solid var(--rule);border-radius:6px;overflow:hidden;box-shadow:0 4px 18px rgba(13,27,42,.07)}
+.diag-flow-step{display:flex;align-items:stretch}
+.diag-step-num{width:52px;flex-shrink:0;background:var(--navy);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:1.1rem;font-weight:600;color:rgba(184,146,74,.5)}
+.diag-step-body{flex:1;padding:16px 22px;border-bottom:1px solid var(--rule)}
+.diag-flow-step:last-child .diag-step-body{border-bottom:none}
+.diag-step-title{font-weight:700;font-size:.88rem;color:var(--navy);margin-bottom:4px}
+.diag-step-sub{font-size:.8rem;color:var(--steel);line-height:1.6}
+.diag-step-arr{width:40px;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:1.1rem;border-bottom:1px solid var(--rule);border-left:1px solid var(--rule)}
+.diag-flow-step:last-child .diag-step-arr{border-bottom:none}
+
+.diag-layers{display:flex;flex-direction:column;gap:3px;margin:32px 0}
+.diag-layer{border-radius:4px;overflow:hidden;box-shadow:0 2px 8px rgba(13,27,42,.1)}
+.diag-layer-hd{display:flex;align-items:center;gap:14px;padding:15px 22px}
+.diag-layer-ico{font-size:1.3rem;flex-shrink:0}
+.diag-layer-name{font-weight:700;font-size:.9rem;color:#fff}
+.diag-layer-desc{font-size:.76rem;color:rgba(255,255,255,.55);margin-top:2px}
+.diag-layer-tags{display:flex;flex-wrap:wrap;gap:6px;padding:10px 22px 14px 58px}
+.diag-layer-tag{font-size:.67rem;font-weight:600;padding:3px 10px;border-radius:100px;background:rgba(255,255,255,.12);color:rgba(255,255,255,.75)}
+.diag-conn{text-align:center;font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);padding:5px 0;display:flex;align-items:center;justify-content:center;gap:10px}
+.diag-conn::before,.diag-conn::after{content:'';flex:1;height:1px;background:rgba(184,146,74,.2)}
+
+.pki-tree{margin:32px 0;background:var(--white);border:1px solid var(--rule);border-radius:6px;overflow:hidden;box-shadow:0 4px 18px rgba(13,27,42,.07)}
+.pki-node{display:flex;align-items:center;gap:16px;padding:18px 24px;border-bottom:1px solid var(--rule)}
+.pki-node:last-child{border-bottom:none}
+.pki-node-indent1{padding-left:52px}
+.pki-node-indent2{padding-left:88px}
+.pki-icon{width:42px;height:42px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
+.pki-icon.root{background:rgba(184,146,74,.12)}
+.pki-icon.inter{background:rgba(26,86,160,.1)}
+.pki-icon.device{background:rgba(30,122,78,.1)}
+.pki-label{font-weight:700;font-size:.88rem;color:var(--navy)}
+.pki-sub{font-size:.76rem;color:var(--steel);margin-top:3px;line-height:1.5}
+.pki-badge{margin-left:auto;font-size:.62rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:3px 10px;border-radius:100px;flex-shrink:0}
+.pki-badge.offline{background:rgba(184,64,64,.1);color:var(--red);border:1px solid rgba(184,64,64,.2)}
+.pki-badge.online{background:rgba(30,122,78,.1);color:var(--green);border:1px solid rgba(30,122,78,.2)}
+.pki-badge.device-b{background:rgba(26,86,160,.1);color:var(--blue);border:1px solid rgba(26,86,160,.2)}
+
+.ota-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:24px 0}
+.ota-part{border-radius:4px;overflow:hidden;box-shadow:0 2px 10px rgba(13,27,42,.08)}
+.ota-part-hd{padding:13px 18px;display:flex;align-items:center;gap:10px;font-weight:700;font-size:.84rem;color:#fff}
+.ota-part-body{background:var(--white);padding:14px 18px}
+.ota-part-row{display:flex;align-items:center;gap:9px;font-size:.8rem;color:var(--steel);padding:6px 0;border-bottom:1px solid var(--rule)}
+.ota-part-row:last-child{border-bottom:none}
+.ota-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.ota-rollback{background:rgba(184,64,64,.05);border:1px solid rgba(184,64,64,.15);border-radius:4px;padding:16px 20px;margin-top:14px;display:flex;gap:12px;align-items:flex-start}
+.ota-rollback-icon{font-size:1.2rem;flex-shrink:0}
+.ota-rollback-text{font-size:.83rem;color:var(--steel);line-height:1.7}
+.ota-rollback-text strong{color:var(--red)}
+
+.twin-tree{background:var(--navy);border-radius:6px;padding:28px 32px;margin:28px 0;font-family:'Courier New',monospace;font-size:.85rem;line-height:2.1;box-shadow:0 4px 20px rgba(13,27,42,.25)}
+.tw-building{color:var(--gold2);font-weight:700}
+.tw-floor{color:rgba(255,255,255,.7);padding-left:20px}
+.tw-room{color:rgba(255,255,255,.55);padding-left:40px}
+.tw-sensor{padding-left:60px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.tw-sensor-name{color:rgba(255,255,255,.4)}
+.tw-sensor-val{background:rgba(184,146,74,.15);color:var(--gold);padding:1px 8px;border-radius:3px;font-size:.76rem}
+.tw-sensor-alert{background:rgba(184,64,64,.2);color:#ff8080;padding:1px 8px;border-radius:3px;font-size:.76rem}
+.tw-sensor-ok{background:rgba(30,122,78,.15);color:#60e0a0;padding:1px 8px;border-radius:3px;font-size:.76rem}
+
+.rules-grid{display:flex;flex-direction:column;gap:12px;margin:28px 0}
+.rule-card{background:var(--white);border:1px solid var(--rule);border-radius:4px;overflow:hidden;box-shadow:0 2px 8px rgba(13,27,42,.06)}
+.rule-hd{display:flex;align-items:center;gap:10px;padding:11px 18px;border-bottom:1px solid var(--rule)}
+.rule-type{font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:3px 10px;border-radius:100px}
+.rule-type.energy{background:rgba(184,146,74,.1);color:var(--gold);border:1px solid rgba(184,146,74,.25)}
+.rule-type.comfort{background:rgba(26,86,160,.08);color:var(--blue);border:1px solid rgba(26,86,160,.18)}
+.rule-type.emergency{background:rgba(184,64,64,.08);color:var(--red);border:1px solid rgba(184,64,64,.18)}
+.rule-name{font-weight:600;font-size:.84rem;color:var(--navy)}
+.rule-body{display:flex;align-items:stretch}
+.rule-if,.rule-then{flex:1;padding:14px 18px}
+.rule-if{background:rgba(13,27,42,.02);border-right:1px solid var(--rule)}
+.rule-lbl{font-size:.6rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--steel);margin-bottom:6px}
+.rule-val{font-family:'Courier New',monospace;font-size:.82rem;color:var(--navy);line-height:1.7}
+
+.mqtt-topics{background:var(--navy);border-radius:4px;overflow:hidden;margin:24px 0;box-shadow:0 4px 18px rgba(13,27,42,.2)}
+.mqtt-hd{padding:11px 20px;background:rgba(255,255,255,.04);border-bottom:1px solid rgba(255,255,255,.07);font-size:.65rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.3)}
+.mqtt-row{display:flex;align-items:stretch;border-bottom:1px solid rgba(255,255,255,.05)}
+.mqtt-row:last-child{border-bottom:none}
+.mqtt-topic{flex:1;padding:12px 20px;font-family:'Courier New',monospace;font-size:.82rem;color:rgba(255,255,255,.7)}
+.mqtt-topic .seg{color:var(--gold)}
+.mqtt-topic .var{color:#7dd3fc}
+.mqtt-purpose{padding:12px 20px;font-size:.77rem;color:rgba(255,255,255,.35);border-left:1px solid rgba(255,255,255,.07);min-width:210px;display:flex;align-items:center}
+
+.dps-flow{display:flex;align-items:stretch;margin:28px 0;flex-wrap:wrap;gap:0}
+.dps-step{flex:1;min-width:120px;background:var(--white);border:1px solid var(--rule);border-right:none;padding:20px 16px;text-align:center;transition:background .2s}
+.dps-step:last-child{border-right:1px solid var(--rule);background:rgba(30,122,78,.05);border-color:rgba(30,122,78,.25)}
+.dps-step-ico{font-size:1.6rem;margin-bottom:9px}
+.dps-step-title{font-size:.78rem;font-weight:700;color:var(--navy);line-height:1.3;margin-bottom:4px}
+.dps-step-sub{font-size:.68rem;color:var(--steel);line-height:1.4}
+.dps-arr{display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:1rem;padding:0 4px;background:var(--white);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+
+.twin-cols{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:24px 0}
+.twin-panel{border-radius:4px;overflow:hidden;box-shadow:0 2px 10px rgba(13,27,42,.08)}
+.twin-panel-hd{padding:13px 18px;font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;display:flex;align-items:center;gap:8px}
+.twin-panel-body{background:var(--white);padding:14px 18px}
+.twin-prop{display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--rule);font-size:.82rem}
+.twin-prop:last-child{border-bottom:none}
+.twin-prop-key{color:var(--steel);font-family:'Courier New',monospace;font-size:.79rem}
+.twin-prop-val{color:var(--navy);font-weight:600;font-family:'Courier New',monospace;font-size:.79rem}
+
+.art-pitfall-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin:28px 0 36px}
+.art-pitfall{background:var(--white);border:1px solid var(--rule);border-left:3px solid var(--red);padding:20px 22px;border-radius:2px;transition:box-shadow .2s}
+.art-pitfall:hover{box-shadow:0 4px 14px rgba(13,27,42,.08)}
 .art-pitfall h4{font-family:var(--serif);font-size:1rem;font-weight:600;color:var(--navy);margin-bottom:8px}
 .art-pitfall p{font-size:.83rem;color:var(--steel);line-height:1.7;margin:0}
-.art-closing{background:var(--navy);padding:36px 40px;margin:52px 0 0;position:relative;overflow:hidden}
+
+.art-closing{background:var(--navy);padding:36px 40px;margin:52px 0 0;position:relative;overflow:hidden;border-radius:4px}
 .art-closing::before{content:'"';position:absolute;top:-10px;left:16px;font-family:var(--serif);font-size:10rem;color:rgba(184,146,74,.08);line-height:1}
 .art-closing p{font-family:var(--serif);font-size:1.15rem;line-height:1.8;color:rgba(255,255,255,.7);font-style:italic;position:relative;z-index:1;margin-bottom:12px}
 .art-closing p:last-child{margin-bottom:0}
 .art-closing p strong{color:var(--gold2);font-style:normal}
 
-/* FOOTER */
+.art-share{margin:36px 0 0;padding:24px 28px;background:var(--white);border:1px solid var(--rule);display:flex;align-items:center;gap:20px;flex-wrap:wrap;border-radius:4px}
+.art-share-label{font-size:.68rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--steel);flex-shrink:0}
+.art-share-links{display:flex;gap:9px;flex-wrap:wrap}
+.share-btn{display:inline-flex;align-items:center;gap:6px;padding:9px 16px;font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;border-radius:2px;transition:all .2s;border:1px solid var(--rule);color:var(--steel);font-family:var(--sans);cursor:pointer}
+.share-btn:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(13,27,42,.1)}
+.share-btn.linkedin{background:#0A66C2;color:#fff;border-color:#0A66C2}
+.share-btn.linkedin:hover{background:#004182}
+.share-btn.twitter{background:#000;color:#fff;border-color:#000}
+.share-btn.twitter:hover{background:#333}
+.share-btn.medium{background:#fff;color:#000;border-color:#000}
+.share-btn.medium:hover{background:#f5f5f5}
+.share-btn.copy{background:var(--navy);color:var(--gold);border-color:var(--navy)}
+.share-btn.copy:hover{background:var(--gold);color:var(--navy)}
+
 footer{background:var(--navy);padding:36px 48px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(255,255,255,.06)}
 .ft-brand{font-family:var(--serif);font-size:1.1rem;font-weight:600;color:#fff}
 .ft-brand em{color:var(--gold);font-style:normal}
-footer small{font-size:.72rem;color:rgba(255,255,255,.3);letter-spacing:.05em}
+footer small{font-size:.72rem;color:rgba(255,255,255,.3)}
 .ft-links{display:flex;gap:22px}
 .ft-lnk{font-size:.68rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.35);transition:color .2s}
 .ft-lnk:hover{color:var(--gold)}
 
-
-.share-row{
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-  margin:30px 0 40px;
-}
-
-.share-btn{
-  padding:10px 16px;
-  border:1px solid var(--rule);
-  background:var(--white);
-  color:var(--navy);
-  font-size:.72rem;
-  font-weight:600;
-  letter-spacing:.08em;
-  text-transform:uppercase;
-  transition:all .2s;
-  cursor:pointer;
-}
-
-.share-btn:hover{
-  border-color:var(--gold);
-  color:var(--gold);
-}
-
-
 @media(max-width:960px){
-  nav{padding:0 20px}
-  .nav-links,.nav-hire{display:none}
-  .wrap{padding:0 22px}
-  .blog-hero{padding:100px 0 56px}
-  .blog-hero::after{display:none}
-  .article-card{grid-template-columns:1fr}
-  .card-num{display:none}
-  .card-body{padding:28px 24px}
-  .art-pitfall-grid{grid-template-columns:1fr}
-  footer{flex-direction:column;text-align:center;gap:14px;padding:28px 20px}
-  .ft-links{justify-content:center}
+  nav{padding:0 20px}.nav-links,.nav-hire{display:none}
+  .wrap{padding:0 22px}.blog-hero{padding:100px 0 56px}.blog-hero::after{display:none}
+  .article-card{grid-template-columns:1fr}.card-num{display:none}.card-body{padding:28px 24px}
+  .art-pitfall-grid{grid-template-columns:1fr}.twin-cols,.ota-grid{grid-template-columns:1fr}
+  .dps-flow{flex-direction:column}.dps-arr{display:none}.dps-step{border-right:1px solid var(--rule);border-bottom:none}
+  .dps-step:not(:last-child){border-bottom:1px solid var(--rule)}
+  .mqtt-purpose{display:none}
+  footer{flex-direction:column;text-align:center;gap:14px;padding:28px 20px}.ft-links{justify-content:center}
 }
 </style>
 </head>
 <body>
-
-<!-- NAV -->
 <nav id="nav">
   <a href="index.html" class="nav-brand">
     <div class="nav-init">SK</div>
@@ -178,286 +247,603 @@ footer small{font-size:.72rem;color:rgba(255,255,255,.3);letter-spacing:.05em}
     <li><a href="index.html#skills">Skills</a></li>
     <li><a href="index.html#experience">Experience</a></li>
     <li><a href="index.html#projects">R&amp;D</a></li>
+    <li><a href="index.html#ventures">Ventures</a></li>
     <li><a href="index.html#contact">Contact</a></li>
   </ul>
   <a href="mailto:ksh224284@gmail.com" class="nav-hire">Hire Me</a>
 </nav>
 
-<!-- BLOG HERO -->
 <div class="blog-hero">
   <div class="wrap">
     <div class="hero-eyebrow">Technical Writing</div>
-    <h1>Deep-Dive <em>Articles</em><br>& Architecture Guides</h1>
+    <h1>Deep-Dive <em>Articles</em><br>&amp; Architecture Guides</h1>
     <div class="hero-rule"></div>
     <p>Long-form technical breakdowns on enterprise IoT, embedded security, PKI systems, and cloud integration.</p>
   </div>
 </div>
 
-<!-- ARTICLE LISTING -->
 <section class="blog-listing" id="listing">
   <div class="wrap">
     <div class="listing-label">Published Articles</div>
-
-    <!-- Article Card 1 -->
     <div class="article-card" onclick="showArticle('silicon')">
       <div class="card-num"><span>01</span></div>
       <div class="card-body">
-        <div class="card-top">
+        <div>
           <div class="card-cat">IoT Security · PKI · Azure · OTA</div>
           <div class="card-title">From Silicon to Secure Cloud: End-to-End Enterprise IoT Provisioning, PKI, Mutual TLS, and OTA Architecture</div>
-          <div class="card-excerpt">A comprehensive walkthrough of the complete enterprise IoT device lifecycle — from manufacturing line to Azure IoT Hub. Covers hardware-rooted identity via secure elements, PKI certificate architecture, mutual TLS authentication, secure boot chains, and fleet-scale OTA firmware updates with rollback protection.</div>
+          <div class="card-excerpt">A comprehensive walkthrough of the complete enterprise IoT device lifecycle — from manufacturing to Azure IoT Hub. Covers hardware-rooted identity, PKI certificate architecture, mutual TLS, secure boot, and fleet-scale OTA with rollback protection.</div>
         </div>
         <div class="card-footer">
-          <div class="card-tags">
-            <span class="card-tag">Secure Element</span>
-            <span class="card-tag">X.509 PKI</span>
-            <span class="card-tag">Mutual TLS</span>
-            <span class="card-tag">Azure DPS</span>
-            <span class="card-tag">OTA</span>
-            <span class="card-tag">Secure Boot</span>
-          </div>
+          <div class="card-tags"><span class="card-tag">Secure Element</span><span class="card-tag">X.509 PKI</span><span class="card-tag">Mutual TLS</span><span class="card-tag">Azure DPS</span><span class="card-tag">OTA</span><span class="card-tag">Secure Boot</span></div>
           <span class="card-read">Read Article</span>
         </div>
       </div>
     </div>
-
-  
-    <!-- Article Card 2 -->
     <div class="article-card" onclick="showArticle('smartbuilding')">
       <div class="card-num"><span>02</span></div>
-
       <div class="card-body">
-        <div class="card-top">
-          <div class="card-cat">Smart Buildings · ESP32 · Azure IoT · BMS</div>
-
-          <div class="card-title">
-            Building the Future: Designing an Enterprise Smart Building IoT Platform with ESP32 and Azure IoT
-          </div>
-
-          <div class="card-excerpt">
-            A complete enterprise-grade Smart Building platform architecture covering ESP32 edge devices, Azure IoT Hub, HVAC automation, predictive maintenance, digital twins, OTA firmware management, MQTT telemetry pipelines, and real-time operational intelligence.
-          </div>
+        <div>
+          <div class="card-cat">Smart Building · ESP32 · Azure IoT · Edge Computing</div>
+          <div class="card-title">Building the Future: Designing an Enterprise Smart Building IoT Platform with ESP32 and Azure IoT</div>
+          <div class="card-excerpt">A production-grade architecture guide — from ESP32 sensor nodes and multi-protocol edge gateways (Modbus, BACnet, KNX, Zigbee) through Azure IoT Hub, device twins, digital twins, real-time dashboards, OTA management, and AI-driven predictive maintenance.</div>
         </div>
-
         <div class="card-footer">
-          <div class="card-tags">
-            <span class="card-tag">ESP32</span>
-            <span class="card-tag">Azure IoT</span>
-            <span class="card-tag">HVAC</span>
-            <span class="card-tag">Digital Twin</span>
-            <span class="card-tag">MQTT</span>
-            <span class="card-tag">Smart Building</span>
-          </div>
-
+          <div class="card-tags"><span class="card-tag">ESP32</span><span class="card-tag">Azure IoT Hub</span><span class="card-tag">Edge Gateway</span><span class="card-tag">Digital Twin</span><span class="card-tag">MQTT</span><span class="card-tag">BACnet</span><span class="card-tag">Modbus</span></div>
           <span class="card-read">Read Article</span>
         </div>
       </div>
     </div>
-
-
   </div>
 </section>
 
-<!-- FULL ARTICLE: SILICON TO SECURE CLOUD -->
+<!-- ARTICLE 01 -->
 <section class="article-view" id="article-silicon">
   <div class="wrap">
-
     <button class="art-back" onclick="backToListing()">Back to Blog</button>
-
     <div class="art-meta">
       <span class="art-cat">IoT Security · PKI · Azure</span>
       <span class="art-date">May 2026</span>
-      <span class="art-read-time">~18 min read</span>
+      <span class="art-read-time">· ~18 min read</span>
     </div>
-
     <h1 class="art-title">From Silicon to Secure Cloud: End-to-End Enterprise IoT Provisioning, PKI, Mutual TLS, and OTA Architecture</h1>
     <p class="art-subtitle">A comprehensive guide to the complete enterprise IoT security lifecycle — from manufacturing to deployment at scale.</p>
     <div class="art-divider"></div>
-
     <div class="art-body">
 
       <h2>Why Modern IoT Architecture Is More Than Firmware</h2>
-      <p>Most engineers start embedded development by writing drivers, blinking LEDs, or sending telemetry over UART. But enterprise IoT platforms operate at a completely different scale.</p>
-      <p>A modern Embedded Systems Architect is expected to design:</p>
+      <p>Most engineers start embedded development by writing drivers, blinking LEDs, or sending telemetry over UART. Enterprise IoT platforms operate at a completely different scale. A modern Embedded Systems Architect must design:</p>
       <ul>
-        <li>Secure manufacturing workflows</li>
-        <li>Hardware-rooted device identity</li>
-        <li>PKI-based authentication</li>
-        <li>Mutual TLS connectivity</li>
-        <li>Azure IoT onboarding</li>
-        <li>Fleet-scale OTA updates</li>
-        <li>Secure boot chains</li>
-        <li>Certificate lifecycle management</li>
-        <li>Device-to-cloud reliability at scale</li>
+        <li>Secure manufacturing workflows &amp; hardware-rooted device identity</li>
+        <li>PKI-based authentication &amp; mutual TLS connectivity</li>
+        <li>Azure IoT Hub onboarding &amp; fleet-scale OTA updates</li>
+        <li>Secure boot chains &amp; certificate lifecycle management</li>
       </ul>
-      <p>This article explains the complete enterprise-grade device lifecycle — from manufacturing to secure cloud connectivity.</p>
 
-      <!-- INFOGRAPHIC -->
       <figure class="art-img">
-        <img src="iot-security-architecture.png" alt="End-to-End Secure IoT Device Journey — From Manufacturing to Azure IoT Hub Connection"/>
-        <figcaption>Figure 1 — End-to-End Secure IoT Device Journey: Manufacturing &rarr; Secure Boot &rarr; Azure DPS &rarr; IoT Hub &rarr; OTA</figcaption>
+        <img src="iot-security-architecture.png" alt="End-to-End Secure IoT Device Journey"/>
+        <figcaption>Figure 1 — End-to-End Secure IoT Device Journey: Manufacturing → Secure Boot → Azure DPS → IoT Hub → OTA</figcaption>
       </figure>
 
       <h2>The Core Security Principle</h2>
       <div class="art-highlight">
-        <p><strong>The entire system is built on one foundational concept:</strong></p>
-        <p>Devices must prove cryptographically that they are trusted before they can execute firmware or communicate with cloud services.</p>
+        <p><strong>Foundational concept:</strong> Devices must prove cryptographically that they are trusted before they can execute firmware or communicate with cloud services. That trust is established using hardware-backed keys, certificates, PKI, digital signatures, mutual TLS, and secure boot.</p>
       </div>
-      <p>That trust is established using:</p>
-      <ul>
-        <li>Hardware-backed keys</li>
-        <li>Certificates &amp; PKI</li>
-        <li>Digital signatures</li>
-        <li>Mutual TLS</li>
-        <li>Secure boot</li>
-      </ul>
 
       <h2>Manufacturing Phase: Device Identity Creation</h2>
-      <p>The lifecycle begins in the factory.</p>
+      <p>The secure device lifecycle begins on the factory floor. Every step is locked down — nothing is optional.</p>
 
-      <h3>Step 1 — Device Arrives on Manufacturing Line</h3>
-      <p>A new PCB is connected to a provisioning station via USB, UART, or SWD/JTAG. The provisioning station is typically an industrial Linux PC, automated manufacturing fixture, or factory programming tool.</p>
-
-      <h3>Step 2 — Manufacturing Firmware Is Flashed</h3>
-      <p>The provisioning station installs initial firmware using tools like OpenOCD, STM32CubeProgrammer, J-Link, or pyOCD. This firmware contains secure provisioning logic, key generation routines, and manufacturing diagnostics.</p>
-
-      <h3>Step 3 — Hardware-Rooted Identity via Secure Element</h3>
-      <p>The firmware communicates with a secure element (ATECC608, TPM 2.0, EdgeLock SE050, etc.). The secure element generates a private/public key pair entirely on-chip.</p>
-      <div class="art-highlight">
-        <p><strong>Critical security rule:</strong> The private key NEVER leaves the secure element — not during manufacturing, provisioning, or operation.</p>
+      <div class="diag-flow">
+        <div class="diag-flow-step">
+          <div class="diag-step-num">1</div>
+          <div class="diag-step-body">
+            <div class="diag-step-title">Device Arrives on Manufacturing Line</div>
+            <div class="diag-step-sub">New PCB connected to provisioning station via USB, UART, or SWD/JTAG — typically an industrial Linux PC or automated factory fixture.</div>
+          </div>
+          <div class="diag-step-arr">↓</div>
+        </div>
+        <div class="diag-flow-step">
+          <div class="diag-step-num">2</div>
+          <div class="diag-step-body">
+            <div class="diag-step-title">Manufacturing Firmware Flashed</div>
+            <div class="diag-step-sub">Initial firmware installed via OpenOCD, STM32CubeProgrammer, or J-Link. Contains secure provisioning logic, key generation routines, and diagnostics.</div>
+          </div>
+          <div class="diag-step-arr">↓</div>
+        </div>
+        <div class="diag-flow-step">
+          <div class="diag-step-num">3</div>
+          <div class="diag-step-body">
+            <div class="diag-step-title">Hardware-Rooted Identity — Secure Element</div>
+            <div class="diag-step-sub">Firmware talks to ATECC608, TPM 2.0, or EdgeLock SE050. Key pair generated entirely on-chip. <strong>Private key NEVER leaves the secure element.</strong></div>
+          </div>
+          <div class="diag-step-arr">↓</div>
+        </div>
+        <div class="diag-flow-step">
+          <div class="diag-step-num">4</div>
+          <div class="diag-step-body">
+            <div class="diag-step-title">CSR Created &amp; Sent to Provisioning Backend</div>
+            <div class="diag-step-sub">Certificate Signing Request contains the public key, device serial number, and subject name. Sent over HTTPS/mTLS — never contains the private key.</div>
+          </div>
+          <div class="diag-step-arr">↓</div>
+        </div>
+        <div class="diag-flow-step">
+          <div class="diag-step-num">5</div>
+          <div class="diag-step-body">
+            <div class="diag-step-title">CA Signs Certificate — Stored on Device</div>
+            <div class="diag-step-sub">Backend validates factory auth, serial, and batch approval. Intermediate CA signs the CSR. Device stores the X.509 certificate + CA chain in flash.</div>
+          </div>
+          <div class="diag-step-arr">✓</div>
+        </div>
       </div>
-
-      <h3>Step 4 — Certificate Signing Request (CSR)</h3>
-      <p>The secure element creates a CSR containing the public key, device serial number, and subject name (e.g., <code>CN=device-1001.company.com</code>). The CSR never contains the private key. It is sent to the provisioning backend over HTTPS/mTLS.</p>
 
       <h2>Enterprise PKI Architecture</h2>
-      <p>A Certificate Authority (CA) is a trusted entity that signs device certificates — think of it as a cryptographic passport authority operating at fleet scale.</p>
+      <p>A Certificate Authority is a cryptographic passport authority operating at fleet scale. A three-tier hierarchy ensures maximum security and minimal blast radius if any layer is compromised.</p>
 
-      <div class="art-code">
-<span class="cm">// Typical Enterprise PKI Hierarchy</span>
-Offline Root CA          ← Air-gapped, rarely online
-      ↓
-Intermediate Device CA   ← Signs device certificates
-      ↓
-Device Certificate       ← Unique per device, stored in flash</div>
-
-      <p>Using an intermediate CA limits the blast radius if a signing key is compromised — the root CA remains untouched and a new intermediate CA can be provisioned.</p>
-
-      <h3>Provisioning Backend Workflow</h3>
-      <p>The provisioning station calls an enterprise provisioning API which validates factory authorization, serial number validity, and production batch approval before the CA signs the CSR. The resulting X.509 certificate is returned to the device.</p>
-
-      <h3>Final Device Identity State</h3>
-      <ul>
-        <li><strong>Secure Element:</strong> Private Key (never leaves)</li>
-        <li><strong>Flash Storage:</strong> Device Certificate, Root CA cert, Intermediate CA chain</li>
-      </ul>
-      <p>The device is now cryptographically trusted by your enterprise.</p>
-
-      <h2>Secure Boot Architecture</h2>
-      <p>Before cloud connectivity, the device must trust its own firmware. The secure boot chain works in three stages:</p>
-      <ol>
-        <li><strong>Boot ROM</strong> loads and verifies the Bootloader using a burned-in public key</li>
-        <li><strong>Bootloader</strong> calculates SHA256 hash of the application firmware, verifies the digital signature, and checks anti-rollback version counters</li>
-        <li><strong>Application Firmware</strong> boots only if all checks pass — otherwise recovery mode is entered</li>
-      </ol>
-      <p>This creates an unbroken cryptographic chain of trust from silicon to application layer.</p>
-
-      <h2>Azure DPS Provisioning Flow</h2>
-      <p>Once installed at the customer site, the device powers on, acquires a network connection, and initiates a connection to Azure Device Provisioning Service (DPS) over MQTT/TLS.</p>
-
-      <h3>Mutual TLS Authentication — Step by Step</h3>
-      <ol>
-        <li><strong>DPS sends its server certificate.</strong> The device validates the certificate chain, trusted Microsoft root, expiry, and hostname match.</li>
-        <li><strong>Device sends its device certificate.</strong> Azure DPS verifies it was signed by a trusted (enrolled) CA, is not revoked, and matches enrollment policy.</li>
-        <li><strong>TLS Challenge.</strong> DPS sends a cryptographic challenge. The secure element signs it with the private key. DPS verifies the signature against the public key in the certificate — proving key possession without ever seeing the private key.</li>
-      </ol>
-      <div class="art-highlight">
-        <p><strong>Why mutual TLS matters:</strong> It simultaneously proves device identity to the cloud AND cloud identity to the device — eliminating man-in-the-middle attacks, rogue devices, and rogue servers in one handshake.</p>
+      <div class="pki-tree">
+        <div class="pki-node">
+          <div class="pki-icon root">🏛️</div>
+          <div>
+            <div class="pki-label">Offline Root CA</div>
+            <div class="pki-sub">Air-gapped. Never connected to any network. Used only to sign Intermediate CAs. Stored in an HSM in a physical vault.</div>
+          </div>
+          <span class="pki-badge offline">Air-Gapped</span>
+        </div>
+        <div class="pki-node pki-node-indent1">
+          <div class="pki-icon inter">🔐</div>
+          <div>
+            <div class="pki-label">Intermediate Device CA</div>
+            <div class="pki-sub">Operational signing authority. Signs device CSRs during provisioning. Rotatable independently of Root CA — limits blast radius if compromised.</div>
+          </div>
+          <span class="pki-badge online">Online Signing</span>
+        </div>
+        <div class="pki-node pki-node-indent2">
+          <div class="pki-icon device">📋</div>
+          <div>
+            <div class="pki-label">Device Certificate (X.509)</div>
+            <div class="pki-sub">Unique per device. Stored in flash. Contains public key, device ID, and serial number. Used for mutual TLS authentication with Azure DPS and IoT Hub.</div>
+          </div>
+          <span class="pki-badge device-b">Per Device</span>
+        </div>
       </div>
 
-      <h3>DPS Assigns the IoT Hub</h3>
-      <p>After authentication, DPS validates the enrollment group, applies provisioning policies, assigns the device to the correct IoT Hub instance (by region, tier, or business unit), and returns the Hub hostname. The device connects to its assigned Hub over MQTT/TLS and is now fully operational.</p>
+      <h2>Secure Boot Architecture</h2>
+      <p>Before cloud connectivity, the device must trust its own firmware. Secure boot creates an unbroken cryptographic chain of trust from silicon to application layer.</p>
 
-      <h2>OTA (Over-the-Air) Firmware Updates</h2>
-      <p>Firmware updates are one of the highest-risk operations in IoT systems. A poorly designed OTA mechanism can brick millions of devices or introduce malware at scale.</p>
+      <div class="diag-layers">
+        <div class="diag-layer" style="background:#0D1B2A">
+          <div class="diag-layer-hd">
+            <span class="diag-layer-ico">⚡</span>
+            <div><div class="diag-layer-name">Boot ROM — Silicon Layer</div><div class="diag-layer-desc">Immutable code in chip. Loads bootloader and verifies it using a burned-in public key. Cannot be modified.</div></div>
+          </div>
+        </div>
+        <div class="diag-conn">↓ Verifies bootloader signature using burned-in public key</div>
+        <div class="diag-layer" style="background:#162032">
+          <div class="diag-layer-hd">
+            <span class="diag-layer-ico">🛡️</span>
+            <div><div class="diag-layer-name">Bootloader</div><div class="diag-layer-desc">Calculates SHA256 hash of application firmware. Verifies digital signature. Checks anti-rollback version counter. If any check fails → enters recovery mode.</div></div>
+          </div>
+          <div class="diag-layer-tags">
+            <span class="diag-layer-tag">SHA256 Hash</span>
+            <span class="diag-layer-tag">RSA / ECDSA Signature</span>
+            <span class="diag-layer-tag">Anti-Rollback Counter</span>
+            <span class="diag-layer-tag">Recovery Mode on Fail</span>
+          </div>
+        </div>
+        <div class="diag-conn">↓ All checks pass → boot continues | Fail → recovery mode</div>
+        <div class="diag-layer" style="background:#1E4D3A">
+          <div class="diag-layer-hd">
+            <span class="diag-layer-ico">✅</span>
+            <div><div class="diag-layer-name">Application Firmware — Trusted</div><div class="diag-layer-desc">Cryptographically verified. Boots and connects securely to Azure IoT Hub over mutual TLS.</div></div>
+          </div>
+        </div>
+      </div>
 
-      <h3>Secure OTA Flow</h3>
-      <ol>
-        <li><strong>Cloud sends OTA metadata</strong> — firmware URL, version, SHA256 hash, signature, and compatibility constraints</li>
-        <li><strong>Device downloads</strong> to the inactive partition (never overwriting running firmware)</li>
-        <li><strong>Verification before install</strong> — signature check, hash validation, version monotonicity, compatibility check</li>
-        <li><strong>Pending boot flag set</strong> — Bootloader is instructed to boot the new image on next restart</li>
-        <li><strong>Health check</strong> — if the new firmware boots and passes health checks, it is committed as active; if not, automatic rollback occurs</li>
-      </ol>
+      <h2>Azure DPS Provisioning Flow</h2>
+      <p>Once deployed at the customer site, the device connects to Azure Device Provisioning Service over MQTT/TLS. The full flow is automated — zero human intervention required at scale.</p>
 
-      <h3>A/B Partition Strategy</h3>
-      <div class="art-code">
-Partition A → Running firmware   (active)
-Partition B → Update candidate   (staging)
+      <div class="dps-flow">
+        <div class="dps-step">
+          <div class="dps-step-ico">📡</div>
+          <div class="dps-step-title">ESP32 Boot</div>
+          <div class="dps-step-sub">Powers on, connects to network</div>
+        </div>
+        <div class="dps-arr">→</div>
+        <div class="dps-step">
+          <div class="dps-step-ico">☁️</div>
+          <div class="dps-step-title">Connect to DPS</div>
+          <div class="dps-step-sub">MQTT over TLS 1.2</div>
+        </div>
+        <div class="dps-arr">→</div>
+        <div class="dps-step">
+          <div class="dps-step-ico">🔐</div>
+          <div class="dps-step-title">X.509 mTLS Auth</div>
+          <div class="dps-step-sub">Both sides verified simultaneously</div>
+        </div>
+        <div class="dps-arr">→</div>
+        <div class="dps-step">
+          <div class="dps-step-ico">🏷️</div>
+          <div class="dps-step-title">Hub Assigned</div>
+          <div class="dps-step-sub">Policy applied, hub hostname returned</div>
+        </div>
+        <div class="dps-arr">→</div>
+        <div class="dps-step">
+          <div class="dps-step-ico">📶</div>
+          <div class="dps-step-title">Connect to Hub</div>
+          <div class="dps-step-sub">MQTT/TLS to assigned IoT Hub</div>
+        </div>
+        <div class="dps-arr">→</div>
+        <div class="dps-step" style="border-color:rgba(30,122,78,.3);background:rgba(30,122,78,.04)">
+          <div class="dps-step-ico">✅</div>
+          <div class="dps-step-title">Operational</div>
+          <div class="dps-step-sub">Telemetry flowing, device managed</div>
+        </div>
+      </div>
 
-On update failure:
-  Bootloader detects missing health-check commit
-  → Reverts to Partition A automatically
-  → Reports failure to cloud</div>
-
-      <h2>Certificate Lifecycle Management &amp; SCEP</h2>
-      <p>Certificates expire. At fleet scale — thousands or millions of devices — manual renewal is operationally impossible.</p>
-      <p>SCEP (Simple Certificate Enrollment Protocol) automates certificate issuance, renewal, and rotation. Devices detect approaching expiry, generate a new CSR, and request a renewed certificate from enterprise PKI infrastructure — all without human intervention.</p>
       <div class="art-highlight">
-        <p><strong>Without automated lifecycle management:</strong> fleets fail en masse when certs expire, and manual reprovisioning becomes impossible at scale. This is one of the most common enterprise IoT failure modes.</p>
+        <p><strong>Why mutual TLS matters:</strong> It simultaneously proves device identity to the cloud AND cloud identity to the device — eliminating man-in-the-middle attacks, rogue devices, and rogue servers in a single handshake. The private key never leaves the secure element during this entire process.</p>
+      </div>
+
+      <h2>OTA Firmware Updates — Dual Partition Strategy</h2>
+      <p>Firmware updates are one of the highest-risk operations in IoT. A poorly designed OTA can brick millions of devices. Production systems use A/B partition with mandatory health validation before commit.</p>
+
+      <div class="ota-grid">
+        <div class="ota-part">
+          <div class="ota-part-hd" style="background:var(--green)">💾 Partition A — Active</div>
+          <div class="ota-part-body">
+            <div class="ota-part-row"><span class="ota-dot" style="background:var(--green)"></span>Currently running firmware</div>
+            <div class="ota-part-row"><span class="ota-dot" style="background:var(--green)"></span>Committed &amp; health-verified</div>
+            <div class="ota-part-row"><span class="ota-dot" style="background:var(--green)"></span>Never overwritten during update</div>
+            <div class="ota-part-row"><span class="ota-dot" style="background:var(--green)"></span>Automatic fallback target</div>
+          </div>
+        </div>
+        <div class="ota-part">
+          <div class="ota-part-hd" style="background:var(--blue)">📥 Partition B — Staging</div>
+          <div class="ota-part-body">
+            <div class="ota-part-row"><span class="ota-dot" style="background:var(--blue)"></span>New firmware downloaded here</div>
+            <div class="ota-part-row"><span class="ota-dot" style="background:var(--blue)"></span>Signature + SHA256 hash validated</div>
+            <div class="ota-part-row"><span class="ota-dot" style="background:var(--blue)"></span>Version monotonicity checked</div>
+            <div class="ota-part-row"><span class="ota-dot" style="background:var(--blue)"></span>Pending boot flag set on pass</div>
+          </div>
+        </div>
+      </div>
+      <div class="ota-rollback">
+        <div class="ota-rollback-icon">🔄</div>
+        <div class="ota-rollback-text"><strong>Automatic rollback:</strong> If new firmware fails health checks post-reboot, bootloader detects the missing commit flag and reverts to Partition A automatically. Failure is reported to cloud via Device Twin reported properties.</div>
       </div>
 
       <h2>Common Enterprise Security Pitfalls</h2>
       <div class="art-pitfall-grid">
-        <div class="art-pitfall">
-          <h4>Storing Private Keys in Flash</h4>
-          <p>Leads to device cloning and full identity theft. Always use a secure element or TPM.</p>
-        </div>
-        <div class="art-pitfall">
-          <h4>No Certificate Rotation</h4>
-          <p>Causes mass outages when certificates expire. Implement automated SCEP renewal.</p>
-        </div>
-        <div class="art-pitfall">
-          <h4>Unsigned OTA Updates</h4>
-          <p>Allows malware injection across the entire fleet. Every firmware must be signed.</p>
-        </div>
-        <div class="art-pitfall">
-          <h4>No Rollback Protection</h4>
-          <p>Attackers can install older vulnerable firmware. Enforce monotonic version counters.</p>
-        </div>
-        <div class="art-pitfall">
-          <h4>Exposed Debug Interfaces</h4>
-          <p>JTAG/SWD left enabled in production. Lock debug interfaces before deployment.</p>
-        </div>
-        <div class="art-pitfall">
-          <h4>Shared Device Credentials</h4>
-          <p>Using the same certificate or key on multiple devices destroys individual accountability and traceability.</p>
-        </div>
+        <div class="art-pitfall"><h4>🔑 Private Keys in Flash</h4><p>Leads to device cloning and full identity theft. Always use a secure element or TPM — hardware-backed keys are non-negotiable.</p></div>
+        <div class="art-pitfall"><h4>📅 No Certificate Rotation</h4><p>Causes mass fleet outages when certs expire. Implement automated SCEP renewal with 30-day advance rotation.</p></div>
+        <div class="art-pitfall"><h4>📦 Unsigned OTA Updates</h4><p>Allows malware injection across the entire fleet. Every firmware image must be signed by a trusted build authority.</p></div>
+        <div class="art-pitfall"><h4>↩️ No Rollback Protection</h4><p>Attackers can downgrade to older vulnerable firmware. Enforce monotonic version counters in secure boot.</p></div>
+        <div class="art-pitfall"><h4>🔌 Exposed Debug Interfaces</h4><p>JTAG/SWD left enabled in production gives attackers full access. Always lock in production builds.</p></div>
+        <div class="art-pitfall"><h4>🔗 Shared Device Credentials</h4><p>Same cert on multiple devices means compromise of one = compromise of all. Every device must be unique.</p></div>
       </div>
-
-      <h2>Architect-Level Design Principles</h2>
-      <p>Strong IoT architects optimize simultaneously across security, memory footprint, reliability, scalability, provisioning complexity, and operational maintainability. The goal is not merely "connecting devices" — it is building trusted, auditable, maintainable systems that operate reliably at fleet scale over multi-year product lifetimes.</p>
-      <ul>
-        <li><strong>Trusted identity</strong> — every device is uniquely and cryptographically identifiable</li>
-        <li><strong>Secure lifecycle management</strong> — certificate rotation, OTA, and decommissioning are automated</li>
-        <li><strong>Fleet-scale automation</strong> — no manual provisioning after initial setup</li>
-        <li><strong>Resilient updates</strong> — every OTA is reversible with no bricks</li>
-        <li><strong>Operational governance</strong> — audit logs, telemetry, and alerts for every security event</li>
-      </ul>
 
       <div class="art-closing">
         <p>Enterprise IoT systems are fundamentally <strong>trust systems</strong>. Every layer — manufacturing, firmware, provisioning, networking, OTA, cloud onboarding — must participate in establishing and maintaining cryptographic trust.</p>
         <p>The future of embedded systems is no longer isolated firmware engineering. It is <strong>end-to-end secure distributed systems architecture</strong>. And that is where modern Embedded Systems Architects create the most impact.</p>
       </div>
 
-    </div><!-- /.art-body -->
-  </div><!-- /.wrap -->
+      <div class="art-share">
+        <span class="art-share-label">Share Article</span>
+        <div class="art-share-links">
+          <a class="share-btn linkedin" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fskolli6.github.io%2Fprofile%2Fblog.html%23silicon" target="_blank" rel="noopener">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            LinkedIn
+          </a>
+          <a class="share-btn twitter" href="https://twitter.com/intent/tweet?text=From+Silicon+to+Secure+Cloud%3A+Enterprise+IoT+PKI+%26+OTA+by+Srihari+Kolli&url=https%3A%2F%2Fskolli6.github.io%2Fprofile%2Fblog.html%23silicon" target="_blank" rel="noopener">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L1.254 2.25H8.08l4.259 5.631 5.905-5.631zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            X / Twitter
+          </a>
+          <a class="share-btn medium" href="https://medium.com/" target="_blank" rel="noopener">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/></svg>
+            Medium
+          </a>
+          <button class="share-btn copy" onclick="copyLink('https://skolli6.github.io/profile/blog.html#silicon',this)">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+            Copy Link
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<!-- FOOTER -->
+<!-- ARTICLE 02 -->
+<section class="article-view" id="article-smartbuilding">
+  <div class="wrap">
+    <button class="art-back" onclick="backToListing()">Back to Blog</button>
+    <div class="art-meta">
+      <span class="art-cat">Smart Building · ESP32 · Azure IoT</span>
+      <span class="art-date">May 2026</span>
+      <span class="art-read-time">· ~20 min read</span>
+    </div>
+    <h1 class="art-title">Building the Future: Designing an Enterprise Smart Building IoT Platform with ESP32 and Azure IoT</h1>
+    <p class="art-subtitle">A complete architecture guide — from silicon sensor nodes through edge gateways, Azure cloud services, digital twins, and AI-driven automation.</p>
+    <div class="art-divider"></div>
+    <div class="art-body">
+
+      <figure class="art-img">
+        <img src="smart-building-architecture.png" alt="Smart Building IoT Platform Architecture"/>
+        <figcaption>Figure 1 — Smart Building IoT Platform: Always Efficient. Always Secure. Always Operational.</figcaption>
+      </figure>
+
+      <h2>Why Smart Buildings Matter</h2>
+      <p>Modern buildings are becoming intelligent, connected ecosystems. Traditional buildings run isolated systems — HVAC, lighting, security, and energy monitoring operate in silos with no centralized platform. Smart buildings unify everything, delivering measurable outcomes:</p>
+      <ul>
+        <li><strong>20–40%</strong> reduction in energy costs through smart HVAC and lighting automation</li>
+        <li><strong>Up to 50%</strong> less maintenance downtime via AI-driven predictive analytics</li>
+        <li><strong>99.9%</strong> system availability through health monitoring and auto-recovery</li>
+        <li>Centralized security with real-time alerts and automated emergency response</li>
+        <li>ESG sustainability tracking for LEED / BREEAM green building certifications</li>
+      </ul>
+
+      <h2>High-Level Platform Architecture — 5 Layers</h2>
+      <p>The platform is built in five secure layers. Every connection between layers is encrypted and mutually authenticated.</p>
+
+      <div class="diag-layers">
+        <div class="diag-layer" style="background:#1A3A5C">
+          <div class="diag-layer-hd">
+            <span class="diag-layer-ico">🏗️</span>
+            <div><div class="diag-layer-name">Layer 1 — Field Devices</div><div class="diag-layer-desc">Sensors, energy meters, HVAC controllers, CCTV, access control, water management</div></div>
+          </div>
+          <div class="diag-layer-tags">
+            <span class="diag-layer-tag">ESP32 Sensor Nodes</span><span class="diag-layer-tag">Modbus Energy Meters</span><span class="diag-layer-tag">BACnet HVAC</span><span class="diag-layer-tag">Zigbee Lighting</span><span class="diag-layer-tag">RFID / CCTV</span><span class="diag-layer-tag">Water / Flow Sensors</span>
+          </div>
+        </div>
+        <div class="diag-conn">↓ BLE · Zigbee · RS485 · BACnet/IP · KNX · LoRaWAN · Wi-Fi</div>
+        <div class="diag-layer" style="background:#1E4D3A">
+          <div class="diag-layer-hd">
+            <span class="diag-layer-ico">🌐</span>
+            <div><div class="diag-layer-name">Layer 2 — Edge Gateway</div><div class="diag-layer-desc">Protocol conversion, local rules engine, offline data buffering, edge analytics, device aggregation</div></div>
+          </div>
+          <div class="diag-layer-tags">
+            <span class="diag-layer-tag">Protocol Conversion</span><span class="diag-layer-tag">Local Rules Engine</span><span class="diag-layer-tag">Offline Buffer</span><span class="diag-layer-tag">Edge Analytics</span><span class="diag-layer-tag">VPN-Secured</span>
+          </div>
+        </div>
+        <div class="diag-conn">↓ Secure MQTT over TLS 1.2 / Mutual TLS</div>
+        <div class="diag-layer" style="background:#003087">
+          <div class="diag-layer-hd">
+            <span class="diag-layer-ico">☁️</span>
+            <div><div class="diag-layer-name">Layer 3 — Azure IoT Hub</div><div class="diag-layer-desc">DPS zero-touch provisioning, Device Twin, C2D commands, Stream Analytics, Event Hub</div></div>
+          </div>
+          <div class="diag-layer-tags">
+            <span class="diag-layer-tag">IoT Hub</span><span class="diag-layer-tag">DPS</span><span class="diag-layer-tag">Device Twin</span><span class="diag-layer-tag">Stream Analytics</span><span class="diag-layer-tag">Event Hub</span><span class="diag-layer-tag">Service Bus</span>
+          </div>
+        </div>
+        <div class="diag-conn">↓ Event Hub · Service Bus · REST APIs · WebSockets</div>
+        <div class="diag-layer" style="background:#4A1A6E">
+          <div class="diag-layer-hd">
+            <span class="diag-layer-ico">🧠</span>
+            <div><div class="diag-layer-name">Layer 4 — Data &amp; Intelligence</div><div class="diag-layer-desc">Time-series database, data lake, AI/ML models, rules engine, digital twin, anomaly detection</div></div>
+          </div>
+          <div class="diag-layer-tags">
+            <span class="diag-layer-tag">Azure Data Explorer</span><span class="diag-layer-tag">Data Lake Storage</span><span class="diag-layer-tag">AI / ML Models</span><span class="diag-layer-tag">Azure Digital Twins</span><span class="diag-layer-tag">Rules Engine</span>
+          </div>
+        </div>
+        <div class="diag-conn">↓ REST APIs · WebSockets · Push Notifications</div>
+        <div class="diag-layer" style="background:#6B3A1A">
+          <div class="diag-layer-hd">
+            <span class="diag-layer-ico">📊</span>
+            <div><div class="diag-layer-name">Layer 5 — Applications</div><div class="diag-layer-desc">Real-time dashboards, alerts, reports, command &amp; control, BMS/ERP/CMMS integrations</div></div>
+          </div>
+          <div class="diag-layer-tags">
+            <span class="diag-layer-tag">Live Dashboard</span><span class="diag-layer-tag">Mobile App</span><span class="diag-layer-tag">Alerts &amp; Notifications</span><span class="diag-layer-tag">Command &amp; Control</span><span class="diag-layer-tag">BMS / ERP / CMMS</span>
+          </div>
+        </div>
+      </div>
+
+      <h2>Hardware — ESP32 Sensor Nodes</h2>
+      <p>ESP32 is chosen for its Wi-Fi + BLE connectivity, native FreeRTOS support, OTA capability, and low total cost at fleet scale.</p>
+      <table class="art-table">
+        <tr><th>Sensor</th><th>Purpose</th><th>Interface</th></tr>
+        <tr><td>SHT31</td><td>Temperature / Humidity</td><td><code>I2C</code></td></tr>
+        <tr><td>MH-Z19B</td><td>CO₂ Monitoring</td><td><code>UART</code></td></tr>
+        <tr><td>PMS5003</td><td>Air Quality — PM2.5</td><td><code>UART</code></td></tr>
+        <tr><td>PIR Sensor</td><td>Occupancy Detection</td><td><code>GPIO</code></td></tr>
+        <tr><td>ACS712</td><td>Current Monitoring</td><td><code>ADC</code></td></tr>
+        <tr><td>Energy Meter (RS485)</td><td>Power Analytics</td><td><code>Modbus RTU</code></td></tr>
+        <tr><td>Smoke Sensor</td><td>Fire Detection</td><td><code>ADC</code></td></tr>
+        <tr><td>Ultrasonic Sensor</td><td>Tank / Water Level</td><td><code>GPIO</code></td></tr>
+      </table>
+
+      <h2>Multi-Protocol Architecture</h2>
+      <table class="art-table">
+        <tr><th>System Type</th><th>Protocol</th></tr>
+        <tr><td>Embedded sensors</td><td><code>I2C / SPI / UART</code></td></tr>
+        <tr><td>Industrial devices &amp; meters</td><td><code>Modbus RTU / Modbus TCP</code></td></tr>
+        <tr><td>HVAC systems</td><td><code>BACnet/IP</code></td></tr>
+        <tr><td>Smart lighting</td><td><code>KNX</code></td></tr>
+        <tr><td>Wireless sensors</td><td><code>Zigbee / BLE</code></td></tr>
+        <tr><td>Long-range / outdoor</td><td><code>LoRaWAN</code></td></tr>
+        <tr><td>Cloud telemetry</td><td><code>MQTT over TLS 1.2</code></td></tr>
+        <tr><td>BMS / ERP integration</td><td><code>HTTPS REST</code></td></tr>
+      </table>
+
+      <h3>MQTT Topic Hierarchy</h3>
+      <div class="mqtt-topics">
+        <div class="mqtt-hd">MQTT Topic Design — Multi-Building Scalable Structure</div>
+        <div class="mqtt-row">
+          <div class="mqtt-topic"><span class="seg">building/</span><span class="var">{building_id}</span><span class="seg">/floor/</span><span class="var">{floor_id}</span><span class="seg">/room/</span><span class="var">{room_id}</span><span class="seg">/telemetry</span></div>
+          <div class="mqtt-purpose">Sensor data — temp, humidity, CO₂, energy, occupancy</div>
+        </div>
+        <div class="mqtt-row">
+          <div class="mqtt-topic"><span class="seg">building/</span><span class="var">{building_id}</span><span class="seg">/alerts</span></div>
+          <div class="mqtt-purpose">Smoke, intrusion, water leak, equipment fault</div>
+        </div>
+        <div class="mqtt-row">
+          <div class="mqtt-topic"><span class="seg">building/</span><span class="var">{building_id}</span><span class="seg">/commands</span></div>
+          <div class="mqtt-purpose">C2D — control HVAC, lights, access, cameras</div>
+        </div>
+        <div class="mqtt-row">
+          <div class="mqtt-topic"><span class="seg">building/</span><span class="var">{building_id}</span><span class="seg">/health</span></div>
+          <div class="mqtt-purpose">Device heartbeat, RSSI, heap, uptime, errors</div>
+        </div>
+        <div class="mqtt-row">
+          <div class="mqtt-topic"><span class="seg">building/</span><span class="var">{building_id}</span><span class="seg">/ota</span></div>
+          <div class="mqtt-purpose">OTA metadata — version, URL, SHA256, signature</div>
+        </div>
+      </div>
+
+      <h2>ESP32 FreeRTOS Task Architecture</h2>
+      <table class="art-table">
+        <tr><th>RTOS Task</th><th>Responsibility</th></tr>
+        <tr><td>Sensor Task</td><td>Read all sensors on schedule — I2C, UART, ADC, GPIO, Modbus</td></tr>
+        <tr><td>MQTT Task</td><td>Publish telemetry, subscribe to C2D commands, handle reconnects</td></tr>
+        <tr><td>OTA Task</td><td>Monitor Device Twin for new firmware, download &amp; apply via partition B</td></tr>
+        <tr><td>Rule Task</td><td>Local automation logic — continues running offline when cloud unreachable</td></tr>
+        <tr><td>Health Task</td><td>Watchdog timer, diagnostics, heartbeat — reports heap, uptime, RSSI</td></tr>
+        <tr><td>Modbus Task</td><td>Poll industrial energy meters and HVAC devices via RS485</td></tr>
+        <tr><td>Twin Task</td><td>Synchronize Device Twin desired/reported properties with IoT Hub</td></tr>
+      </table>
+
+      <h2>Device Twin — Cloud Config Sync</h2>
+      <p>Device Twin enables bidirectional cloud-to-device configuration without a persistent connection. The cloud writes desired properties; the device applies and reports actual state back.</p>
+
+      <div class="twin-cols">
+        <div class="twin-panel">
+          <div class="twin-panel-hd" style="background:#003087;color:#93c5fd">☁️ Desired Properties &nbsp;<span style="font-size:.62rem;opacity:.6">Cloud → Device</span></div>
+          <div class="twin-panel-body">
+            <div class="twin-prop"><span class="twin-prop-key">telemetryInterval</span><span class="twin-prop-val">30</span></div>
+            <div class="twin-prop"><span class="twin-prop-key">tempThreshold</span><span class="twin-prop-val">28.0</span></div>
+            <div class="twin-prop"><span class="twin-prop-key">enableFanControl</span><span class="twin-prop-val">true</span></div>
+            <div class="twin-prop"><span class="twin-prop-key">otaVersion</span><span class="twin-prop-val">"1.0.6"</span></div>
+          </div>
+        </div>
+        <div class="twin-panel">
+          <div class="twin-panel-hd" style="background:#1E4D3A;color:#6ee7b7">📡 Reported Properties &nbsp;<span style="font-size:.62rem;opacity:.6">Device → Cloud</span></div>
+          <div class="twin-panel-body">
+            <div class="twin-prop"><span class="twin-prop-key">firmware</span><span class="twin-prop-val">"1.0.5"</span></div>
+            <div class="twin-prop"><span class="twin-prop-key">uptime</span><span class="twin-prop-val">92000</span></div>
+            <div class="twin-prop"><span class="twin-prop-key">wifi_rssi</span><span class="twin-prop-val">-62</span></div>
+            <div class="twin-prop"><span class="twin-prop-key">heap_free</span><span class="twin-prop-val">185000</span></div>
+          </div>
+        </div>
+      </div>
+
+      <h2>OTA Firmware Management</h2>
+      <div class="ota-grid">
+        <div class="ota-part">
+          <div class="ota-part-hd" style="background:var(--green)">💾 Partition A — Active</div>
+          <div class="ota-part-body">
+            <div class="ota-part-row"><span class="ota-dot" style="background:var(--green)"></span>Currently running firmware</div>
+            <div class="ota-part-row"><span class="ota-dot" style="background:var(--green)"></span>Committed &amp; health-verified</div>
+            <div class="ota-part-row"><span class="ota-dot" style="background:var(--green)"></span>Automatic fallback target</div>
+          </div>
+        </div>
+        <div class="ota-part">
+          <div class="ota-part-hd" style="background:var(--blue)">📥 Partition B — Staging</div>
+          <div class="ota-part-body">
+            <div class="ota-part-row"><span class="ota-dot" style="background:var(--blue)"></span>New firmware downloaded here</div>
+            <div class="ota-part-row"><span class="ota-dot" style="background:var(--blue)"></span>Signature + hash validated</div>
+            <div class="ota-part-row"><span class="ota-dot" style="background:var(--blue)"></span>Boot flag → health check → commit</div>
+          </div>
+        </div>
+      </div>
+      <div class="ota-rollback">
+        <div class="ota-rollback-icon">🔄</div>
+        <div class="ota-rollback-text"><strong>Automatic rollback:</strong> If new firmware fails health checks post-reboot, bootloader detects missing commit flag and reverts to Partition A. Failure is reported via Device Twin reported properties.</div>
+      </div>
+
+      <h2>Digital Twin — Live Building Model</h2>
+      <p>Azure Digital Twins creates a live virtual model of the entire building — enabling spatial relationship mapping, automated trigger logic, and faster troubleshooting across thousands of assets.</p>
+
+      <div class="twin-tree">
+        <div class="tw-building">🏢 Building</div>
+        <div class="tw-floor">├── 📍 Floor 1</div>
+        <div class="tw-room">│   ├── 🚪 Room 101</div>
+        <div class="tw-sensor">│   │   ├── 🌡️ <span class="tw-sensor-name">Temperature Sensor</span> <span class="tw-sensor-val">24.5°C ✓</span></div>
+        <div class="tw-sensor">│   │   ├── ❄️ <span class="tw-sensor-name">AC Controller</span> <span class="tw-sensor-ok">ON</span></div>
+        <div class="tw-sensor">│   │   └── 👤 <span class="tw-sensor-name">Occupancy Sensor</span> <span class="tw-sensor-ok">Occupied</span></div>
+        <div class="tw-room">│   └── 🚪 Room 102</div>
+        <div class="tw-sensor">│       ├── 🌡️ <span class="tw-sensor-name">Temperature Sensor</span> <span class="tw-sensor-val">22.1°C</span></div>
+        <div class="tw-sensor">│       └── 👤 <span class="tw-sensor-name">Occupancy Sensor</span> <span class="tw-sensor-val">Empty</span></div>
+        <div class="tw-floor">└── 📍 Floor 2 — Server Room</div>
+        <div class="tw-sensor">&nbsp;&nbsp;&nbsp;&nbsp;└── 🌡️ <span class="tw-sensor-name">Temperature Sensor</span> <span class="tw-sensor-alert">⚠ 35°C — ALERT → Trigger Cooling</span></div>
+      </div>
+
+      <h2>Automation &amp; Rule Engine</h2>
+      <p>Rules run at both edge (offline-capable) and cloud (complex multi-device logic). This is where smart buildings become truly intelligent and self-managing.</p>
+
+      <div class="rules-grid">
+        <div class="rule-card">
+          <div class="rule-hd"><span class="rule-type energy">⚡ Energy Optimization</span><span class="rule-name">Unoccupied Room Setback</span></div>
+          <div class="rule-body">
+            <div class="rule-if"><div class="rule-lbl">IF Condition</div><div class="rule-val">occupancy == false<br>FOR 10 minutes</div></div>
+            <div class="rule-then"><div class="rule-lbl">THEN Action</div><div class="rule-val">turn_off_lights()<br>set_AC_setback(26°C)</div></div>
+          </div>
+        </div>
+        <div class="rule-card">
+          <div class="rule-hd"><span class="rule-type comfort">🌡️ Comfort Control</span><span class="rule-name">Temperature Threshold</span></div>
+          <div class="rule-body">
+            <div class="rule-if"><div class="rule-lbl">IF Condition</div><div class="rule-val">temperature &gt; 28°C<br>AND occupancy == true</div></div>
+            <div class="rule-then"><div class="rule-lbl">THEN Action</div><div class="rule-val">start_AC(22°C)<br>notify_facilities()</div></div>
+          </div>
+        </div>
+        <div class="rule-card">
+          <div class="rule-hd"><span class="rule-type emergency">🚨 Emergency Response</span><span class="rule-name">Fire / Smoke Detection</span></div>
+          <div class="rule-body">
+            <div class="rule-if"><div class="rule-lbl">IF Condition</div><div class="rule-val">smoke_detected == true<br>OR fire_alarm == true</div></div>
+            <div class="rule-then"><div class="rule-lbl">THEN Action</div><div class="rule-val">send_alert(emergency)<br>unlock_exit_doors()<br>stop_HVAC()</div></div>
+          </div>
+        </div>
+      </div>
+
+      <h2>Reliability &amp; Failure Handling</h2>
+      <table class="art-table">
+        <tr><th>Failure Scenario</th><th>Solution</th></tr>
+        <tr><td>Internet outage</td><td>Edge local buffering — telemetry syncs automatically when connectivity restores</td></tr>
+        <tr><td>OTA corruption</td><td>Dual-partition rollback — auto-reverts to last known good firmware</td></tr>
+        <tr><td>Sensor failure</td><td>Missing heartbeat detected — maintenance alert triggered automatically</td></tr>
+        <tr><td>Memory leaks</td><td>Watchdog timer recovery — graceful reboot, last telemetry preserved</td></tr>
+        <tr><td>Power failure</td><td>UPS for gateway, MQTT QoS 1 ensures no data loss on reconnect</td></tr>
+        <tr><td>Broker overload</td><td>Event Hub partitioning + backpressure management at ingestion layer</td></tr>
+      </table>
+
+      <h2>AI &amp; Predictive Maintenance</h2>
+      <p>Once telemetry is centralized, AI models deliver outcomes traditional maintenance cannot match:</p>
+      <ul>
+        <li><strong>Predictive maintenance</strong> — detect anomalies before failure, reducing downtime by up to 50%</li>
+        <li><strong>Occupancy prediction</strong> — pre-condition spaces 20 min before arrival based on calendar data</li>
+        <li><strong>Energy optimization</strong> — AI schedules HVAC around weather forecasts and real occupancy patterns</li>
+        <li><strong>Failure forecasting</strong> — vibration and temperature trends predict motor failures weeks ahead</li>
+      </ul>
+
+      <div class="art-closing">
+        <p>Smart buildings combine <strong>embedded systems, industrial automation, cloud computing, real-time analytics, AI-driven decision making, and enterprise security</strong> into a single integrated platform.</p>
+        <p>By connecting ESP32 edge nodes through multi-protocol gateways to Azure IoT services — with digital twins and intelligent automation — organizations achieve <strong>20–40% energy savings, 50% less downtime, and safer, more comfortable environments</strong>.</p>
+        <p>The future of buildings is <strong>connected, autonomous, and data-driven</strong>.</p>
+      </div>
+
+      <div class="art-share">
+        <span class="art-share-label">Share Article</span>
+        <div class="art-share-links">
+          <a class="share-btn linkedin" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fskolli6.github.io%2Fprofile%2Fblog.html%23smartbuilding" target="_blank" rel="noopener">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            LinkedIn
+          </a>
+          <a class="share-btn twitter" href="https://twitter.com/intent/tweet?text=Enterprise+Smart+Building+IoT+Platform+ESP32+%26+Azure+by+Srihari+Kolli&url=https%3A%2F%2Fskolli6.github.io%2Fprofile%2Fblog.html%23smartbuilding" target="_blank" rel="noopener">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L1.254 2.25H8.08l4.259 5.631 5.905-5.631zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            X / Twitter
+          </a>
+          <a class="share-btn medium" href="https://medium.com/" target="_blank" rel="noopener">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/></svg>
+            Medium
+          </a>
+          <button class="share-btn copy" onclick="copyLink('https://skolli6.github.io/profile/blog.html#smartbuilding',this)">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+            Copy Link
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <footer>
   <span class="ft-brand">Srihari <em>Kolli</em></span>
-  <small>© 2025 · IoT Architect &amp; Embedded Systems Engineer · Michigan, USA</small>
+  <small>© 2026 · IoT Architect &amp; Embedded Systems Engineer · Michigan, USA</small>
   <div class="ft-links">
     <a href="https://www.linkedin.com/in/skolli8/" target="_blank" class="ft-lnk">LinkedIn</a>
     <a href="blog.html" class="ft-lnk">Blog</a>
@@ -466,152 +852,29 @@ On update failure:
 </footer>
 
 <script>
-// NAV scroll shadow
 window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('sc',scrollY>40));
-
 function showArticle(id){
-  document.getElementById('listing').style.display='none';
-  document.getElementById('article-'+id).style.display='block';
   document.querySelector('.blog-listing').style.display='none';
-  document.getElementById('article-'+id).classList.add('visible');
+  document.querySelectorAll('.article-view').forEach(el=>{el.style.display='none';el.classList.remove('visible');});
+  const art=document.getElementById('article-'+id);
+  if(art){art.style.display='block';art.classList.add('visible');}
   window.scrollTo({top:0,behavior:'smooth'});
 }
-
 function backToListing(){
-  document.querySelectorAll('.article-view').forEach(el=>{
-    el.style.display='none';
-    el.classList.remove('visible');
-  });
+  document.querySelectorAll('.article-view').forEach(el=>{el.style.display='none';el.classList.remove('visible');});
   document.querySelector('.blog-listing').style.display='block';
   window.scrollTo({top:0,behavior:'smooth'});
 }
-</script>
-
-<!-- FULL ARTICLE: SMART BUILDING -->
-<section class="article-view" id="article-smartbuilding">
-  <div class="wrap">
-
-    <button class="art-back" onclick="backToListing()">Back to Blog</button>
-
-    <div class="art-meta">
-      <span class="art-cat">Smart Buildings · ESP32 · Azure IoT</span>
-      <span class="art-date">May 2026</span>
-      <span class="art-read-time">~20 min read</span>
-    </div>
-
-    <h1 class="art-title">
-      Building the Future: Designing an Enterprise Smart Building IoT Platform with ESP32 and Azure IoT
-    </h1>
-
-    <p class="art-subtitle">
-      Designing scalable enterprise smart buildings using ESP32 edge intelligence, industrial protocols, Azure IoT cloud services, predictive analytics, and digital twin architecture.
-    </p>
-
-    <div class="art-divider"></div>
-
-    <div class="share-row">
-      <a class="share-btn"
-         target="_blank"
-         href="https://www.linkedin.com/sharing/share-offsite/?url=https://skolli6.github.io/profile/blog.html">
-         Share LinkedIn
-      </a>
-
-      <a class="share-btn"
-         target="_blank"
-         href="https://twitter.com/intent/tweet?url=https://skolli6.github.io/profile/blog.html">
-         Share X/Twitter
-      </a>
-
-      <a class="share-btn"
-         target="_blank"
-         href="https://medium.com/new-story">
-         Publish on Medium
-      </a>
-
-      <button class="share-btn" onclick="copyArticleLink()">
-         Copy Link
-      </button>
-    </div>
-
-    <div class="art-body">
-
-      <h2>Why Smart Buildings Matter</h2>
-
-      <p>
-        Modern buildings are evolving into intelligent, connected ecosystems capable of optimizing energy usage, improving occupant comfort, automating operations, and predicting failures before downtime occurs.
-      </p>
-
-      <figure class="art-img">
-        <img src="assets/images/smart-building-architecture.png"
-             alt="Enterprise Smart Building IoT Platform Architecture"/>
-
-        <figcaption>
-          Enterprise Smart Building IoT Platform Architecture using ESP32, Edge Gateway, Azure IoT, Digital Twins, and AI Analytics.
-        </figcaption>
-      </figure>
-
-      <h2>Core Platform Architecture</h2>
-
-      <ul>
-        <li>ESP32 edge devices</li>
-        <li>Edge gateways</li>
-        <li>Azure IoT Hub</li>
-        <li>Digital Twins</li>
-        <li>MQTT telemetry</li>
-        <li>HVAC automation</li>
-        <li>Predictive maintenance</li>
-      </ul>
-
-      <div class="art-highlight">
-        <p><strong>Enterprise Goal:</strong></p>
-
-        <p>
-          Build scalable, secure, intelligent infrastructure platforms capable of supporting thousands of devices across multiple buildings.
-        </p>
-      </div>
-
-      <h2>Azure IoT Cloud Layer</h2>
-
-      <p>
-        Azure services provide enterprise-scale telemetry ingestion, analytics, provisioning, automation, and operational intelligence.
-      </p>
-
-      <h2>OTA Firmware Management</h2>
-
-      <ul>
-        <li>Signed firmware validation</li>
-        <li>Dual partition OTA</li>
-        <li>Rollback protection</li>
-        <li>Remote diagnostics</li>
-      </ul>
-
-      <h2>Security Architecture</h2>
-
-      <ul>
-        <li>Secure boot</li>
-        <li>X.509 certificates</li>
-        <li>MQTT over TLS</li>
-        <li>RBAC</li>
-        <li>Audit logging</li>
-      </ul>
-
-      <div class="art-closing">
-        <p>
-          The future of infrastructure is intelligent, predictive, autonomous, and continuously learning.
-        </p>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-
-<script>
-function copyArticleLink(){
-  navigator.clipboard.writeText(window.location.href);
-  alert('Article link copied!');
+function copyLink(url,btn){
+  navigator.clipboard.writeText(url).then(()=>{
+    const orig=btn.innerHTML;
+    btn.innerHTML='✓ Copied!';
+    btn.style.background='#1E7A4E';
+    setTimeout(()=>{btn.innerHTML=orig;btn.style.background='';},2200);
+  }).catch(()=>alert('Link: '+url));
 }
+const hash=location.hash.replace('#','');
+if(hash==='smartbuilding'||hash==='silicon'){showArticle(hash);}
 </script>
-
 </body>
 </html>
