@@ -255,7 +255,7 @@ footer small{font-size:.68rem;letter-spacing:.05em;color:rgba(255,255,255,.28)}
 .vc-btn-primary:hover{background:var(--gold2);gap:14px}
 .vc-btn-secondary{display:inline-flex;align-items:center;gap:9px;padding:13px 24px;border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.5);font-weight:600;font-size:.73rem;letter-spacing:.1em;text-transform:uppercase;transition:border-color .2s,color .2s,gap .25s}
 .vc-btn-secondary:hover{border-color:var(--gold);color:var(--gold);gap:14px}
-.vc-right{padding:52px 52px;display:flex;flex-direction:column;gap:32px}
+.vc-right{padding:44px 44px;display:flex;flex-direction:column;gap:20px}
 .vc-mockup{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:2px;overflow:hidden;position:relative}
 .vc-mockup-bar{height:32px;background:rgba(255,255,255,.04);border-bottom:1px solid rgba(255,255,255,.06);display:flex;align-items:center;padding:0 14px;gap:6px}
 .vc-dot{width:9px;height:9px;border-radius:50%}
@@ -882,15 +882,83 @@ footer small{font-size:.68rem;letter-spacing:.05em;color:rgba(255,255,255,.28)}
       <div class="vc-right">
 
         <!-- Live Queue Mockup -->
-        <div class="vc-screenshot-wrap">
-          <div class="vc-screenshot-bar">
+        <div class="vc-mockup">
+          <div class="vc-mockup-bar">
             <div class="vc-dot" style="background:#ff5f57"></div>
             <div class="vc-dot" style="background:#febc2e"></div>
             <div class="vc-dot" style="background:#28c840"></div>
-            <span class="vc-screenshot-url">joinqnow.vercel.app</span>
+            <span class="vc-screenshot-url">joinqnow.vercel.app · Live Queue Demo</span>
           </div>
-          <div class="vc-screenshot-inner">
-            <img src="qnow-screenshot.png" alt="QNow — Smart Queue System home screen" loading="lazy"/>
+          <div class="vc-mockup-body">
+
+            <!-- Your Token -->
+            <div class="vc-token-display">
+              <div class="vc-token-lbl">Your Token</div>
+              <div class="vc-token-num">T-024</div>
+              <div class="vc-token-name">Apollo Clinic · Dr. Ramesh Kumar</div>
+            </div>
+
+            <!-- Live queue stats row -->
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:rgba(255,255,255,.06);margin-bottom:12px">
+              <div style="background:#0D1B2A;padding:11px 8px;text-align:center">
+                <div style="font-family:var(--serif);font-size:1.4rem;font-weight:600;color:var(--gold);line-height:1">#3</div>
+                <div style="font-size:.55rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-top:3px">Position</div>
+              </div>
+              <div style="background:#0D1B2A;padding:11px 8px;text-align:center">
+                <div style="font-family:var(--serif);font-size:1.4rem;font-weight:600;color:#4ade80;line-height:1">18m</div>
+                <div style="font-size:.55rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-top:3px">Est. Wait</div>
+              </div>
+              <div style="background:#0D1B2A;padding:11px 8px;text-align:center">
+                <div style="font-family:var(--serif);font-size:1.4rem;font-weight:600;color:rgba(255,255,255,.6);line-height:1">12</div>
+                <div style="font-size:.55rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-top:3px">In Queue</div>
+              </div>
+            </div>
+
+            <!-- Queue list -->
+            <div class="vc-queue-list">
+              <div class="vc-queue-item">
+                <div class="vc-qi-left">
+                  <span class="vc-qi-num">T-022</span>
+                  <span class="vc-qi-name">Priya S.</span>
+                  <span class="vc-qi-wait">Now</span>
+                </div>
+                <span class="vc-qi-status vc-qi-serving">Serving</span>
+              </div>
+              <div class="vc-queue-item">
+                <div class="vc-qi-left">
+                  <span class="vc-qi-num">T-023</span>
+                  <span class="vc-qi-name">Ramesh K.</span>
+                  <span class="vc-qi-wait">~6 min</span>
+                </div>
+                <span class="vc-qi-status vc-qi-waiting">Next</span>
+              </div>
+              <div class="vc-queue-item" style="background:rgba(184,146,74,.06);border-color:rgba(184,146,74,.2)">
+                <div class="vc-qi-left">
+                  <span class="vc-qi-num" style="color:#fff">T-024</span>
+                  <span class="vc-qi-name" style="color:var(--gold);font-weight:700">You</span>
+                  <span class="vc-qi-wait">~18 min</span>
+                </div>
+                <span class="vc-qi-status vc-qi-waiting">Waiting</span>
+              </div>
+              <div class="vc-queue-item">
+                <div class="vc-qi-left">
+                  <span class="vc-qi-num">T-025</span>
+                  <span class="vc-qi-name">Anita M.</span>
+                  <span class="vc-qi-wait">~24 min</span>
+                </div>
+                <span class="vc-qi-status vc-qi-waiting">Waiting</span>
+              </div>
+            </div>
+
+            <!-- WhatsApp alert preview -->
+            <div style="margin-top:12px;background:rgba(37,211,102,.07);border:1px solid rgba(37,211,102,.18);padding:10px 12px;display:flex;align-items:flex-start;gap:10px">
+              <span style="font-size:1rem;flex-shrink:0">💬</span>
+              <div>
+                <div style="font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(37,211,102,.7);margin-bottom:3px">WhatsApp Alert Sent</div>
+                <div style="font-size:.73rem;color:rgba(255,255,255,.5);line-height:1.5">"3 people ahead of you at Apollo Clinic. Get ready! Est. wait: 18 min."</div>
+              </div>
+            </div>
+
           </div>
           <div class="vc-screenshot-footer">
             <span class="vc-live" style="font-size:.62rem">Live Product</span>
