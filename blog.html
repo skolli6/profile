@@ -222,6 +222,88 @@ footer small{font-size:.72rem;color:rgba(255,255,255,.3)}
 .ft-lnk{font-size:.68rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.35);transition:color .2s}
 .ft-lnk:hover{color:var(--gold)}
 
+/* ── EDGE AI ARTICLE COMPONENTS ── */
+.arch-compare{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:32px 0}
+.arch-panel{border-radius:6px;overflow:hidden;box-shadow:0 4px 18px rgba(13,27,42,.1)}
+.arch-panel-hd{padding:14px 20px;font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;display:flex;align-items:center;gap:8px}
+.arch-panel-hd.old{background:#4A5568;color:rgba(255,255,255,.85)}
+.arch-panel-hd.new{background:var(--navy);color:var(--gold)}
+.arch-panel-body{background:var(--white);padding:0}
+.arch-step{display:flex;align-items:center;gap:14px;padding:12px 20px;border-bottom:1px solid var(--rule);font-size:.84rem;color:var(--steel)}
+.arch-step:last-child{border-bottom:none}
+.arch-step-ico{font-size:1.1rem;flex-shrink:0;width:28px;text-align:center}
+.arch-step .arch-arr{color:var(--gold);font-size:.8rem;margin-left:auto;flex-shrink:0}
+.arch-step.highlight{background:rgba(184,146,74,.05);color:var(--navy);font-weight:600}
+
+.pipeline{display:flex;flex-direction:column;gap:2px;margin:32px 0}
+.pipe-stage{display:grid;grid-template-columns:44px 1fr 40px;align-items:stretch;background:var(--white);border:1px solid var(--rule);border-bottom:none;overflow:hidden;transition:box-shadow .2s}
+.pipe-stage:first-child{border-radius:6px 6px 0 0}
+.pipe-stage:last-child{border-radius:0 0 6px 6px;border-bottom:1px solid var(--rule)}
+.pipe-stage:hover{box-shadow:0 4px 14px rgba(13,27,42,.1);z-index:1;position:relative}
+.pipe-num{background:var(--navy);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:1rem;font-weight:600;color:rgba(184,146,74,.45)}
+.pipe-body{padding:15px 20px;border-left:1px solid var(--rule)}
+.pipe-title{font-weight:700;font-size:.87rem;color:var(--navy);margin-bottom:3px}
+.pipe-sub{font-size:.78rem;color:var(--steel);line-height:1.6}
+.pipe-arr{display:flex;align-items:center;justify-content:center;color:var(--gold);border-left:1px solid var(--rule);font-size:.9rem}
+
+.platform-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin:24px 0}
+.platform-card{background:var(--white);border:1px solid var(--rule);border-radius:4px;padding:18px 16px;text-align:center;transition:box-shadow .2s,border-color .2s}
+.platform-card:hover{box-shadow:0 4px 14px rgba(13,27,42,.1);border-color:rgba(184,146,74,.35)}
+.platform-ico{font-size:1.8rem;margin-bottom:10px}
+.platform-name{font-weight:700;font-size:.82rem;color:var(--navy);margin-bottom:3px}
+.platform-sub{font-size:.72rem;color:var(--steel);line-height:1.5}
+
+.telemetry-block{background:var(--navy);border-radius:6px;padding:24px 28px;margin:24px 0;font-family:'Courier New',monospace;font-size:.83rem;line-height:2;box-shadow:0 4px 20px rgba(13,27,42,.25)}
+.tb-line{display:flex;gap:10px}
+.tb-key{color:rgba(184,146,74,.8)}
+.tb-val{color:#7dd3fc}
+.tb-str{color:#86efac}
+.tb-bracket{color:rgba(255,255,255,.4)}
+.tb-num{color:#fbbf24}
+
+.benefit-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:24px 0 32px}
+.benefit-card{background:var(--white);border:1px solid var(--rule);border-top:3px solid var(--gold);border-radius:2px;padding:18px 20px;transition:box-shadow .2s}
+.benefit-card:hover{box-shadow:0 4px 14px rgba(13,27,42,.08)}
+.benefit-ico{font-size:1.4rem;margin-bottom:8px}
+.benefit-title{font-weight:700;font-size:.83rem;color:var(--navy);margin-bottom:4px}
+.benefit-desc{font-size:.76rem;color:var(--steel);line-height:1.6}
+
+.inference-flow{display:flex;align-items:center;gap:0;margin:28px 0;flex-wrap:wrap}
+.inf-box{flex:1;min-width:100px;background:var(--white);border:1px solid var(--rule);padding:18px 14px;text-align:center;font-size:.8rem;font-weight:600;color:var(--navy);border-right:none;transition:background .2s}
+.inf-box:first-child{border-radius:4px 0 0 4px}
+.inf-box:last-child{border-right:1px solid var(--rule);border-radius:0 4px 4px 0;background:rgba(30,122,78,.05);border-color:rgba(30,122,78,.3);color:var(--green)}
+.inf-box-ico{font-size:1.3rem;display:block;margin-bottom:6px}
+.inf-arr{color:var(--gold);font-size:1rem;flex-shrink:0;padding:0 2px;background:rgba(247,244,239,.8);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+
+.prediction-box{background:var(--navy);border-radius:6px;padding:28px 32px;margin:28px 0;box-shadow:0 6px 24px rgba(13,27,42,.2)}
+.pred-title{font-size:.65rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(184,146,74,.6);margin-bottom:16px}
+.pred-row{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:.84rem}
+.pred-row:last-child{border-bottom:none}
+.pred-key{color:rgba(255,255,255,.5)}
+.pred-val{font-weight:600;font-family:'Courier New',monospace}
+.pred-val.normal{color:#86efac}
+.pred-val.warning{color:#fbbf24}
+.pred-val.danger{color:#ff8080}
+.pred-result{margin-top:20px;padding:16px 20px;background:rgba(184,64,64,.15);border:1px solid rgba(184,64,64,.3);border-radius:4px;font-size:.88rem;color:#ff8080;font-weight:600;text-align:center}
+.pred-actions{margin-top:12px;display:flex;flex-wrap:wrap;gap:8px}
+.pred-action{background:rgba(30,122,78,.15);border:1px solid rgba(30,122,78,.25);border-radius:100px;padding:5px 14px;font-size:.73rem;color:#86efac;font-weight:600}
+
+.ai-arch-diagram{background:var(--navy);border-radius:8px;padding:32px 28px;margin:32px 0;box-shadow:0 8px 32px rgba(13,27,42,.3);position:relative;overflow:hidden}
+.ai-arch-diagram::before{content:'EDGE AI';position:absolute;right:-10px;top:50%;transform:translateY(-50%);font-family:var(--serif);font-size:10rem;font-weight:700;color:rgba(255,255,255,.02);pointer-events:none;line-height:1}
+.ai-arch-title{font-size:.65rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);text-align:center;margin-bottom:28px}
+.ai-arch-layers{display:flex;flex-direction:column;gap:8px;position:relative;z-index:1}
+.ai-arch-layer{border-radius:6px;overflow:hidden}
+.ai-arch-layer-hd{padding:12px 20px;display:flex;align-items:center;gap:12px}
+.ai-arch-layer-ico{font-size:1.1rem}
+.ai-arch-layer-name{font-weight:700;font-size:.88rem;color:#fff}
+.ai-arch-layer-proto{font-size:.72rem;color:rgba(255,255,255,.4);margin-left:auto;font-family:'Courier New',monospace}
+.ai-arch-layer-tags{display:flex;flex-wrap:wrap;gap:5px;padding:8px 20px 12px 44px}
+.ai-arch-tag{font-size:.65rem;font-weight:600;padding:2px 9px;border-radius:100px;background:rgba(255,255,255,.1);color:rgba(255,255,255,.65)}
+.ai-arch-conn{text-align:center;font-size:.7rem;color:rgba(184,146,74,.4);padding:3px 0;display:flex;align-items:center;justify-content:center;gap:10px;font-family:'Courier New',monospace}
+.ai-arch-conn::before,.ai-arch-conn::after{content:'';flex:1;height:1px;background:rgba(184,146,74,.1)}
+
+@media(max-width:960px){.arch-compare{grid-template-columns:1fr}.inference-flow{flex-direction:column}.inf-box{border-right:1px solid var(--rule);border-bottom:none;border-radius:0;width:100%}.inf-box:first-child{border-radius:4px 4px 0 0}.inf-box:last-child{border-radius:0 0 4px 4px;border-right:1px solid rgba(30,122,78,.3)}.inf-arr{display:none}}
+
 @media(max-width:960px){
   nav{padding:0 20px}.nav-links,.nav-hire{display:none}
   .wrap{padding:0 22px}.blog-hero{padding:100px 0 56px}.blog-hero::after{display:none}
@@ -258,7 +340,7 @@ footer small{font-size:.72rem;color:rgba(255,255,255,.3)}
     <div class="hero-eyebrow">Technical Writing</div>
     <h1>Deep-Dive <em>Articles</em><br>&amp; Architecture Guides</h1>
     <div class="hero-rule"></div>
-    <p>Long-form technical breakdowns on enterprise IoT, embedded security, PKI systems, and cloud integration.</p>
+    <p>Long-form technical breakdowns on enterprise IoT, embedded security, PKI systems, cloud integration, and Edge AI for Automotive &amp; EV platforms.</p>
   </div>
 </div>
 
@@ -289,6 +371,20 @@ footer small{font-size:.72rem;color:rgba(255,255,255,.3)}
         </div>
         <div class="card-footer">
           <div class="card-tags"><span class="card-tag">ESP32</span><span class="card-tag">Azure IoT Hub</span><span class="card-tag">Edge Gateway</span><span class="card-tag">Digital Twin</span><span class="card-tag">MQTT</span><span class="card-tag">BACnet</span><span class="card-tag">Modbus</span></div>
+          <span class="card-read">Read Article</span>
+        </div>
+      </div>
+    </div>
+    <div class="article-card" onclick="showArticle('edgeai')">
+      <div class="card-num"><span>03</span></div>
+      <div class="card-body">
+        <div>
+          <div class="card-cat">Edge AI · Automotive · EV · IoT · Embedded ML</div>
+          <div class="card-title">AI in Automotive &amp; IoT — How Real-Time Edge Intelligence Is Changing the Industry</div>
+          <div class="card-excerpt">A practical end-to-end engineering breakdown of how Edge AI models are actually built and deployed inside real-world systems — EV Battery Management, Smart HVAC, Predictive Maintenance, and Industrial Automation. From raw sensor telemetry to autonomous decisions at the edge.</div>
+        </div>
+        <div class="card-footer">
+          <div class="card-tags"><span class="card-tag">Edge AI</span><span class="card-tag">TinyML</span><span class="card-tag">EV Battery BMS</span><span class="card-tag">NVIDIA Jetson</span><span class="card-tag">RandomForest</span><span class="card-tag">OTA</span><span class="card-tag">SDV</span></div>
           <span class="card-read">Read Article</span>
         </div>
       </div>
@@ -841,6 +937,415 @@ footer small{font-size:.72rem;color:rgba(255,255,255,.3)}
   </div>
 </section>
 
+
+<!-- ARTICLE 03 — EDGE AI AUTOMOTIVE & IoT -->
+<section class="article-view" id="article-edgeai">
+  <div class="wrap">
+    <button class="art-back" onclick="backToListing()">Back to Blog</button>
+    <div class="art-meta">
+      <span class="art-cat">Edge AI · Automotive · EV · IoT</span>
+      <span class="art-date">May 2026</span>
+      <span class="art-read-time">· ~22 min read</span>
+    </div>
+    <h1 class="art-title">AI in Automotive &amp; IoT — How Real-Time Edge Intelligence Is Changing the Industry</h1>
+    <p class="art-subtitle">A practical engineering guide to building and deploying AI models inside EV Battery Management Systems, Smart HVAC, Industrial IoT, and Predictive Maintenance platforms — from raw telemetry to autonomous edge decisions.</p>
+    <div class="art-divider"></div>
+    <div class="art-body">
+
+      <h2>Introduction</h2>
+      <p>Most people think AI starts in the cloud. In reality, the future of Automotive, EVs, Industrial IoT, and Smart Buildings is moving rapidly toward <strong>Edge AI</strong> — where devices make intelligent decisions locally in real time, without waiting for a round-trip to the cloud.</p>
+      <p>Coming from an Embedded/Firmware engineering background, I started exploring how AI models are actually built and deployed inside real-world systems such as EV Battery Management Systems (BMS), smart HVAC, predictive maintenance platforms, and intelligent industrial edge devices.</p>
+      <div class="art-highlight">
+        <p><strong>Key insight:</strong> The same AI engineering workflow — sensors → telemetry → feature extraction → model training → edge deployment → autonomous action — applies across almost every domain in Automotive and IoT.</p>
+      </div>
+
+      <h2>Traditional vs. Modern Edge AI Architecture</h2>
+      <p>The gap between legacy IoT and modern Edge AI is fundamental — not incremental. Traditional systems react to thresholds. Edge AI systems <em>predict</em> and <em>adapt</em>.</p>
+
+      <div class="arch-compare">
+        <div class="arch-panel">
+          <div class="arch-panel-hd old">⚠️ Traditional IoT Architecture</div>
+          <div class="arch-panel-body">
+            <div class="arch-step"><span class="arch-step-ico">📡</span>Sensors<span class="arch-arr">→</span></div>
+            <div class="arch-step"><span class="arch-step-ico">⚙️</span>Rule-Based Processing<span class="arch-arr">→</span></div>
+            <div class="arch-step"><span class="arch-step-ico">🔔</span>Threshold Alerts<span class="arch-arr">→</span></div>
+            <div class="arch-step"><span class="arch-step-ico">☁️</span>MQTT/OPC-UA → Cloud<span class="arch-arr">→</span></div>
+            <div class="arch-step"><span class="arch-step-ico">📊</span>AI/ML Analytics (Cloud)<span class="arch-arr">→</span></div>
+            <div class="arch-step"><span class="arch-step-ico">📈</span>Dashboard &amp; Predictions</div>
+          </div>
+        </div>
+        <div class="arch-panel">
+          <div class="arch-panel-hd new">✦ Modern Edge AI Architecture</div>
+          <div class="arch-panel-body">
+            <div class="arch-step"><span class="arch-step-ico">📡</span>Sensors / Telemetry<span class="arch-arr">→</span></div>
+            <div class="arch-step highlight"><span class="arch-step-ico">🧮</span>Feature Extraction (Edge)<span class="arch-arr">→</span></div>
+            <div class="arch-step highlight"><span class="arch-step-ico">🧠</span>AI Model at Edge<span class="arch-arr">→</span></div>
+            <div class="arch-step highlight"><span class="arch-step-ico">⚡</span>Real-Time Prediction<span class="arch-arr">→</span></div>
+            <div class="arch-step highlight"><span class="arch-step-ico">🤖</span>Autonomous Actions<span class="arch-arr">→</span></div>
+            <div class="arch-step"><span class="arch-step-ico">☁️</span>Cloud Analytics &amp; Fleet Insights</div>
+          </div>
+        </div>
+      </div>
+
+      <h3>Challenges with Traditional Architecture</h3>
+      <table class="art-table">
+        <tr><th>Challenge</th><th>Impact</th></tr>
+        <tr><td>High latency for mission-critical decisions</td><td>Delayed response can cause hardware damage or safety events</td></tr>
+        <tr><td>Cloud/network dependency</td><td>System fails during outages — no local intelligence</td></tr>
+        <tr><td>Static rule-based logic</td><td>Cannot adapt to new conditions without re-deployment</td></tr>
+        <tr><td>No self-learning capability</td><td>Misses gradual degradation patterns over time</td></tr>
+        <tr><td>High bandwidth usage</td><td>Cost and latency overhead from streaming raw telemetry to cloud</td></tr>
+      </table>
+
+      <h3>Benefits of Edge AI</h3>
+      <div class="benefit-grid">
+        <div class="benefit-card"><div class="benefit-ico">⚡</div><div class="benefit-title">Faster Decisions</div><div class="benefit-desc">Sub-millisecond inference at device level — no cloud round-trip required</div></div>
+        <div class="benefit-card"><div class="benefit-ico">📡</div><div class="benefit-title">Reduced Cloud Dependency</div><div class="benefit-desc">Operates reliably during network failures with full local autonomy</div></div>
+        <div class="benefit-card"><div class="benefit-ico">🔄</div><div class="benefit-title">Adaptive Behavior</div><div class="benefit-desc">Real-time model inference adapts to changing environmental conditions</div></div>
+        <div class="benefit-card"><div class="benefit-ico">💾</div><div class="benefit-title">Lower Bandwidth</div><div class="benefit-desc">Only predictions and alerts are sent to cloud — not raw sensor streams</div></div>
+        <div class="benefit-card"><div class="benefit-ico">🛡️</div><div class="benefit-title">Reliability</div><div class="benefit-desc">Continues operating intelligently even without internet connectivity</div></div>
+        <div class="benefit-card"><div class="benefit-ico">🤖</div><div class="benefit-title">Intelligent Automation</div><div class="benefit-desc">Autonomous device-level decisions driven by ML rather than static rules</div></div>
+      </div>
+
+      <h2>Edge AI Automotive Platform — Architecture</h2>
+      <p>The following architecture represents a complete Edge AI platform deployed across automotive, EV, and industrial IoT systems. Each layer feeds into the next — from physical sensors all the way to cloud fleet management.</p>
+
+      <div class="ai-arch-diagram">
+        <div class="ai-arch-title">Edge AI Automotive Platform — Full Stack Architecture</div>
+        <div class="ai-arch-layers">
+          <div class="ai-arch-layer" style="background:rgba(184,146,74,.12);border:1px solid rgba(184,146,74,.25)">
+            <div class="ai-arch-layer-hd"><span class="ai-arch-layer-ico">🔌</span><span class="ai-arch-layer-name">Physical Sensors &amp; ECUs</span><span class="ai-arch-layer-proto">CAN / LIN / SPI / I²C</span></div>
+            <div class="ai-arch-layer-tags"><span class="ai-arch-tag">Battery Temp Sensor</span><span class="ai-arch-tag">Voltage Sensor</span><span class="ai-arch-tag">Current Sensor</span><span class="ai-arch-tag">Accelerometer</span><span class="ai-arch-tag">Ambient Temp</span><span class="ai-arch-tag">BMS Telemetry</span><span class="ai-arch-tag">ECU Data</span></div>
+          </div>
+          <div class="ai-arch-conn">↓ raw telemetry</div>
+          <div class="ai-arch-layer" style="background:rgba(26,86,160,.12);border:1px solid rgba(26,86,160,.25)">
+            <div class="ai-arch-layer-hd"><span class="ai-arch-layer-ico">📦</span><span class="ai-arch-layer-name">Telemetry Collection</span><span class="ai-arch-layer-proto">MQTT / CAN Bus / OPC-UA / Automotive Ethernet</span></div>
+            <div class="ai-arch-layer-tags"><span class="ai-arch-tag">Gateway ECUs</span><span class="ai-arch-tag">Edge Processors</span><span class="ai-arch-tag">Vehicle Controllers</span><span class="ai-arch-tag">QoS Buffering</span></div>
+          </div>
+          <div class="ai-arch-conn">↓ cleaned &amp; structured data</div>
+          <div class="ai-arch-layer" style="background:rgba(107,70,193,.12);border:1px solid rgba(107,70,193,.25)">
+            <div class="ai-arch-layer-hd"><span class="ai-arch-layer-ico">🧮</span><span class="ai-arch-layer-name">Feature Engineering</span><span class="ai-arch-layer-proto">on-device preprocessing</span></div>
+            <div class="ai-arch-layer-tags"><span class="ai-arch-tag">Temp Rise Rate</span><span class="ai-arch-tag">Thermal Stress Index</span><span class="ai-arch-tag">Driver Aggression Score</span><span class="ai-arch-tag">Fast Charge Frequency</span><span class="ai-arch-tag">SOH Trend</span></div>
+          </div>
+          <div class="ai-arch-conn">↓ engineered features</div>
+          <div class="ai-arch-layer" style="background:rgba(184,146,74,.18);border:1px solid rgba(184,146,74,.4)">
+            <div class="ai-arch-layer-hd"><span class="ai-arch-layer-ico">🧠</span><span class="ai-arch-layer-name">AI / ML Model — Edge Inference</span><span class="ai-arch-layer-proto">TinyML / ONNX / TF Lite</span></div>
+            <div class="ai-arch-layer-tags"><span class="ai-arch-tag">RandomForest</span><span class="ai-arch-tag">LSTM</span><span class="ai-arch-tag">XGBoost</span><span class="ai-arch-tag">Anomaly Detection</span><span class="ai-arch-tag">Overheating Prediction</span><span class="ai-arch-tag">SOH Regression</span></div>
+          </div>
+          <div class="ai-arch-conn">↓ predictions</div>
+          <div class="ai-arch-layer" style="background:rgba(30,122,78,.15);border:1px solid rgba(30,122,78,.3)">
+            <div class="ai-arch-layer-hd"><span class="ai-arch-layer-ico">⚡</span><span class="ai-arch-layer-name">Intelligent Decisions &amp; Autonomous Actions</span><span class="ai-arch-layer-proto">closed-loop control</span></div>
+            <div class="ai-arch-layer-tags"><span class="ai-arch-tag">Cooling System Control</span><span class="ai-arch-tag">Charging Current Reduction</span><span class="ai-arch-tag">Predictive Alerts</span><span class="ai-arch-tag">Stop Fast Charging</span><span class="ai-arch-tag">Maintenance Notify</span></div>
+          </div>
+          <div class="ai-arch-conn">↓ events &amp; fleet data</div>
+          <div class="ai-arch-layer" style="background:rgba(13,27,42,.4);border:1px solid rgba(255,255,255,.1)">
+            <div class="ai-arch-layer-hd"><span class="ai-arch-layer-ico">☁️</span><span class="ai-arch-layer-name">Cloud Analytics &amp; Fleet Management</span><span class="ai-arch-layer-proto">OTA / Dashboard / ML Retraining</span></div>
+            <div class="ai-arch-layer-tags"><span class="ai-arch-tag">Fleet Dashboard</span><span class="ai-arch-tag">OTA Model Updates</span><span class="ai-arch-tag">Aggregate Analytics</span><span class="ai-arch-tag">Model Retraining Pipeline</span><span class="ai-arch-tag">Compliance Reporting</span></div>
+          </div>
+        </div>
+      </div>
+
+      <h2>How AI Models Are Built — Practical Engineering Flow</h2>
+      <p>Most AI discussions stop at model training. But in real Automotive and IoT systems, AI is an <strong>end-to-end engineering pipeline</strong> that starts at the sensor and ends with autonomous system actions. Below is a step-by-step breakdown using an EV Battery Intelligence System as the example.</p>
+
+      <div class="pipeline">
+        <div class="pipe-stage">
+          <div class="pipe-num">1</div>
+          <div class="pipe-body">
+            <div class="pipe-title">Sensors — Raw Data Collection</div>
+            <div class="pipe-sub">Battery temp, voltage, current, accelerometer, ambient temp, and BMS telemetry streams via CAN Bus</div>
+          </div>
+          <div class="pipe-arr">↓</div>
+        </div>
+        <div class="pipe-stage">
+          <div class="pipe-num">2</div>
+          <div class="pipe-body">
+            <div class="pipe-title">Telemetry Collection</div>
+            <div class="pipe-sub">Data gathered via CAN Bus, MQTT, OPC-UA, Automotive Ethernet, and Gateway ECUs to edge processors</div>
+          </div>
+          <div class="pipe-arr">↓</div>
+        </div>
+        <div class="pipe-stage">
+          <div class="pipe-num">3</div>
+          <div class="pipe-body">
+            <div class="pipe-title">Data Cleaning</div>
+            <div class="pipe-sub">Missing values interpolated, duplicate packets removed, invalid sensor spikes filtered (e.g. Temp = −200°C flagged and removed)</div>
+          </div>
+          <div class="pipe-arr">↓</div>
+        </div>
+        <div class="pipe-stage">
+          <div class="pipe-num">4</div>
+          <div class="pipe-body">
+            <div class="pipe-title">Feature Extraction — Engineering Higher-Level Signals</div>
+            <div class="pipe-sub">Raw values transformed into meaningful features: temperature rise rate, thermal stress index, aggressive driving score, fast charge frequency</div>
+          </div>
+          <div class="pipe-arr">↓</div>
+        </div>
+        <div class="pipe-stage">
+          <div class="pipe-num">5</div>
+          <div class="pipe-body">
+            <div class="pipe-title">Model Training</div>
+            <div class="pipe-sub">Cleaned dataset used to train a classifier (e.g. RandomForestClassifier) to predict overheating risk from telemetry patterns</div>
+          </div>
+          <div class="pipe-arr">↓</div>
+        </div>
+        <div class="pipe-stage">
+          <div class="pipe-num">6</div>
+          <div class="pipe-body">
+            <div class="pipe-title">Model Evaluation</div>
+            <div class="pipe-sub">Tested on unseen data across Accuracy, Precision, Recall, and F1 Score. Target: >90% recall to minimize missed failure events</div>
+          </div>
+          <div class="pipe-arr">↓</div>
+        </div>
+        <div class="pipe-stage">
+          <div class="pipe-num">7</div>
+          <div class="pipe-body">
+            <div class="pipe-title">Edge Deployment</div>
+            <div class="pipe-sub">Model exported (ONNX / TFLite) and flashed to edge hardware — Raspberry Pi, NVIDIA Jetson, ESP32 TinyML, Automotive ECU, or BMS controller</div>
+          </div>
+          <div class="pipe-arr">↓</div>
+        </div>
+        <div class="pipe-stage">
+          <div class="pipe-num">8</div>
+          <div class="pipe-body">
+            <div class="pipe-title">Live Inference</div>
+            <div class="pipe-sub">Live telemetry flows continuously through the deployed AI model, producing real-time predictions at each inference cycle</div>
+          </div>
+          <div class="pipe-arr">↓</div>
+        </div>
+        <div class="pipe-stage">
+          <div class="pipe-num">9</div>
+          <div class="pipe-body">
+            <div class="pipe-title">Predictions</div>
+            <div class="pipe-sub">AI predicts battery degradation risk, overheating probability, remaining range, charging efficiency, and predictive maintenance alerts</div>
+          </div>
+          <div class="pipe-arr">↓</div>
+        </div>
+        <div class="pipe-stage">
+          <div class="pipe-num">10</div>
+          <div class="pipe-body">
+            <div class="pipe-title">Autonomous Actions — Closed Loop</div>
+            <div class="pipe-sub"><strong>Observe → Predict → Decide → Act.</strong> Cooling enabled, charging current reduced, OTA alert dispatched — all without human intervention</div>
+          </div>
+          <div class="pipe-arr">✓</div>
+        </div>
+      </div>
+
+      <h2>Step 1 — Sensors</h2>
+      <p>The vehicle continuously streams data from multiple sensors and ECUs simultaneously. Every parameter contributes signal to the AI model.</p>
+      <table class="art-table">
+        <tr><th>Sensor</th><th>Purpose</th><th>Protocol</th></tr>
+        <tr><td>Battery temperature sensor</td><td>Thermal monitoring — core safety signal</td><td>CAN Bus</td></tr>
+        <tr><td>Voltage sensor</td><td>Battery voltage tracking across cells</td><td>CAN Bus</td></tr>
+        <tr><td>Current sensor</td><td>Charging / discharge current monitoring</td><td>Shunt / Hall effect</td></tr>
+        <tr><td>Accelerometer</td><td>Driving behavior — aggressive/smooth scoring</td><td>SPI / I²C</td></tr>
+        <tr><td>Ambient temperature sensor</td><td>Environmental condition context</td><td>I²C / 1-Wire</td></tr>
+        <tr><td>BMS telemetry</td><td>Battery health, SOC, SOH, cell imbalance</td><td>CAN / LIN</td></tr>
+      </table>
+
+      <p>Example raw telemetry packet:</p>
+      <div class="telemetry-block">
+        <div class="tb-line"><span class="tb-bracket">{</span></div>
+        <div class="tb-line" style="padding-left:20px"><span class="tb-key">"soc":</span>&nbsp;<span class="tb-num">78</span><span class="tb-bracket">,</span></div>
+        <div class="tb-line" style="padding-left:20px"><span class="tb-key">"battery_temp":</span>&nbsp;<span class="tb-num">47</span><span class="tb-bracket">,</span></div>
+        <div class="tb-line" style="padding-left:20px"><span class="tb-key">"battery_current":</span>&nbsp;<span class="tb-num">24</span><span class="tb-bracket">,</span></div>
+        <div class="tb-line" style="padding-left:20px"><span class="tb-key">"ambient_temp":</span>&nbsp;<span class="tb-num">39</span><span class="tb-bracket">,</span></div>
+        <div class="tb-line" style="padding-left:20px"><span class="tb-key">"terminal_voltage":</span>&nbsp;<span class="tb-num">4.08</span></div>
+        <div class="tb-line"><span class="tb-bracket">}</span></div>
+      </div>
+
+      <h2>Steps 3–4 — Data Cleaning &amp; Feature Extraction</h2>
+      <p>Raw telemetry is rarely model-ready. Engineers invest significant effort in cleaning and transforming it into features that meaningfully represent system behavior.</p>
+
+      <h3>Data Cleaning</h3>
+      <table class="art-table">
+        <tr><th>Problem</th><th>Solution</th><th>Example</th></tr>
+        <tr><td>Missing values</td><td>Interpolation from adjacent readings</td><td>Gap during network dropout filled with LWMA</td></tr>
+        <tr><td>Duplicate packets</td><td>Deduplication by timestamp + device ID</td><td>CAN Bus retransmits filtered</td></tr>
+        <tr><td>Invalid sensor values</td><td>Range-based filtering + flag</td><td>Temp = −200°C → rejected, alert raised</td></tr>
+        <tr><td>Noise spikes</td><td>Median smoothing / Kalman filtering</td><td>Current transients during regen braking</td></tr>
+      </table>
+
+      <h3>Feature Engineering</h3>
+      <p>Raw signals rarely capture the physics of battery degradation on their own. Engineered features dramatically improve AI accuracy:</p>
+      <table class="art-table">
+        <tr><th>Raw Signal</th><th>Engineered Feature</th><th>Why It Matters</th></tr>
+        <tr><td>Battery temperature</td><td>Temperature rise rate (°C/min)</td><td>Captures thermal runaway onset, not just absolute value</td></tr>
+        <tr><td>Current</td><td>Thermal stress index</td><td>Combines temp + current + fast charging into one risk score</td></tr>
+        <tr><td>Speed + acceleration</td><td>Aggressive driving score</td><td>Identifies high-discharge usage patterns</td></tr>
+        <tr><td>Charging sessions</td><td>Fast charge frequency ratio</td><td>Fast charging degrades cells faster over time</td></tr>
+        <tr><td>Voltage variance</td><td>Cell imbalance index</td><td>Early SOH degradation indicator</td></tr>
+      </table>
+
+      <div class="art-highlight">
+        <p><strong>Key formula — Thermal Stress Index:</strong></p>
+        <p><code>thermal_stress_index = w1·high_temp + w2·high_current + w3·fast_charging_flag</code></p>
+        <p>This single composite feature is one of the strongest predictors of overheating events in deployed EV systems.</p>
+      </div>
+
+      <h2>Steps 5–6 — Model Training &amp; Evaluation</h2>
+      <p>The cleaned, feature-engineered dataset is split into training and test sets, then used to train a classifier. For an EV battery overheating prediction system:</p>
+
+      <h3>Model Inputs &amp; Output</h3>
+      <table class="art-table">
+        <tr><th>Type</th><th>Features</th></tr>
+        <tr><td><strong>Inputs (X)</strong></td><td>SOC, battery_current, battery_temp, ambient_temp, terminal_voltage, thermal_stress_index, internal_resistance</td></tr>
+        <tr><td><strong>Output (y)</strong></td><td><code>over_temp_flag</code> → YES / NO (binary classification)</td></tr>
+      </table>
+
+      <h3>Python Training Code</h3>
+      <pre style="background:var(--navy);color:#7dd3fc;border-radius:6px;padding:24px 28px;font-family:'Courier New',monospace;font-size:.8rem;line-height:2;overflow-x:auto;box-shadow:0 4px 18px rgba(13,27,42,.2);margin:20px 0"><code style="background:none;padding:0;color:inherit"><span style="color:rgba(184,146,74,.7)">import</span> pandas <span style="color:rgba(184,146,74,.7)">as</span> pd
+<span style="color:rgba(184,146,74,.7)">from</span> sklearn.model_selection <span style="color:rgba(184,146,74,.7)">import</span> train_test_split
+<span style="color:rgba(184,146,74,.7)">from</span> sklearn.ensemble <span style="color:rgba(184,146,74,.7)">import</span> RandomForestClassifier
+<span style="color:rgba(184,146,74,.7)">from</span> sklearn.metrics <span style="color:rgba(184,146,74,.7)">import</span> accuracy_score
+
+<span style="color:rgba(255,255,255,.35)"># Load telemetry dataset</span>
+df = pd.read_csv(<span style="color:#86efac">"ev_battery_dataset.csv"</span>)
+
+features = [<span style="color:#86efac">"SOC"</span>, <span style="color:#86efac">"battery_current"</span>, <span style="color:#86efac">"battery_temp"</span>,
+            <span style="color:#86efac">"ambient_temp"</span>, <span style="color:#86efac">"terminal_voltage"</span>,
+            <span style="color:#86efac">"thermal_stress_index"</span>, <span style="color:#86efac">"internal_resistance"</span>]
+
+X, y = df[features], df[<span style="color:#86efac">"over_temp_flag"</span>]
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=<span style="color:#fbbf24">0.2</span>, random_state=<span style="color:#fbbf24">42</span>)
+
+model = RandomForestClassifier(n_estimators=<span style="color:#fbbf24">100</span>, max_depth=<span style="color:#fbbf24">8</span>)
+model.fit(X_train, y_train)
+
+predictions = model.predict(X_test)
+accuracy = accuracy_score(y_test, predictions)
+print(<span style="color:#86efac">f"Model Accuracy: {accuracy:.2%}"</span>)  <span style="color:rgba(255,255,255,.35)"># → 93.2%</span></code></pre>
+
+      <h3>Evaluation Metrics</h3>
+      <table class="art-table">
+        <tr><th>Metric</th><th>Purpose</th><th>Target for Safety Systems</th></tr>
+        <tr><td>Accuracy</td><td>Overall correctness across all predictions</td><td>&gt;90%</td></tr>
+        <tr><td>Precision</td><td>Minimizing false alarms — alert fatigue prevention</td><td>&gt;85%</td></tr>
+        <tr><td>Recall</td><td>Failure detection — must catch real overheating events</td><td>&gt;95%</td></tr>
+        <tr><td>F1 Score</td><td>Balanced performance across precision and recall</td><td>&gt;90%</td></tr>
+      </table>
+
+      <h2>Step 7 — Edge Deployment Platforms</h2>
+      <p>After training and validation, the model is exported to a portable format (ONNX, TensorFlow Lite, or sklearn's joblib) and deployed directly onto embedded hardware:</p>
+
+      <div class="platform-grid">
+        <div class="platform-card"><div class="platform-ico">🍓</div><div class="platform-name">Raspberry Pi 4/5</div><div class="platform-sub">General-purpose edge gateway, Linux-based, ARM Cortex-A72</div></div>
+        <div class="platform-card"><div class="platform-ico">🟢</div><div class="platform-name">NVIDIA Jetson</div><div class="platform-sub">GPU-accelerated edge AI — Nano, Orin, Xavier for complex models</div></div>
+        <div class="platform-card"><div class="platform-ico">📡</div><div class="platform-name">ESP32 TinyML</div><div class="platform-sub">Ultra-low-power microcontroller running TF Lite Micro models</div></div>
+        <div class="platform-card"><div class="platform-ico">🚗</div><div class="platform-name">Automotive ECU</div><div class="platform-sub">AUTOSAR-compliant embedded controllers with real-time OS</div></div>
+        <div class="platform-card"><div class="platform-ico">🔋</div><div class="platform-name">BMS Controller</div><div class="platform-sub">Dedicated battery management hardware with CAN integration</div></div>
+        <div class="platform-card"><div class="platform-ico">🏭</div><div class="platform-name">Industrial PLC</div><div class="platform-sub">Siemens/Allen-Bradley PLCs with edge ML co-processors</div></div>
+      </div>
+
+      <h2>Steps 8–10 — Live Inference &amp; Autonomous Actions</h2>
+      <p>With the model deployed, live telemetry continuously flows through inference. The system observes, predicts, decides, and acts — the full intelligent loop — all at the edge.</p>
+
+      <div class="inference-flow">
+        <div class="inf-box"><span class="inf-box-ico">📡</span>Sensor Telemetry</div>
+        <div class="inf-arr">→</div>
+        <div class="inf-box"><span class="inf-box-ico">🧮</span>Feature Extraction</div>
+        <div class="inf-arr">→</div>
+        <div class="inf-box"><span class="inf-box-ico">🧠</span>AI Model Inference</div>
+        <div class="inf-arr">→</div>
+        <div class="inf-box"><span class="inf-box-ico">📊</span>Prediction Score</div>
+        <div class="inf-arr">→</div>
+        <div class="inf-box"><span class="inf-box-ico">⚡</span>Autonomous Action</div>
+      </div>
+
+      <h2>Real Automotive EV Use Case — Battery Intelligence System</h2>
+      <p>Modern EV platforms are evolving from static rule-based charging toward intelligent adaptive systems. Here is a real inference scenario:</p>
+
+      <div class="prediction-box">
+        <div class="pred-title">Live Telemetry Input</div>
+        <div class="pred-row"><span class="pred-key">vehicle_id</span><span class="pred-val normal">"EV1024"</span></div>
+        <div class="pred-row"><span class="pred-key">soc</span><span class="pred-val warning">78%</span></div>
+        <div class="pred-row"><span class="pred-key">battery_temp</span><span class="pred-val warning">47°C</span></div>
+        <div class="pred-row"><span class="pred-key">ambient_temp</span><span class="pred-val warning">39°C</span></div>
+        <div class="pred-row"><span class="pred-key">battery_current</span><span class="pred-val warning">24 A</span></div>
+        <div class="pred-row"><span class="pred-key">charging_mode</span><span class="pred-val danger">"FAST"</span></div>
+        <div class="pred-row"><span class="pred-key">thermal_stress_index</span><span class="pred-val danger">0.88</span></div>
+        <div class="pred-row"><span class="pred-key">driver_behavior</span><span class="pred-val danger">"AGGRESSIVE"</span></div>
+        <div class="pred-result">⚠️ AI Prediction: Overheating Risk = HIGH &nbsp;|&nbsp; Battery Degradation = ELEVATED</div>
+        <div class="pred-actions">
+          <span class="pred-action">✓ Reduce charging current</span>
+          <span class="pred-action">✓ Enable cooling system</span>
+          <span class="pred-action">✓ Slow charge after 80% SOC</span>
+          <span class="pred-action">✓ Trigger maintenance alert</span>
+          <span class="pred-action">✓ Upload event to cloud</span>
+        </div>
+      </div>
+
+      <h3>AI Predictions — What the Model Learns</h3>
+      <table class="art-table">
+        <tr><th>Prediction Type</th><th>Signal</th><th>System Response</th></tr>
+        <tr><td>Overheating risk</td><td>High battery temp + thermal stress index</td><td>Enable cooling, reduce charging current</td></tr>
+        <tr><td>Battery degradation trend</td><td>Fast charge frequency + SOH curve</td><td>Notify maintenance, limit charge rate</td></tr>
+        <tr><td>Remaining range</td><td>SOC + driving behavior + temperature</td><td>Update range estimate in real time</td></tr>
+        <tr><td>Charging optimization</td><td>Time-of-day + grid load + SOH</td><td>Schedule optimal charge window</td></tr>
+        <tr><td>Unsafe charging condition</td><td>Cell imbalance + high temp + current</td><td>Stop fast charging automatically</td></tr>
+      </table>
+
+      <h2>Smart Building Extension — Edge AI for HVAC</h2>
+      <p>The same Edge AI pipeline extends beyond automotive. Smart buildings use identical architecture for HVAC optimization:</p>
+
+      <table class="art-table">
+        <tr><th>Input Signal</th><th>AI Feature</th><th>Autonomous Action</th></tr>
+        <tr><td>Occupancy count (PIR / camera)</td><td>Predicted occupancy next 30 min</td><td>Pre-cool zone before arrival</td></tr>
+        <tr><td>Indoor + outdoor temperature</td><td>Thermal load index</td><td>Adjust compressor staging</td></tr>
+        <tr><td>Energy consumption patterns</td><td>Efficiency score vs. baseline</td><td>Shift non-critical loads off-peak</td></tr>
+        <tr><td>Calendar + meeting room data</td><td>Demand forecast</td><td>Shut down unused zones automatically</td></tr>
+      </table>
+
+      <h2>Why Edge AI Is the Next Engineering Frontier</h2>
+      <p>The industry is shifting from <strong>connected devices</strong> toward <strong>intelligent autonomous edge systems</strong>. This is especially critical in domains where latency, reliability, and privacy matter most.</p>
+
+      <div class="art-highlight">
+        <p><strong>Coming from an Embedded/Firmware background, here's what I've realized:</strong></p>
+        <p>AI in automotive and IoT is not just about neural networks. The real engineering value comes from deeply understanding telemetry, designing meaningful features, optimizing for real-time inference on constrained hardware, and creating closed-loop systems that act intelligently without human intervention.</p>
+        <p>That combination — <strong>Embedded Systems × Feature Engineering × Edge Inference × System Integration</strong> — is becoming one of the most valuable skill sets in the Automotive + AI + IoT industry.</p>
+      </div>
+
+      <h3>Applications Driving This Shift</h3>
+      <table class="art-table">
+        <tr><th>Domain</th><th>Edge AI Application</th><th>Business Impact</th></tr>
+        <tr><td>Software Defined Vehicles (SDV)</td><td>Adaptive ADAS, predictive diagnostics, OTA model updates</td><td>Continuous improvement post-deployment</td></tr>
+        <tr><td>EV Platforms</td><td>Battery intelligence, range optimization, thermal management</td><td>Extended battery life, reduced warranty claims</td></tr>
+        <tr><td>Industrial IoT</td><td>Machine anomaly detection, predictive maintenance</td><td>Up to 50% reduction in unplanned downtime</td></tr>
+        <tr><td>Smart Infrastructure</td><td>Energy optimization, occupancy prediction</td><td>20–40% energy cost reduction</td></tr>
+        <tr><td>Robotics</td><td>Real-time path planning, obstacle avoidance</td><td>Safer autonomous operation without cloud dependency</td></tr>
+      </table>
+
+      <div class="art-closing">
+        <p>The future of embedded systems is no longer only about <strong>connectivity</strong>. The next generation of intelligent systems will combine <strong>Embedded Systems, Cloud Telemetry, Edge AI, OTA updates, Predictive Diagnostics, and Autonomous Optimization</strong> into a single cohesive platform.</p>
+        <p>This convergence is opening exciting engineering opportunities at the intersection of <strong>Embedded Systems × AI × Automotive × IoT</strong> — and that intersection is where the most impactful work is happening.</p>
+        <p>Excited to continue building practical Edge AI systems and sharing what I learn along the way.</p>
+      </div>
+
+      <div class="art-share">
+        <span class="art-share-label">Share Article</span>
+        <div class="art-share-links">
+          <a class="share-btn linkedin" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fskolli6.github.io%2Fprofile%2Fblog.html%23edgeai" target="_blank" rel="noopener">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            LinkedIn
+          </a>
+          <a class="share-btn twitter" href="https://twitter.com/intent/tweet?text=AI+in+Automotive+%26+IoT+—+Edge+Intelligence+by+Srihari+Kolli&url=https%3A%2F%2Fskolli6.github.io%2Fprofile%2Fblog.html%23edgeai" target="_blank" rel="noopener">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L1.254 2.25H8.08l4.259 5.631 5.905-5.631zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            X / Twitter
+          </a>
+          <a class="share-btn medium" href="https://medium.com/" target="_blank" rel="noopener">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/></svg>
+            Medium
+          </a>
+          <button class="share-btn copy" onclick="copyLink('https://skolli6.github.io/profile/blog.html#edgeai',this)">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+            Copy Link
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <footer>
   <span class="ft-brand">Srihari <em>Kolli</em></span>
   <small>© 2026 · IoT Architect &amp; Embedded Systems Engineer · Michigan, USA</small>
@@ -874,7 +1379,7 @@ function copyLink(url,btn){
   }).catch(()=>alert('Link: '+url));
 }
 const hash=location.hash.replace('#','');
-if(hash==='smartbuilding'||hash==='silicon'){showArticle(hash);}
+if(hash==='smartbuilding'||hash==='silicon'||hash==='edgeai'){showArticle(hash);}
 </script>
 </body>
 </html>
